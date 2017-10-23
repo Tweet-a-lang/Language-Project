@@ -2,6 +2,7 @@ import React from 'react';
 import GameNavbar from './GameNavbar';
 import CorrectPopUp from './Results/CorrectPopUp';
 import InCorrectPopUp from './Results/InCorrectPopUp';
+import GameCard from './GameCard'
 
 class GamePage extends React.Component {
     render() {
@@ -11,7 +12,7 @@ class GamePage extends React.Component {
                 <GameCard />
                 <CorrectPopUp />
                 <InCorrectPopUp />
-         </div>
+            </div>
         )
     }
 }

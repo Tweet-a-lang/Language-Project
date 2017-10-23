@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ScoreTally from './ScoreTally';
 
 class GameNavbar extends React.Component {
@@ -6,9 +7,9 @@ class GameNavbar extends React.Component {
         return (
             <div>
                 <nav>
-                <button>Quit</button>
-                <button>Skip</button>
-                <ScoreTally />
+                    <button><Link to='/'>Quit</Link></button>
+                    <button>Skip</button>
+                    <ScoreTally />
                 </nav>
             </div>
         )

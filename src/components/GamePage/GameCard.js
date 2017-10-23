@@ -10,14 +10,14 @@ class GameCard extends React.Component {
                 <span>Image here</span>
 
                 <p>Un ejemplo en espagnol</p>
-                <ol>
+                <ul>
                     <li>example</li>
                     <li>test</li>
                     <li>cheese</li>
-                </ol>
+                </ul>
                 <GameHint />
 
-         </div>
+            </div>
         )
     }
 }

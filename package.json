@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/Tweet-a-lang/Language-Project#readme",
   "dependencies": {
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "webpack-watch-server": "^1.2.1",
-    "prop-types": "^15.6.0"
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "webpack-watch-server": "^1.2.1"
   },
   "devDependencies": {
     "eslint": "^4.8.0",
