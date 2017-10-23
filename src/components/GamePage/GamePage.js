@@ -10,8 +10,6 @@ class GamePage extends React.Component {
             <div>
                 <GameNavbar />
                 <GameCard />
-                <CorrectPopUp />
-                <InCorrectPopUp />
             </div>
         )
     }
