@@ -7,14 +7,10 @@ class NavCard extends React.Component {
     render() {
         return (
             <div>
-                <h1>TWEET-A-LANG</h1>
                 <Start />
-
-               <Leaderboard />
-
-
+                <Leaderboard />
                 <HowToPlay />
-         </div>
+            </div>
         )
     }
 }

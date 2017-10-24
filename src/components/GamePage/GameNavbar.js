@@ -8,7 +8,8 @@ class GameNavbar extends React.Component {
             <div>
                 <nav>
                     <button><Link to='/'>Quit</Link></button>
-                    <button>Skip</button>
+                    {(this.props.end) ? <button disabled>No more skips!</button> :
+                        <button onClick={this.props.onClick}>Skip</button>}
                     <ScoreTally />
                 </nav>
             </div>

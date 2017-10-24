@@ -10,6 +10,7 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <div>
+                    <h1>TWEET-A-LANG</h1>
                     <Switch>
                         <Route exact path='/' component={Homepage} />
                         <Route exact path='/GamePage' component={GamePage} />
