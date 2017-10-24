@@ -1,12 +1,12 @@
 import * as types from '../actions/types';
 
-export const intitialState = {
+export const initialState = {
     loading: false,
     error: null,
     data: []
-}
+};
 
-export default (prevState = intitialState, action) => {
+export default (prevState = initialState, action) => {
     switch (action.type) {
         case types.FETCH_TWEETS_REQUEST:
             return Object.assign({}, prevState, {
@@ -26,5 +26,7 @@ export default (prevState = intitialState, action) => {
                 error: action.payload,
                 data: []
             });
-    }
-}
+            default:
+            return prevState;
+        }
+};

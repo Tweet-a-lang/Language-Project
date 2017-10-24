@@ -6,19 +6,20 @@ import {
     fetchTweetsFailure
 } from '../../src/actions/enterHandle';
 
+
 describe('enterHandle reducer', () => {
-    // describe('default behaviour', () => {
-    //     it('returns the passed previous state if an unrecognised action is passed', () => {
-    //         const action = { type: 'whatever' };
-    //         const newState = articlesReducer(initialState, action);
-    //         expect(newState).to.equal(initialState);
-    //     });
-    //     it('uses the initial state if no previous state is passed', () => {
-    //         const action = { type: 'whatever' };
-    //         const newState = articlesReducer(undefined, action);
-    //         expect(newState).to.equal(initialState);
-    //     });
-    // });
+    describe('default behaviour', () => {
+        it('returns the passed previous state if an unrecognised action is passed', () => {
+            const action = { type: 'whatever' };
+            const newState = enterHandle(initialState, action);
+            expect(newState).to.equal(initialState);
+        });
+        it('uses the initial state if no previous state is passed', () => {
+            const action = { type: 'whatever' };
+            const newState = enterHandle(undefined, action);
+            expect(newState).to.equal(initialState);
+        });
+    });
     // it('handles FETCH_ARTICLES_REQUEST', () => {
     //     const action = fetchArticlesRequest();
     //     const newState = articlesReducer(undefined, action);
