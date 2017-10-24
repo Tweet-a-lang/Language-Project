@@ -4,7 +4,7 @@ class ScoreTally extends React.Component {
     render() {
         return (
             <div>
-                <span>Score: 10</span>
+                <span>Score: {this.props.score}</span>
             </div>
         )
     }

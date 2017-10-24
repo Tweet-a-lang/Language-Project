@@ -8,7 +8,6 @@ class CorrectPopUp extends React.Component {
                 <p>The Answer</p>
                 <p>Well done - Correct!</p>
                 <p>2 points added - fandabidose</p>
-                <button>Next Tweet</button>
             </div>
         )
     }

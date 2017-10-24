@@ -13,24 +13,27 @@ class GameCard extends React.Component {
                 <p>Player: Olie</p>
                 <span>Player's Profile Image here</span>
 
-                <h3>@{this.props.data[this.props.count].user.screen_name}</h3>
-                <p>{this.props.data[this.props.count].text.split(' ').map((word) => {
-                    if (word === wordSelection) return word.toUpperCase()
+                {this.props.data.map((tweet) => {
+                    return <div>
+                        <h3>Your tweets from: @{tweet.user.screen_name}</h3>
 
-                    return word;
-                }).join(' ')}</p>
+                        <p>{tweet.text.split(' ').map((word) => {
+                            if (word === wordSelection) return word.toUpperCase()
+                            return word;
+                        }).join(' ')}</p>
 
-                <div>
-                    {this.props.multipleChoice.map((choice) => {
-                        return <button>{(choice.result) ? <Link to='/correct'>{choice.text}</Link> : <Link to='/incorrect'>{choice.text}</Link>}</button>
-                    })}
-                </div>
-
-                <GameHint />
-
+                        {this.props.multipleChoice.map((choice) => {
+                            return <button onClick={(choice.result)?this.props.onTrueClick : this.props.onFalseClick}>{choice.text}</button>
+                        })}
+                        <GameHint 
+                        onShowHint={this.props.onShowHint}/>
+                    </div>
+                })}
+            
             </div>
         )
     }
+
 }
 
 export default GameCard;

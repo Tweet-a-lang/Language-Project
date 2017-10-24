@@ -24,45 +24,69 @@ class GamePage extends React.Component {
                     result: false
                 }
             ],
-            count: 0,
-            end: false
+            score: 0
         }
-        this.increaseCount = this.increaseCount.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleNextRoundClick = this.handleNextRoundClick.bind(this);
+        this.fetchNextTweets = this.fetchNextTweets.bind(this);
+        this.increaseScore = this.increaseScore.bind(this);
+        this.handleFalseClick = this.handleFalseClick.bind(this);
+        this.handleTrueClick = this.handleTrueClick.bind(this);
+        this.handleShowHint = this.handleShowHint.bind(this);
+        this.decreaseScore = this.decreaseScore.bind(this);
     }
     render() {
         return (
             <div>
                 <GameNavbar
-                    end={this.state.end}
-                    count={this.state.count}
-                    onClick={this.handleClick}
-                />
+                score={this.state.score} />
                 <GameCard
                     data={this.state.data}
                     multipleChoice={this.state.multipleChoice}
-                    count={this.state.count}
-                    onClick={this.handleClick} />
+                    onFalseClick={this.handleFalseClick}
+                    onTrueClick={this.handleTrueClick}
+                    onShowHint={this.handleShowHint} />
+
+                <button onClick={this.handleNextRoundClick}>Next Round</button>
             </div>
         )
     }
-    handleClick(e) {
+    
+    handleTrueClick(e) {
+        console.log('true handled')
         e.preventDefault();
-        this.increaseCount()
+        this.increaseScore();
     }
-    increaseCount() {
-        if (this.state.count === this.state.data.length - 2) {
-            this.setState({
-                count: 0,
-                end: true
-            })
-        } else {
-            this.setState({
-                count: this.state.count + 1,
-                end: false
-            })
-        }
+
+    handleFalseClick(e) {
+        e.preventDefault();
     }
+    
+    increaseScore() {
+        this.setState({
+            score: this.state.score + 10
+        })
+    }
+
+    handleShowHint(e) {
+        e.preventDefault();
+        this.decreaseScore()
+    }
+
+    decreaseScore() {
+        this.setState({
+            score: this.state.score - 2
+        })
+    }
+
+    handleNextRoundClick(e) {
+        e.preventDefault();
+        this.fetchNextTweets()
+    }
+
+    fetchNextTweets() {
+        console.log('I will fetch more tweets and rerender the GameCard');
+    }
+
 }
 
 export default GamePage;
