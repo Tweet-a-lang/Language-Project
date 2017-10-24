@@ -8,8 +8,8 @@ class GameNavbar extends React.Component {
             <div>
                 <nav>
                     <button><Link to='/'>Quit</Link></button>
-                    <button>Skip</button>
-                    <ScoreTally />
+                    <ScoreTally
+                    score={this.props.score} />
                 </nav>
             </div>
         )

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 class InCorrectPopUp extends React.Component {
@@ -7,9 +8,9 @@ class InCorrectPopUp extends React.Component {
             <div>
                 <p>Oops not matched!</p>
                 <button>See Answer</button>
-                <button>Try Again</button>
+                <button><Link to='/GamePage'>Try Again</Link></button>
                 <button>Next Tweet</button>
-         </div>
+            </div>
         )
     }
 }

@@ -5,7 +5,7 @@ class GameHint extends React.Component {
     render() {
         return (
             <div>
-                <button>Show Hint</button>
+                <button onClick={this.props.onShowHint}>Show Hint</button>
          </div>
         )
     }
