@@ -7,7 +7,7 @@ export const initialState = {
 };
 
 export default (prevState = initialState, action) => {
-    switch (action.types) {
+    switch (action.type) {
         case types.FETCH_TWEETS_REQUEST:
             return Object.assign({}, prevState, {
                 loading: true,

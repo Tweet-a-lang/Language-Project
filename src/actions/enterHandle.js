@@ -4,17 +4,17 @@ import axios from 'axios';
 const API_URL = 'https://northcoders-news-api.herokuapp.com/api';
 
 export const fetchTweetsRequest = () => ({
-    types: types.FETCH_TWEETS_REQUEST
+    type: types.FETCH_TWEETS_REQUEST
     // payload: handle
 });
 
 export const fetchTweetsSuccess = (data) => ({
-    types: types.FETCH_TWEETS_SUCCESS,
+    type: types.FETCH_TWEETS_SUCCESS,
     payload: data
 });
 
 export const fetchTweetsFailure = (error) => ({
-    types: types.FETCH_TWEETS_FAILURE,
+    type: types.FETCH_TWEETS_FAILURE,
     payload: error
 });
 
