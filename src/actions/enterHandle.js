@@ -3,9 +3,9 @@ import axios from 'axios';
 
 const API_URL = 'https://northcoders-news-api.herokuapp.com/api';
 
-export const fetchTweetsRequest = (handle) => ({
-    types: types.FETCH_TWEETS_REQUEST,
-    payload: handle
+export const fetchTweetsRequest = () => ({
+    types: types.FETCH_TWEETS_REQUEST
+    // payload: handle
 });
 
 export const fetchTweetsSuccess = (data) => ({

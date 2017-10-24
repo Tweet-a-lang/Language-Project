@@ -20,29 +20,29 @@ describe('enterHandle reducer', () => {
             expect(newState).to.equal(initialState);
         });
     });
-    // it('handles FETCH_ARTICLES_REQUEST', () => {
-    //     const action = fetchArticlesRequest();
-    //     const newState = articlesReducer(undefined, action);
-    //     expect(newState.loading).to.be.true;
-    //     expect(newState.error).to.be.null;
-    //     expect(newState.data).to.eql([]);
-    // });
-    // it('handles FETCH_ARTICLES_SUCCESS', () => {
-    //     const prevState = articlesReducer(undefined, fetchArticlesRequest());
-    //     const data = [1, 2, 3];
-    //     const action = fetchArticlesSuccess(data);
-    //     const newState = articlesReducer(prevState, action);
-    //     expect(newState.loading).to.be.false;
-    //     expect(newState.error).to.be.null;
-    //     expect(newState.data).to.eql(data);
-    // });
-    // it('handles FETCH_ARTICLES_FAILURE', () => {
-    //     const prevState = articlesReducer(undefined, fetchArticlesRequest());
-    //     const error = 'Something went wrong';
-    //     const action = fetchArticlesFailure(error);
-    //     const newState = articlesReducer(prevState, action);
-    //     expect(newState.loading).to.be.false;
-    //     expect(newState.error).to.eql(error);
-    //     expect(newState.data).to.eql([]);
-    // });
+    it('handles FETCH_TWEETS_REQUEST', () => {
+        const action = fetchTweetsRequest();
+        const newState = enterHandle(undefined, action);
+        expect(newState.loading).to.be.true;
+        expect(newState.error).to.be.null;
+        expect(newState.data).to.eql([]);
+    });
+    it('handles FETCH_TWEETS_SUCCESS', () => {
+        const prevState = enterHandle(undefined, fetchTweetsRequest());
+        const data = [1, 2, 3];
+        const action = fetchTweetsSuccess(data);
+        const newState = enterHandle(prevState, action);
+        expect(newState.loading).to.be.false;
+        expect(newState.error).to.be.null;
+        expect(newState.data).to.eql(data);
+    });
+    it('handles FETCH_TWEETS_FAILURE', () => {
+        const prevState = enterHandle(undefined, fetchTweetsRequest());
+        const error = 'Something went wrong';
+        const action = fetchTweetsFailure(error);
+        const newState = enterHandle(prevState, action);
+        expect(newState.loading).to.be.false;
+        expect(newState.error).to.eql(error);
+        expect(newState.data).to.eql([]);
+    });
 });
