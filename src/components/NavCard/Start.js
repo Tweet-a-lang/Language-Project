@@ -40,11 +40,6 @@ Start.propTypes = {
   saveUsername: PT.func.isRequired
 };
 
-// const mapStateToProps = state => {
-//   return {
-//     username: state.Handle.username
-//   };
-// }
   
 const mapDispatchToProps = dispatch => ({
   saveUsername: (U) => {

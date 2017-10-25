@@ -1,14 +1,14 @@
 import * as types from '../actions/types';
 
 export const initialState = {
-  score: 0
+  username: ''
 };
 
 export default (prevState = initialState, action) => {
   switch (action.type) {
-  case types.INCREASE_SCORE: {
+  case types.SAVE_USERNAME: {
     const newState = Object.assign({}, prevState);
-    newState.score = prevState.score + action.payload;
+    newState.username = action.payload;
     return newState;
   }
   default:

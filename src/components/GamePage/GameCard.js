@@ -53,7 +53,7 @@ const mapStateToProps = state => {
     loading: state.fetchTweetsReducer.loading,
     error: state.fetchTweetsReducer.error,
     score: state.increaseScoreReducer.score,
-    username: state.Handle.username
+    username: state.saveUsernameReducer.username
   };
 };
   

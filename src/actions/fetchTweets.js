@@ -5,7 +5,7 @@ const API_URL = 'https://northcoders-news-api.herokuapp.com/api';
 
 export const fetchTweetsRequest = () => ({
   type: types.FETCH_TWEETS_REQUEST
-  // payload: handle
+  // payload: username
 });
 
 export const fetchTweetsSuccess = (data) => ({
