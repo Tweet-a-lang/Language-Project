@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import nock from 'nock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import enterHandle, {
-    fetchTweetsRequest,
-    fetchTweetsSuccess,
-    fetchTweetsFailure
-} from '../../src/actions/enterHandle';
+import fetchTweets, {
+  fetchTweetsRequest,
+  fetchTweetsSuccess,
+  fetchTweetsFailure
+} from '../../src/actions/fetchTweets';
 
 const API_URL = 'https://northcoders-news-api.herokuapp.com/api';
 
@@ -22,7 +22,7 @@ describe('async action creators', () => {
       nock(API_URL)
         .get('/articles')
         .reply(200, { articles: [1, 2, 3] });
-      
+
       const expectedActions = [
         fetchTweetsRequest(),
         fetchTweetsSuccess([1, 2, 3])
@@ -30,7 +30,7 @@ describe('async action creators', () => {
 
       const store = mockStore();
 
-      return store.dispatch(enterHandle())
+      return store.dispatch(fetchTweets())
         .then(() => {
           expect(store.getActions()).to.eql(expectedActions);
         });
@@ -39,7 +39,7 @@ describe('async action creators', () => {
     //   nock(API_URL)
     //     .get('/articles')
     //     .replyWithError({'message': 'error'});
-      
+
     //   const expectedActions = [
     //     fetchArticlesRequest(),
     //     fetchArticlesFailure('error')

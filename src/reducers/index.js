@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import enterHandle from './enterHandle'
+import fetchTweetsReducer from './fetchTweetsReducer';
+import fetchTweetsReducer from './fetchTweetsReducer';
 
 const reducer = combineReducers({
-    enterHandle
+    fetchTweetsReducer, increaseScoreReducer
 })
 
 export default reducer;
