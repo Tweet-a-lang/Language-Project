@@ -4,15 +4,15 @@ import Leaderboard from './Leaderboard';
 import HowToPlay from './HowToPlay';
 
 class NavCard extends React.Component {
-    render() {
-        return (
-            <div>
-                <Start />
-                <Leaderboard />
-                <HowToPlay />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <Start />
+        <Leaderboard />
+        <HowToPlay />
+      </div>
+    );
+  }
 }
 
 export default NavCard;

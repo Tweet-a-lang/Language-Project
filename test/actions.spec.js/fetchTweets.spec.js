@@ -36,23 +36,23 @@ describe('fetchTweets async action creators', () => {
         });
     });
     describe('fetchTweetsFailure', () => {
-    it('dispatches FETCH_TWEETS_FAILURE when fetching tweets. Responds with an error', () => {
-      nock(API_URL)
-        .get('/articles')
-        .replyWithError({'message': 'error'});
+      it('dispatches FETCH_TWEETS_FAILURE when fetching tweets. Responds with an error', () => {
+        nock(API_URL)
+          .get('/articles')
+          .replyWithError({'message': 'error'});
 
-      const expectedActions = [
-        fetchTweetsRequest(),
-        fetchTweetsFailure('error')
-      ];
+        const expectedActions = [
+          fetchTweetsRequest(),
+          fetchTweetsFailure('error')
+        ];
 
-      const store = mockStore();
+        const store = mockStore();
 
-      return store.dispatch(fetchTweets())
-        .then(() => {
-          expect(store.getActions()).to.eql(expectedActions);
-        });
+        return store.dispatch(fetchTweets())
+          .then(() => {
+            expect(store.getActions()).to.eql(expectedActions);
+          });
+      });
     });
-  });
   });
 });

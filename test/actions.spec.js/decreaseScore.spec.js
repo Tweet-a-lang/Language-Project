@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { decreaseScore } from '../../src/actions/decreaseScore';
-import * as types from '../../src/actions/types'
+import * as types from '../../src/actions/types';
 
 
 describe('decreaseScore action creator', () => {
