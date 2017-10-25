@@ -1,11 +1,11 @@
 import * as types from '../actions/types';
 
-export const initialState = () => ({
+export const initialState = {
   username: ''
-});
+};
 
-export default (prevState = initialState(), action) => {
-  console.log('action', action.payload);
+export default (prevState = initialState, action) => {
+  console.log('action payload', action.payload);
   switch (action.type) {
   case types.SAVE_USERNAME: {
     const newState = Object.assign({}, prevState);

@@ -4,6 +4,7 @@ import TweetNav from './TweetNav';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
 import increaseScore from '../../actions/increaseScore';
+// import saveUsername from '../../actions/saveUsername';
 
 class GameCard extends React.Component {
   render() {
@@ -46,6 +47,7 @@ GameCard.propTypes = {
 };
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     data: state.fetchTweetsReducer.data,
     loading: state.fetchTweetsReducer.loading,
