@@ -1,6 +1,6 @@
 import * as types from './types';
 
 export const increaseScore = (score) => ({
-    type: types.INCRASE_SCORE,
+    type: types.INCREASE_SCORE,
     payload: score
 })
