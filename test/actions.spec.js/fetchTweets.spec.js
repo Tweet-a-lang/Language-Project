@@ -13,7 +13,7 @@ const API_URL = 'https://northcoders-news-api.herokuapp.com/api';
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
-describe('async action creators', () => {
+describe('fetchTweets async action creators', () => {
   afterEach(() => {
     nock.cleanAll();
   });
@@ -35,22 +35,24 @@ describe('async action creators', () => {
           expect(store.getActions()).to.eql(expectedActions);
         });
     });
-    // it('dispatches FETCH_ALL_ARTICLES_FAILURE when fetching articles reponds with an error', () => {
-    //   nock(API_URL)
-    //     .get('/articles')
-    //     .replyWithError({'message': 'error'});
+    describe('fetchTweetsFailure', () => {
+    it('dispatches FETCH_TWEETS_FAILURE when fetching tweets. Responds with an error', () => {
+      nock(API_URL)
+        .get('/articles')
+        .replyWithError({'message': 'error'});
 
-    //   const expectedActions = [
-    //     fetchArticlesRequest(),
-    //     fetchArticlesFailure('error')
-    //   ];
+      const expectedActions = [
+        fetchTweetsRequest(),
+        fetchTweetsFailure('error')
+      ];
 
-    //   const store = mockStore();
+      const store = mockStore();
 
-    //   return store.dispatch(fetchArticles())
-    //     .then(() => {
-    //       expect(store.getActions()).to.eql(expectedActions);
-    //     });
-    // });
+      return store.dispatch(fetchTweets())
+        .then(() => {
+          expect(store.getActions()).to.eql(expectedActions);
+        });
+    });
+  });
   });
 });
