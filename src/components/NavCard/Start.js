@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import {saveUsername} from '../../actions/saveUsername';
 import PT from 'prop-types';
 
@@ -18,8 +18,10 @@ class Start extends React.Component {
       <div>
         <p>Choose your language: Spanish</p>
         <span>Enter your twitter handle:</span>
-        <input placeholder="@handle" onChange={this.handleChange}></input>
-        <button onClick={this.handleSubmit}><Link to='/GamePage'>START</Link></button>
+        <form onSubmit={this.handleSubmit}>
+          <input placeholder="@handle" onChange={this.handleChange}></input>
+          <button type="submit" >START GAME</button>
+        </form>
       </div>
     );
   }
@@ -31,8 +33,8 @@ class Start extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log('handle submit', this.state.input);
-    saveUsername(this.state.input);
+    if(this.state.input.length === 0) return;
+    this.props.saveUsername(this.state.input); 
   }
 }
 
@@ -41,11 +43,12 @@ Start.propTypes = {
 };
 
   
-const mapDispatchToProps = dispatch => ({
-  saveUsername: (U) => {
-    console.log('username', U);
-    dispatch(saveUsername(U));
-  }
-});
+const mapDispatchToProps = (dispatch) => {
+  return { 
+    saveUsername: (U) => {
+      dispatch(saveUsername(U));
+    }
+  };
+};
 
-export default connect(mapDispatchToProps)(Start);
+export default connect(null, mapDispatchToProps)(Start);

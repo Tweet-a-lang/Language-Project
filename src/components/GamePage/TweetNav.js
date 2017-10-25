@@ -14,8 +14,8 @@ class TweetNav extends React.Component {
 }
 
 TweetNav.propTypes = {
-  onShowHint: PT.func.isRequired,
-  onSkipTweet: PT.func.isRequired
+  onShowHint: PT.func,
+  onSkipTweet: PT.func
 };
 
 export default TweetNav;

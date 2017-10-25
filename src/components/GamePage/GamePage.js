@@ -25,6 +25,8 @@ class GamePage extends React.Component {
     return (
       <div>
         <GameNavbar />
+        <p>Player: Olie</p>
+        <p>Players Profile Image here</p>
         <GameCard  />
       </div>
     );

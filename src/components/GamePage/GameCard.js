@@ -7,12 +7,11 @@ import increaseScore from '../../actions/increaseScore';
 // import saveUsername from '../../actions/saveUsername';
 
 class GameCard extends React.Component {
+
   render() {
     console.log('*****',this.props);
     return (
       <div>
-        <p>Player: Olie</p>
-        <p>Players Profile Image here</p>
         {this.props.data.map((tweetData, i) => {
           return (<div key={i}>
             <h3>Tweets from: @{tweetData.originalTweetData.user.handle}</h3>
@@ -39,21 +38,21 @@ class GameCard extends React.Component {
 GameCard.propTypes = {
   data: PT.array.isRequired,
   multipleChoice: PT.array,
-  onTrueClick: PT.func.isRequired,
-  onFalseClick: PT.func.isRequired,
-  onShowHint: PT.func.isRequired,
-  onSkipTweet: PT.func.isRequired,
+  onTrueClick: PT.func,
+  onFalseClick: PT.func,
+  onShowHint: PT.func,
+  onSkipTweet: PT.func,
   increaseScore: PT.func.isRequired
 };
 
-const mapStateToProps = state => {
-  console.log(state);
+const mapStateToProps = (state, ownProps) => {
+  console.log('state:', state, 'ownProps', ownProps);
   return {
     data: state.fetchTweetsReducer.data,
     loading: state.fetchTweetsReducer.loading,
     error: state.fetchTweetsReducer.error,
     score: state.increaseScoreReducer.score,
-    username: state.saveUsernameReducer.username
+    username: state.username
   };
 };
   
