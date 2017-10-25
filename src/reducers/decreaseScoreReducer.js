@@ -6,9 +6,9 @@ export const getInitialState = () => ({
 
 export default (prevState = getInitialState(), action) => {
     switch (action.type) {
-        case types.INCREASE_SCORE: {
+        case types.DECREASE_SCORE: {
             const newState = Object.assign({}, prevState)
-            newState.score = prevState.score + action.payload
+            newState.score = prevState.score - action.payload
             return newState;
         }
         default:

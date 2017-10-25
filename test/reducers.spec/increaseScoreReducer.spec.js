@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import increaseScoreReducer, { getInitialState } from '../../src/reducers/increaseScoreReducer';
 import { increaseScore } from '../../src/actions/increaseScore';
 
-describe.only('increaseScore reducer', () => {
+describe('increaseScore reducer', () => {
     describe('default behaviour', () => {
         it('returns the passed prevState if passed an unrecognised action', () => {
             const prevState = {}
