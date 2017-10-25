@@ -20,17 +20,17 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      },
-      {
-        test: /\.js$/,
         include: PATHS.src,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
           presets: ['react', 'env']
         }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
       },
       {
         test: /\.css$/,

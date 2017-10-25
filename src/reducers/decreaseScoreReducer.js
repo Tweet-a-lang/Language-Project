@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 
 export const getInitialState = () => ({
-  score: 0
+  score: 40
 });
 
 export default (prevState = getInitialState(), action) => {

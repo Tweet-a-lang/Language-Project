@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PT from 'prop-types';
 
 class ScoreTally extends React.Component {
@@ -12,8 +13,14 @@ class ScoreTally extends React.Component {
 }
 
 ScoreTally.propTypes = {
-  score: PT.number.isRequired
+  score: PT.number
 };
 
+const mapStateToProps = state => {
+  return {
+    score: state.increaseScoreReducer.score
+  };
+};
+  
 
-export default ScoreTally;
+export default connect(mapStateToProps)(ScoreTally);
