@@ -25,7 +25,7 @@ describe('fetchUser reducer', () => {
     const newState = fetchUserReducer(undefined, action);
     expect(newState.loading).to.be.true;
     expect(newState.error).to.be.null;
-    expect(newState.userData).to.eql([]);
+    expect(newState.userData).to.eql({});
   });
   it('handles FETCH_USER_SUCCESS', () => {
     const prevState = fetchUserReducer(undefined, fetchUserRequest());
@@ -43,6 +43,6 @@ describe('fetchUser reducer', () => {
     const newState = fetchUserReducer(prevState, action);
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
-    expect(newState.userData).to.eql([]);
+    expect(newState.userData).to.eql({});
   });
 });
