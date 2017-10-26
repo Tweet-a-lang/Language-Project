@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Homepage from './Homepage';
 import GamePage from './GamePage/GamePage';
 import UserPage from './UserPage/UserPage';
+import Leaderboard from './NavCard/Leaderboard';
 
 class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
             <Route exact path='/' component={Homepage} />
             <Route exact path='/tweets/:username' component={GamePage} />
             <Route exact path='/user/:username' component={UserPage} />
+            <Route exact path='/scoreboard' component={Leaderboard} />
           </Switch>
         </div>
       </Router>
