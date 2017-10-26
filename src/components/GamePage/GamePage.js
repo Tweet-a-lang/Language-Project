@@ -4,15 +4,17 @@ import GameNavbar from './GameNavbar';
 import TweetNav from './TweetNav';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
+import { increaseScore, decreaseScore } from '../../actions/gameScore';
 
 class GamePage extends React.Component {
   constructor(props) {
     super(props);
+    this.handleScoreInc = this.handleScoreInc.bind(this);
+    this.handleScoreDec = this.handleScoreDec.bind(this);
   }
   
   componentDidMount() {
     const username = this.props.match.params.username;
-    console.log('CDM username:', username);
     this.props.fetchTweets(username);
   }
 
@@ -26,13 +28,13 @@ class GamePage extends React.Component {
           return (<div key={i}>
             <h5>Tweets from: @{tweetData.user_screen_name}</h5>
 
-            <p>{tweetData.text.split(' ').map((word) => {
+            <p>{tweetData.tweet.text.split(' ').map((word) => {
               if (word === tweetData.answers.chosenWord) return word.toUpperCase();
               return word;
             }).join(' ')}</p>
 
             {tweetData.answers.choices.map((choice, i) => {
-              return <button key={i} onClick={(choice.result) ? 'true' : 'false' }>{choice.text} {choice.result} </button>;
+              return <button key={i} onClick={(choice.result) ? this.handleScoreInc : this.handleScoreDec }>{choice.text}</button>;
             })}
             <TweetNav />
           </div>);
@@ -40,16 +42,31 @@ class GamePage extends React.Component {
       </div>
     );
   }
+
+  handleScoreInc(e) {
+    console.log('true choice');
+    e.preventDefault();
+    increaseScore(10);
+  }
+
+  handleScoreDec(e) {
+    console.log('false choice');
+    e.preventDefault();
+    decreaseScore(2);
+  }
+
 }
 
 GamePage.propTypes = {
   match: PT.object,
   fetchTweets: PT.func,
-  data: PT.array
+  data: PT.array,
+  increaseScore: PT.func,
+  decreaseScore: PT.func
+  
 };
 
-const mapStateToProps = (state, ownProps) => {
-  console.log('state:', state, 'ownProps', ownProps);
+const mapStateToProps = (state) => {
   return {
     data: state.fetchTweetsReducer.data,
     loading: state.fetchTweetsReducer.loading,
@@ -57,10 +74,18 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchTweets: (username) => {
-    dispatch(fetchTweets(username));
-  }
-});
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchTweets: (username) => {
+      dispatch(fetchTweets(username));
+    },
+    increaseScore: (score) => {
+      dispatch(increaseScore(score));
+    },
+    decreaseScore: (score) => {
+      dispatch(decreaseScore(score));
+    }
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage);

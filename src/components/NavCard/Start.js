@@ -20,7 +20,7 @@ class Start extends React.Component {
         <span>Enter your twitter handle:</span>
         <form onSubmit={this.handleSubmit}>
           <input placeholder="@handle" onChange={this.handleChange}></input>
-          <button type="submit" ><Link to={`/tweets/${this.state.input}`}>START GAME</Link></button>
+          <button type="submit" ><Link to={`/user/${this.state.input}`}>LOG IN</Link></button>
         </form>
       </div>
     );
