@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import PT from 'prop-types';
 
 class GameScore extends React.Component {
+  constructor(props) { 
+    super(props);
+  }
   render() {
     return (
       <div>

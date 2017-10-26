@@ -12,6 +12,8 @@ class GamePage extends React.Component {
     this.handleScoreInc = this.handleScoreInc.bind(this);
     this.handleScoreDec = this.handleScoreDec.bind(this);
   }
+
+
   
   componentDidMount() {
     const username = this.props.match.params.username;
@@ -34,7 +36,7 @@ class GamePage extends React.Component {
             }).join(' ')}</p>
 
             {tweetData.answers.choices.map((choice, i) => {
-              return <button key={i} onClick={(choice.result) ? this.handleScoreInc : this.handleScoreDec }>{choice.text}</button>;
+              return <button key={i} onClick={(choice.result) ? this.handleScoreInc : '' }>{choice.text}</button>;
             })}
             <TweetNav />
           </div>);
@@ -44,15 +46,11 @@ class GamePage extends React.Component {
   }
 
   handleScoreInc(e) {
-    console.log('true choice');
-    e.preventDefault();
-    increaseScore(10);
+    this.props.increaseScore(10);
   }
 
   handleScoreDec(e) {
-    console.log('false choice');
-    e.preventDefault();
-    decreaseScore(2);
+    this.props.decreaseScore(2);
   }
 
 }
@@ -70,7 +68,9 @@ const mapStateToProps = (state) => {
   return {
     data: state.fetchTweetsReducer.data,
     loading: state.fetchTweetsReducer.loading,
-    error: state.fetchTweetsReducer.error
+    error: state.fetchTweetsReducer.error,
+    gameScore: state.gameScoreReducer.gameScore,
+    userScore: state.updateUserScoreReducer.userScore
   };
 };
 
@@ -80,6 +80,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchTweets(username));
     },
     increaseScore: (score) => {
+      console.log('score has been dispatched', score);
       dispatch(increaseScore(score));
     },
     decreaseScore: (score) => {
