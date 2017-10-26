@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import TweetNav from './TweetNav';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
-import increaseScore from '../../actions/increaseScore';
+import { increaseScore } from '../../actions/updateScore';
 // import saveUsername from '../../actions/saveUsername';
 
 class GameCard extends React.Component {
 
   render() {
-    console.log('*****',this.props);
+    console.log('*****', this.props);
     return (
       <div>
         {this.props.data.map((tweetData, i) => {
@@ -22,14 +22,14 @@ class GameCard extends React.Component {
             }).join(' ')}</p>
 
             {tweetData.multipleChoice.map((choice, i) => {
-              return <button key={i} onClick={(choice.correct)?this.props.increaseScore : this.props.onFalseClick}>{choice.choice}</button>;
+              return <button key={i} onClick={(choice.correct) ? this.props.increaseScore : this.props.onFalseClick}>{choice.choice}</button>;
             })}
-            <TweetNav 
+            <TweetNav
               onShowHint={this.props.onShowHint}
-              onSkipTweet={this.props.onSkipTweet}/>
-          </div> );
+              onSkipTweet={this.props.onSkipTweet} />
+          </div>);
         })}
-            
+
       </div>
     );
   }
@@ -51,11 +51,11 @@ const mapStateToProps = (state, ownProps) => {
     data: state.fetchTweetsReducer.data,
     loading: state.fetchTweetsReducer.loading,
     error: state.fetchTweetsReducer.error,
-    score: state.increaseScoreReducer.score,
+    score: state.score,
     username: state.username
   };
 };
-  
+
 const mapDispatchToProps = dispatch => ({
   fetchTweets: () => {
     dispatch(fetchTweets());
@@ -64,5 +64,5 @@ const mapDispatchToProps = dispatch => ({
     dispatch(increaseScore(10));
   }
 });
-  
+
 export default connect(mapStateToProps, mapDispatchToProps)(GameCard);

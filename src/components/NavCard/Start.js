@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
-import {saveUsername} from '../../actions/saveUsername';
+import { Link } from 'react-router-dom';
+import { saveUsername } from '../../actions/saveUsername';
 import PT from 'prop-types';
 
 class Start extends React.Component {
@@ -20,7 +20,7 @@ class Start extends React.Component {
         <span>Enter your twitter handle:</span>
         <form onSubmit={this.handleSubmit}>
           <input placeholder="@handle" onChange={this.handleChange}></input>
-          <button type="submit" >START GAME</button>
+          <button type="submit" ><Link to={`/tweets/${this.state.input}`}>START GAME</Link></button>
         </form>
       </div>
     );
@@ -33,8 +33,8 @@ class Start extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    if(this.state.input.length === 0) return;
-    this.props.saveUsername(this.state.input); 
+    if (this.state.input.length === 0) return;
+    this.props.saveUsername(this.state.input);
   }
 }
 
@@ -42,9 +42,9 @@ Start.propTypes = {
   saveUsername: PT.func.isRequired
 };
 
-  
+
 const mapDispatchToProps = (dispatch) => {
-  return { 
+  return {
     saveUsername: (U) => {
       dispatch(saveUsername(U));
     }

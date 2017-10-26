@@ -18,9 +18,9 @@ ScoreTally.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    score: state.increaseScoreReducer.score
+    score: state.score
   };
 };
-  
+
 
 export default connect(mapStateToProps)(ScoreTally);

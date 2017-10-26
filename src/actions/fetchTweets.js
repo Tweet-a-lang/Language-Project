@@ -1,11 +1,10 @@
 import * as types from './types';
 import axios from 'axios';
 
-const API_URL = 'https://northcoders-news-api.herokuapp.com/api';
+const API_URL = 'http://192.168.100.33:3001/api';
 
 export const fetchTweetsRequest = () => ({
   type: types.FETCH_TWEETS_REQUEST
-  // payload: username
 });
 
 export const fetchTweetsSuccess = (data) => ({
@@ -18,12 +17,12 @@ export const fetchTweetsFailure = (error) => ({
   payload: error
 });
 
-export default () => {
+export default (username) => {
   return (dispatch) => {
     dispatch(fetchTweetsRequest());
-    return axios.get(`${API_URL}/articles`)
+    return axios.get(`${API_URL}/tweets/${username}`)
       .then(res => {
-        dispatch(fetchTweetsSuccess(res.data.articles));
+        dispatch(fetchTweetsSuccess(res.data));
       })
       .catch(err => {
         dispatch(fetchTweetsFailure(err.message));

@@ -8,7 +8,7 @@ import fetchTweets, {
   fetchTweetsFailure
 } from '../../src/actions/fetchTweets';
 
-const API_URL = 'https://northcoders-news-api.herokuapp.com/api';
+const API_URL = 'http://192.168.100.33:3001/api';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
@@ -20,17 +20,17 @@ describe('fetchTweets async action creators', () => {
   describe('fetchTweetsSuccess', () => {
     it('dispatches FETCH_TWEETS_SUCCESS when fetching tweets. Responds with 200 and data', () => {
       nock(API_URL)
-        .get('/articles')
-        .reply(200, { articles: [1, 2, 3] });
+        .get('/tweets/rosie')
+        .reply(200, [1, 2, 3]);
 
       const expectedActions = [
         fetchTweetsRequest(),
         fetchTweetsSuccess([1, 2, 3])
       ];
-
+    
       const store = mockStore();
 
-      return store.dispatch(fetchTweets())
+      return store.dispatch(fetchTweets('rosie'))
         .then(() => {
           expect(store.getActions()).to.eql(expectedActions);
         });
@@ -38,8 +38,8 @@ describe('fetchTweets async action creators', () => {
     describe('fetchTweetsFailure', () => {
       it('dispatches FETCH_TWEETS_FAILURE when fetching tweets. Responds with an error', () => {
         nock(API_URL)
-          .get('/articles')
-          .replyWithError({'message': 'error'});
+          .get('/tweets/rosie')
+          .replyWithError({ 'message': 'error' });
 
         const expectedActions = [
           fetchTweetsRequest(),
@@ -48,7 +48,7 @@ describe('fetchTweets async action creators', () => {
 
         const store = mockStore();
 
-        return store.dispatch(fetchTweets())
+        return store.dispatch(fetchTweets('rosie'))
           .then(() => {
             expect(store.getActions()).to.eql(expectedActions);
           });
