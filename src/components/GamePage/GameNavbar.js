@@ -8,22 +8,36 @@ import {updateUserScore} from '../../actions/updateUserScore';
 class GameNavbar extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleEndGame = this.handleEndGame.bind(this);
+    this.handleNextRound = this.handleNextRound.bind(this);
   }
   render() {
     return (
       <div>
         <nav>
-          <Link to={`/user/${this.props.userData.name}`}>End Game</Link>
-          <button onClick={this.handleClick}>End Game</button>
-          {/* <button onClick={this.handleNextRoundClick}>Next Round</button> */}
+          <Link to={`/user/${this.props.userData.name}`} onClick={this.handleEndGame}>
+            <button>
+              End Game
+            </button>
+          </Link>
+          <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleNextRound}>
+            <button>
+              Next Round
+            </button>
+          </Link>
+
           <GameScore />
         </nav>
       </div>
     );
   }
-  handleClick() {
+  handleEndGame() {
     console.log('I am ending the game', this.props.gameScore);
+    this.props.updateUserScore(this.props.gameScore, this.props.userScore);
+  }
+
+  handleNextRound() {
+    console.log('to the next round', this.props.gameScore);
     this.props.updateUserScore(this.props.gameScore, this.props.userScore);
   }
 
