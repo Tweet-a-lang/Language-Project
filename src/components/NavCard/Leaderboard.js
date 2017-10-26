@@ -28,7 +28,6 @@ class Leaderboard extends React.Component {
             {this.props.leaderboardData.map((user, i) => {
               return (
                 <tr key={i}>
-                  {console.log(user)}
                   <td key={user.name}>{user.name}</td>
                   <td key={user.name + user.score}>{user.score}</td>
                 </tr>

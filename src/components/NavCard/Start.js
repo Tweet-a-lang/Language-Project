@@ -11,29 +11,30 @@ class Start extends React.Component {
       input: ''
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
   render() {
     return (
       <div>
         <p>Choose your language: Spanish</p>
         <span>Enter your twitter handle:</span>
-        <form onSubmit={this.handleSubmit}>
-          <input placeholder="@handle" onChange={this.handleChange}></input>
-          <button type="submit" ><Link to={`/user/${this.state.input}`}>LOG IN</Link></button>
-        </form>
+        <input placeholder="@handle" onChange={this.handleChange}></input>
+        <Link to={(this.state.input.length > 0)? `/user/${this.state.input}` : '/'} onClick={this.handleLogin}>
+          <button >
+            Login
+          </button>
+        </Link>
       </div>
     );
   }
+
+
   handleChange(e) {
-    e.preventDefault();
     this.setState({
       input: e.target.value
     });
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    if (this.state.input.length === 0) return;
+  handleLogin() {
     this.props.saveUsername(this.state.input);
   }
 }
@@ -45,10 +46,12 @@ Start.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveUsername: () => {
-      dispatch(saveUsername());
+    saveUsername: (username) => {
+      dispatch(saveUsername(username));
     }
   };
 };
 
 export default connect(null, mapDispatchToProps)(Start);
+
+// export default connect()(Start);
