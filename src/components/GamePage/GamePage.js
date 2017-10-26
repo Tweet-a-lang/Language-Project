@@ -4,7 +4,7 @@ import GameNavbar from './GameNavbar';
 import TweetNav from './TweetNav';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
-import {increaseScore, decreaseScore} from '../../actions/gameScore';
+import { increaseScore, decreaseScore } from '../../actions/gameScore';
 
 class GamePage extends React.Component {
   constructor(props) {
@@ -28,14 +28,13 @@ class GamePage extends React.Component {
           return (<div key={i}>
             <h5>Tweets from: @{tweetData.user_screen_name}</h5>
 
-            <p>{tweetData.text.split(' ').map((word) => {
+            <p>{tweetData.tweet.text.split(' ').map((word) => {
               if (word === tweetData.answers.chosenWord) return word.toUpperCase();
               return word;
             }).join(' ')}</p>
 
             {tweetData.answers.choices.map((choice, i) => {
-              console.log(choice);
-              return <button key={i} onClick={(choice.result) ? this.handleScoreInc : this.handleScoreDec }>{choice.text} {choice.result} </button>;
+              return <button key={i} onClick={(choice.result) ? this.handleScoreInc : this.handleScoreDec }>{choice.text}</button>;
             })}
             <TweetNav />
           </div>);
@@ -45,11 +44,13 @@ class GamePage extends React.Component {
   }
 
   handleScoreInc(e) {
+    console.log('true choice');
     e.preventDefault();
     increaseScore(10);
   }
 
   handleScoreDec(e) {
+    console.log('false choice');
     e.preventDefault();
     decreaseScore(2);
   }

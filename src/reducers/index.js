@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
 import fetchTweetsReducer from './fetchTweetsReducer';
-import updateScoreReducer from './updateScoreReducer';
+import gameScoreReducer from './gameScoreReducer';
+import updateUserScoreReducer from './updateUserScoreReducer';
 import saveUsernameReducer from './saveUsernameReducer';
 import fetchUserReducer from './fetchUserReducer';
 
 const reducer = combineReducers({
-  fetchTweetsReducer, updateScoreReducer, saveUsernameReducer, fetchUserReducer
+  fetchTweetsReducer, gameScoreReducer, saveUsernameReducer, fetchUserReducer, updateUserScoreReducer
 });
 
 export default reducer;

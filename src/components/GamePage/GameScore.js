@@ -18,7 +18,7 @@ GameScore.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    gameScore: state.updateScoreReducer.gameScore
+    gameScore: state.gameScoreReducer.gameScore
   };
 };
 

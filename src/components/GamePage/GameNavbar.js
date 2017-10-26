@@ -10,7 +10,7 @@ class GameNavbar extends React.Component {
     return (
       <div>
         <nav>
-          <button onClick={this.handleClick}><Link to={`/user/${this.props.match.params.username}`}>End Game</Link></button>
+          <button onClick={this.handleClick}><Link to={`/user/${this.props.userData.name}`}>End Game</Link></button>
           {/* <button onClick={this.handleNextRoundClick}>Next Round</button> */}
           <GameScore />
         </nav>
@@ -27,13 +27,15 @@ class GameNavbar extends React.Component {
 GameNavbar.propTypes = {
   match: PT.object,
   gameScore: PT.number,
-  userScore: PT.number
+  userScore: PT.number,
+  userData: PT.object
 };
 
 const mapStateToProps = (state) => {
   return {
-    userScore: state.fetchUserReducer.userData.score,
-    gameScore: state.gameScoreReducer.gameScore
+    userScore: state.updateUserScoreReducer.userScore,
+    gameScore: state.gameScoreReducer.gameScore,
+    userData: state.fetchUserReducer.userData
   };
 };
 
