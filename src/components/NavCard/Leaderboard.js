@@ -1,6 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import fetchLeaderboard from '../../actions/fetchLeaderboard';
+import PT from 'prop-types';
 
 class Leaderboard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  componentDidMount() {
+    this.props.fetchLeaderboard();
+  }
   render() {
     return (
       <div>
@@ -31,4 +41,24 @@ class Leaderboard extends React.Component {
   }
 }
 
-export default Leaderboard;
+Leaderboard.propTypes = {
+  fetchLeaderboard: PT.func
+};
+
+const mapStateToProps = (state) => {
+  return {
+    leaderboardData: state.leaderboardReducer.leaderboardData,
+    loading: state.leaderboardReducer.loading,
+    error: state.leaderboardReducer.error
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchLeaderboard: () => {
+      dispatch(fetchLeaderboard());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Leaderboard);
