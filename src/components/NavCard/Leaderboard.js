@@ -8,9 +8,11 @@ class Leaderboard extends React.Component {
     super(props);
   }
   
-  componentDidMount() {
-    this.props.fetchLeaderboard();
-  }
+  // uncomment when have data from API
+  // componentDidMount() {
+  //   this.props.fetchLeaderboard();
+  // }
+
   render() {
     return (
       <div>
@@ -19,21 +21,19 @@ class Leaderboard extends React.Component {
           <thead>
             <tr>
               <th>UserName</th>
-              <th>Language</th> 
               <th>Score</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Kerry</td>
-              <td>Spanish</td> 
-              <td>50</td>
-            </tr>
-            <tr>
-              <td>Rosie</td>
-              <td>Spanish</td> 
-              <td>100</td>
-            </tr>
+            {this.props.leaderboardData.map((user, i) => {
+              return (
+                <tr key={i}>
+                  {console.log(user)}
+                  <td key={user.name}>{user.name}</td>
+                  <td key={user.name + user.score}>{user.score}</td>
+                </tr>
+              );
+            })}            
           </tbody>
         </table>
       </div>
@@ -42,7 +42,8 @@ class Leaderboard extends React.Component {
 }
 
 Leaderboard.propTypes = {
-  fetchLeaderboard: PT.func
+  fetchLeaderboard: PT.func,
+  leaderboardData: PT.array
 };
 
 const mapStateToProps = (state) => {

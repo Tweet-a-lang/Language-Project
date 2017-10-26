@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Homepage from './Homepage';
 import GamePage from './GamePage/GamePage';
 import UserPage from './UserPage/UserPage';
-import Leaderboard from '';
+import Leaderboard from './NavCard/Leaderboard';
 
 class App extends React.Component {
   render() {
