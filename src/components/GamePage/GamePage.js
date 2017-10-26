@@ -1,92 +1,66 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import GameNavbar from './GameNavbar';
-import Data from '../../../public/data/muyinteresante.json';
-import CorrectPopUp from './Results/CorrectPopUp';
-import InCorrectPopUp from './Results/InCorrectPopUp';
-import GameCard from './GameCard'
+import TweetNav from './TweetNav';
+import PT from 'prop-types';
+import fetchTweets from '../../actions/fetchTweets';
 
 class GamePage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: Data,
-            multipleChoice: [
-                {
-                    text: "Eliminate",
-                    result: true
-                },
-                {
-                    text: "Throw",
-                    result: false
-                },
-                {
-                    text: "Handbag",
-                    result: false
-                }
-            ],
-            score: 0
-        }
-        this.handleNextRoundClick = this.handleNextRoundClick.bind(this);
-        this.fetchNextTweets = this.fetchNextTweets.bind(this);
-        this.increaseScore = this.increaseScore.bind(this);
-        this.handleFalseClick = this.handleFalseClick.bind(this);
-        this.handleTrueClick = this.handleTrueClick.bind(this);
-        this.handleShowHint = this.handleShowHint.bind(this);
-        this.decreaseScore = this.decreaseScore.bind(this);
-    }
-    render() {
-        return (
-            <div>
-                <GameNavbar
-                score={this.state.score} />
-                <GameCard
-                    data={this.state.data}
-                    multipleChoice={this.state.multipleChoice}
-                    onFalseClick={this.handleFalseClick}
-                    onTrueClick={this.handleTrueClick}
-                    onShowHint={this.handleShowHint} />
+  constructor(props) {
+    super(props);
+  }
+  
+  componentDidMount() {
+    const username = this.props.match.params.username;
+    console.log('CDM username:', username);
+    this.props.fetchTweets(username);
+  }
 
-                <button onClick={this.handleNextRoundClick}>Next Round</button>
-            </div>
-        )
-    }
-    
-    handleTrueClick(e) {
-        console.log('true handled')
-        e.preventDefault();
-        this.increaseScore();
-    }
+  render() {
+    return (
+      <div>
+        <GameNavbar />
+        <p>Player: {this.props.match.params.username}</p>
+        <p>Players Profile Image here</p>
+        {this.props.data.map((tweetData, i) => {
+          return (<div key={i}>
+            <h5>Tweets from: @{tweetData.user_screen_name}</h5>
 
-    handleFalseClick(e) {
-        e.preventDefault();
-    }
-    
-    increaseScore() {
-        this.setState({
-            score: this.state.score + 10
-        })
-    }
+            <p>{tweetData.text.split(' ').map((word) => {
+              if (word === tweetData.answers.chosenWord) return word.toUpperCase();
+              return word;
+            }).join(' ')}</p>
 
-    handleShowHint(e) {
-        e.preventDefault();
-        this.decreaseScore()
-    }
-
-    decreaseScore() {
-        this.setState({
-            score: this.state.score - 2
-        })
-    }
-
-    handleNextRoundClick(e) {
-        e.preventDefault();
-        this.fetchNextTweets()
-    }
-
-    fetchNextTweets() {
-        console.log('I will fetch more tweets and rerender the GameCard');
-    }
-
+            {tweetData.answers.choices.map((choice, i) => {
+              return <button key={i} onClick={(choice.result) ? 'true' : 'false' }>{choice.text} {choice.result} </button>;
+            })}
+            <TweetNav />
+          </div>);
+        })}
+      </div>
+    );
+  }
 }
 
-export default GamePage;
+GamePage.propTypes = {
+  match: PT.object,
+  fetchTweets: PT.func,
+  data: PT.array
+};
+
+const mapStateToProps = (state, ownProps) => {
+  console.log('state:', state, 'ownProps', ownProps);
+  return {
+    data: state.fetchTweetsReducer.data,
+    loading: state.fetchTweetsReducer.loading,
+    error: state.fetchTweetsReducer.error
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  fetchTweets: (username) => {
+    dispatch(fetchTweets(username));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GamePage);
