@@ -45,11 +45,11 @@ class GamePage extends React.Component {
     );
   }
 
-  handleScoreInc(e) {
+  handleScoreInc() {
     this.props.increaseScore(10);
   }
 
-  handleScoreDec(e) {
+  handleScoreDec() {
     this.props.decreaseScore(2);
   }
 
