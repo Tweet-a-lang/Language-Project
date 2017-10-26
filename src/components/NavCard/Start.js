@@ -45,8 +45,8 @@ Start.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveUsername: (U) => {
-      dispatch(saveUsername(U));
+    saveUsername: () => {
+      dispatch(saveUsername());
     }
   };
 };
