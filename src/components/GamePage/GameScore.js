@@ -6,14 +6,6 @@ class GameScore extends React.Component {
   constructor(props) { 
     super(props);
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   let newScore = nextProps.updatedGameScore;
-  //   let oldScore = this.props.gameScore;
-  //   if(newScore > oldScore) {
-  //     this.props.gameScore
-  //   }
-  // }
   render() {
     return (
       <div>

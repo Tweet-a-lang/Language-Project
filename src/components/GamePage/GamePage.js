@@ -1,16 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import GameNavbar from './GameNavbar';
-import TweetNav from './TweetNav';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
-import { increaseScore, decreaseScore } from '../../actions/updateScore';
+import LetterHint from './LetterHint';
+import { increaseScore } from '../../actions/updateScore';
 
 class GamePage extends React.Component {
   constructor(props) {
     super(props);
     this.handleScoreInc = this.handleScoreInc.bind(this);
-    this.handleScoreDec = this.handleScoreDec.bind(this);
   }
 
 
@@ -38,7 +37,8 @@ class GamePage extends React.Component {
             {tweetData.answers.choices.map((choice, i) => {
               return <button key={i} onClick={(choice.result) ? this.handleScoreInc : '' }>{choice.text}</button>;
             })}
-            <TweetNav />
+            <div><LetterHint
+              word={tweetData.answers.choices[0]}/></div>
           </div>);
         })}
       </div>
@@ -49,18 +49,13 @@ class GamePage extends React.Component {
     this.props.increaseScore(10);
   }
 
-  handleScoreDec() {
-    this.props.decreaseScore(2);
-  }
-
 }
 
 GamePage.propTypes = {
   match: PT.object,
   fetchTweets: PT.func,
   data: PT.array,
-  increaseScore: PT.func,
-  decreaseScore: PT.func
+  increaseScore: PT.func
   
 };
 
@@ -81,9 +76,6 @@ const mapDispatchToProps = dispatch => {
     increaseScore: (score) => {
       console.log('score has been dispatched', score);
       dispatch(increaseScore(score));
-    },
-    decreaseScore: (score) => {
-      dispatch(decreaseScore(score));
     }
   };
 };

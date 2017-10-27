@@ -19,7 +19,9 @@ class GameNavbar extends React.Component {
             <button>End Game</button>
           </Link>
           <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleNextRound}>
-            <button>Next Round</button>
+            <button>
+              Next Game
+            </button>
           </Link>
 
           <GameScore />
