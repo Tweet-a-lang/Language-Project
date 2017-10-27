@@ -4,13 +4,12 @@ import GameNavbar from './GameNavbar';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
 import LetterHint from './LetterHint';
-import { increaseScore, decreaseScore } from '../../actions/updateScore';
+import { increaseScore } from '../../actions/updateScore';
 
 class GamePage extends React.Component {
   constructor(props) {
     super(props);
     this.handleScoreInc = this.handleScoreInc.bind(this);
-    this.handleScoreDec = this.handleScoreDec.bind(this);
   }
 
 
@@ -50,18 +49,13 @@ class GamePage extends React.Component {
     this.props.increaseScore(10);
   }
 
-  handleScoreDec() {
-    this.props.decreaseScore(2);
-  }
-
 }
 
 GamePage.propTypes = {
   match: PT.object,
   fetchTweets: PT.func,
   data: PT.array,
-  increaseScore: PT.func,
-  decreaseScore: PT.func
+  increaseScore: PT.func
   
 };
 
@@ -82,9 +76,6 @@ const mapDispatchToProps = dispatch => {
     increaseScore: (score) => {
       console.log('score has been dispatched', score);
       dispatch(increaseScore(score));
-    },
-    decreaseScore: (score) => {
-      dispatch(decreaseScore(score));
     }
   };
 };
