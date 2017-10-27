@@ -1,14 +1,11 @@
 import { expect } from 'chai';
 import userReducer, { initialState } from '../../src/reducers/userReducer';
-import {
-  fetchUserRequest,
-  fetchUserSuccess,
-  fetchUserFailure
-} from '../../src/actions/fetchUser';
+import { fetchUserRequest, fetchUserSuccess, fetchUserFailure } from '../../src/actions/fetchUser';
 import { increaseScore, decreaseScore } from '../../src/actions/updateScore';
+import { patchUserRequest, patchUserSuccess, patchUserFailure } from '../../src/actions/patchUser';
 
 
-describe('fetchUser reducer', () => {
+describe('user reducer', () => {
   describe('default behaviour', () => {
     it('returns the passed previous state if an unrecognised action is passed', () => {
       const action = { type: 'whatever' };
@@ -59,5 +56,30 @@ describe('fetchUser reducer', () => {
       let newState = userReducer(initialState, action);
       expect(newState.userData.score).to.eql(8);
     });
+  });
+  it('handles PATCH_USER_REQUEST', () => {
+    const action = patchUserRequest();
+    const newState = userReducer(undefined, action);
+    expect(newState.loading).to.be.true;
+    expect(newState.error).to.be.null;
+    expect(newState.userData).to.eql({});
+  });
+  it('handles PATCH_USER_SUCCESS', () => {
+    const prevState = userReducer(undefined, patchUserRequest());
+    const data = [1, 2, 3];
+    const action = patchUserSuccess(data);
+    const newState = userReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.be.null;
+    expect(newState.userData).to.eql(data);
+  });
+  it('handles PATCH_USER_FAILURE', () => {
+    const prevState = userReducer(undefined, patchUserRequest());
+    const error = 'Something went wrong';
+    const action = patchUserFailure(error);
+    const newState = userReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.eql(error);
+    expect(newState.userData).to.eql({});
   });
 });
