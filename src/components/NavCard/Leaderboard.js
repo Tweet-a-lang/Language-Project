@@ -8,10 +8,9 @@ class Leaderboard extends React.Component {
     super(props);
   }
   
-  // uncomment when have data from API
-  // componentDidMount() {
-  //   this.props.fetchLeaderboard();
-  // }
+  componentDidMount() {
+    this.props.fetchLeaderboard();
+  }
 
   render() {
     return (
