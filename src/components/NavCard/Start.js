@@ -17,12 +17,14 @@ class Start extends React.Component {
     return (
       <div>
         <span>Enter your twitter handle:</span>
-        <input placeholder="@handle" onChange={this.handleChange}></input>
-        <Link to={(this.state.input.length > 0)? `/user/${this.state.input}` : '/'} onClick={this.handleLogin}>
-          <button >
+        <form>
+          <input placeholder="@handle" onChange={this.handleChange}></input>
+          <Link to={(this.state.input.length > 0)? `/user/${this.state.input}` : '/'} onClick={this.handleLogin}>
+            <button >
             Login
-          </button>
-        </Link>
+            </button>
+          </Link>
+        </form>
       </div>
     );
   }
