@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GameScore from './GameScore';
 import PT from 'prop-types';
-import {updateUserScore} from '../../actions/updateScore';
+import { patchUser } from '../../actions/patchUser';
 
 class GameNavbar extends React.Component {
   constructor(props) {
@@ -16,14 +16,10 @@ class GameNavbar extends React.Component {
       <div>
         <nav>
           <Link to={`/user/${this.props.userData.name}`} onClick={this.handleEndGame}>
-            <button>
-              End Game
-            </button>
+            <button>End Game</button>
           </Link>
           <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleNextRound}>
-            <button>
-              Next Round
-            </button>
+            <button>Next Round</button>
           </Link>
 
           <GameScore />
@@ -33,12 +29,12 @@ class GameNavbar extends React.Component {
   }
   handleEndGame() {
     console.log('I am ending the game', this.props.score);
-    this.props.updateUserScore(this.props.score);
+    this.props.patchUser(this.props.userData.name, this.props.score, this.props.completedTweets);
   }
 
   handleNextRound() {
     console.log('to the next round', this.props.score);
-    this.props.updateUserScore(this.props.score);
+    this.props.patchUser(this.props.userData.name, this.props.score, this.props.completedTweets);
   }
 
 }
@@ -47,22 +43,23 @@ GameNavbar.propTypes = {
   match: PT.object,
   score: PT.number,
   userData: PT.object,
-  updateUserScore: PT.func,
-  gameScoreReducer: PT.func
+  patchUser: PT.func,
+  completedTweets: PT.array
 
 };
 
 const mapStateToProps = (state) => {
   return {
     score: state.userReducer.userData.score,
-    userData: state.userReducer.userData
+    userData: state.userReducer.userData,
+    completedTweets: state.userReducer.userData.completedTweets
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateUserScore: (gameScore) => {
-      dispatch(updateUserScore(gameScore));
+    patchUser: (username, score, completedTweets) => {
+      dispatch(patchUser(username, score, completedTweets));
     }
   };
 };

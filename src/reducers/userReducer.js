@@ -5,10 +5,10 @@ export const initialState = {
   error: null,
   userData: {
     _id: 0,
-    name: '',
+    name: 'test',
     __v: 0,
     avatar: '',
-    completedTweets: [],
+    completedTweets: [123,456],
     score: 0
   }
 };

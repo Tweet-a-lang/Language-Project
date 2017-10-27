@@ -7,7 +7,8 @@ import fetchUser from '../../actions/fetchUser';
 class UserPage extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleStartGame = this.handleStartGame.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
   
   componentDidMount() {
@@ -19,18 +20,22 @@ class UserPage extends React.Component {
       <div>
         <h1>{this.props.userData.name}</h1>
         <h3>Current Overall Score: {this.props.userData.score}</h3>
-        <form onSubmit={this.handleSubmit}>
-          <button type="submit" ><Link to={`/tweets/${this.props.userData.name}`}>START GAME</Link></button>
-        </form> 
-
+        <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleStartGame}>
+          <button>START GAME</button>
+        </Link>
+        <Link to={'/'} onClick={this.handleLogOut}>
+          <button>LOG OUT</button>
+        </Link>
       </div>
     );
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    if (this.state.input.length === 0) return;
-    this.props.saveUsername(this.state.input);
+  handleStartGame() {
+    console.log('handling start game');
+  }
+
+  handleLogOut() {
+    console.log('handling log out');
   }
 
 }
@@ -38,8 +43,7 @@ class UserPage extends React.Component {
 UserPage.propTypes = {
   match: PT.object,
   fetchUser: PT.func,
-  userData: PT.object,
-  saveUsername: PT.func
+  userData: PT.object
 };
 
 
