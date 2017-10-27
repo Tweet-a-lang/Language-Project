@@ -22,7 +22,7 @@ class GameNavbar extends React.Component {
           </Link>
           <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleNextRound}>
             <button>
-              Next Round
+              Next Game
             </button>
           </Link>
 

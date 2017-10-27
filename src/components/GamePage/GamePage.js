@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import GameNavbar from './GameNavbar';
-import TweetNav from './TweetNav';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
+import LetterHint from './LetterHint';
 import { increaseScore, decreaseScore } from '../../actions/updateScore';
 
 class GamePage extends React.Component {
@@ -38,7 +38,8 @@ class GamePage extends React.Component {
             {tweetData.answers.choices.map((choice, i) => {
               return <button key={i} onClick={(choice.result) ? this.handleScoreInc : '' }>{choice.text}</button>;
             })}
-            <TweetNav />
+            <div><LetterHint
+              word={tweetData.answers.choices[0]}/></div>
           </div>);
         })}
       </div>
