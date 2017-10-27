@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GameScore from './GameScore';
 import PT from 'prop-types';
-import { patchUser } from '../../actions/patchUser';
+import patchUser from '../../actions/patchUser';
 
 class GameNavbar extends React.Component {
   constructor(props) {
@@ -28,8 +28,7 @@ class GameNavbar extends React.Component {
     );
   }
   handleEndGame() {
-    console.log('I am ending the game', this.props.score);
-    this.props.patchUser(this.props.userData.name, this.props.score, this.props.completedTweets);
+    this.props.patchUser(this.props.userData.name, this.props.score, [123,123,123]);
   }
 
   handleNextRound() {

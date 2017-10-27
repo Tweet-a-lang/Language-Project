@@ -5,10 +5,10 @@ export const initialState = {
   error: null,
   userData: {
     _id: 0,
-    name: 'test',
+    name: '',
     __v: 0,
     avatar: '',
-    completedTweets: [123,456],
+    completedTweets: [],
     score: 0
   }
 };
@@ -47,7 +47,7 @@ export default (prevState = initialState, action) => {
     return Object.assign({}, prevState, {
       loading: !prevState.loading,
       error: null,
-      userData: {}
+      userData: prevState.userData
     });
   case types.PATCH_USER_SUCCESS:
     return Object.assign({}, prevState, {
@@ -59,7 +59,7 @@ export default (prevState = initialState, action) => {
     return Object.assign({}, prevState, {
       loading: false,
       error: action.payload,
-      userData: {}
+      userData: prevState.userData
     });
   default:
     return prevState;

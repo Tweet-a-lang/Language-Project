@@ -62,7 +62,7 @@ describe('user reducer', () => {
     const newState = userReducer(undefined, action);
     expect(newState.loading).to.be.true;
     expect(newState.error).to.be.null;
-    expect(newState.userData).to.eql({});
+    expect(newState.userData).to.eql(initialState.userData);
   });
   it('handles PATCH_USER_SUCCESS', () => {
     const prevState = userReducer(undefined, patchUserRequest());
@@ -80,6 +80,6 @@ describe('user reducer', () => {
     const newState = userReducer(prevState, action);
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
-    expect(newState.userData).to.eql({});
+    expect(newState.userData).to.eql(initialState.userData);
   });
 });
