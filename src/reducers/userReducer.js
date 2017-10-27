@@ -3,7 +3,7 @@ import * as types from '../actions/types';
 export const initialState = {
   loading: false,
   error: null,
-  userData: {}
+  userData: {score: 0}
 };
 
 export default (prevState = initialState, action) => {
