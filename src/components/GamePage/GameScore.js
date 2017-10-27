@@ -6,22 +6,30 @@ class GameScore extends React.Component {
   constructor(props) { 
     super(props);
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   let newScore = nextProps.updatedGameScore;
+  //   let oldScore = this.props.gameScore;
+  //   if(newScore > oldScore) {
+  //     this.props.gameScore
+  //   }
+  // }
   render() {
     return (
       <div>
-        <span>Score: {this.props.gameScore}</span>
+        <span>Score: {this.props.score}</span>
       </div>
     );
   }
 }
 
 GameScore.propTypes = {
-  gameScore: PT.number
+  score: PT.number
 };
 
 const mapStateToProps = state => {
   return {
-    gameScore: state.gameScoreReducer.gameScore
+    score: state.userReducer.userData.score
   };
 };
 

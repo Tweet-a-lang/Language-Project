@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GameScore from './GameScore';
 import PT from 'prop-types';
-import {updateUserScore} from '../../actions/updateUserScore';
+import {updateUserScore} from '../../actions/updateScore';
 
 class GameNavbar extends React.Component {
   constructor(props) {
@@ -32,21 +32,20 @@ class GameNavbar extends React.Component {
     );
   }
   handleEndGame() {
-    console.log('I am ending the game', this.props.gameScore);
-    this.props.updateUserScore(this.props.gameScore, this.props.userScore);
+    console.log('I am ending the game', this.props.score);
+    this.props.updateUserScore(this.props.score);
   }
 
   handleNextRound() {
-    console.log('to the next round', this.props.gameScore);
-    this.props.updateUserScore(this.props.gameScore, this.props.userScore);
+    console.log('to the next round', this.props.score);
+    this.props.updateUserScore(this.props.score);
   }
 
 }
 
 GameNavbar.propTypes = {
   match: PT.object,
-  gameScore: PT.number,
-  userScore: PT.number,
+  score: PT.number,
   userData: PT.object,
   updateUserScore: PT.func,
   gameScoreReducer: PT.func
@@ -55,16 +54,15 @@ GameNavbar.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    userScore: state.updateUserScoreReducer.userScore,
-    gameScore: state.gameScoreReducer.gameScore,
-    userData: state.fetchUserReducer.userData
+    score: state.userReducer.userData.score,
+    userData: state.userReducer.userData
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateUserScore: (gameScore, userScore) => {
-      dispatch(updateUserScore(gameScore, userScore));
+    updateUserScore: (gameScore) => {
+      dispatch(updateUserScore(gameScore));
     }
   };
 };

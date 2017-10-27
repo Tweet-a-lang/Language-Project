@@ -4,7 +4,7 @@ import GameNavbar from './GameNavbar';
 import TweetNav from './TweetNav';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
-import { increaseScore, decreaseScore } from '../../actions/gameScore';
+import { increaseScore, decreaseScore } from '../../actions/updateScore';
 
 class GamePage extends React.Component {
   constructor(props) {
@@ -69,8 +69,7 @@ const mapStateToProps = (state) => {
     data: state.fetchTweetsReducer.data,
     loading: state.fetchTweetsReducer.loading,
     error: state.fetchTweetsReducer.error,
-    gameScore: state.gameScoreReducer.gameScore,
-    userScore: state.updateUserScoreReducer.userScore
+    score: state.userReducer.userData.score
   };
 };
 

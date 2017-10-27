@@ -3,7 +3,7 @@ import * as types from '../actions/types';
 export const initialState = {
   loading: false,
   error: null,
-  userData: {}
+  userData: {score: 0}
 };
 
 export default (prevState = initialState, action) => {
@@ -26,6 +26,16 @@ export default (prevState = initialState, action) => {
       error: action.payload,
       userData: {}
     });
+  case types.INCREASE_SCORE: {
+    const newState = Object.assign({}, prevState);
+    newState.userData.score = prevState.userData.score + action.payload;
+    return newState;
+  }
+  case types.DECREASE_SCORE: {
+    const newState = Object.assign({}, prevState);
+    newState.userData.score = prevState.userData.score - action.payload;
+    return newState;
+  }
   default:
     return prevState;
   }

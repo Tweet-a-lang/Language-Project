@@ -46,9 +46,9 @@ UserPage.propTypes = {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    userData: state.fetchUserReducer.userData,
-    loading: state.fetchUserReducer.loading,
-    error: state.fetchUserReducer.error
+    userData: state.userReducer.userData,
+    loading: state.userReducer.loading,
+    error: state.userReducer.error
   };
 };
 
