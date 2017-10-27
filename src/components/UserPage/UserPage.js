@@ -7,7 +7,14 @@ import fetchUser from '../../actions/fetchUser';
 class UserPage extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      language: 'spanish',
+      radioButton1: true,
+      radioButton2: false
+    };
+    this.handleStartGame = this.handleStartGame.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
+    this.handleLangSelection = this.handleLangSelection.bind(this);
   }
   
   componentDidMount() {
@@ -17,20 +24,61 @@ class UserPage extends React.Component {
   render () {
     return (
       <div>
-        <h1>{this.props.userData.name}</h1>
-        <h3>Current Overall Score: {this.props.userData.score}</h3>
-        <form onSubmit={this.handleSubmit}>
-          <button type="submit" ><Link to={`/tweets/${this.props.userData.name}`}>START GAME</Link></button>
-        </form> 
+        <h1>Hi, {this.props.userData.name}</h1>
+        <h3>Current Total Score: {this.props.userData.score}</h3>
+        <span>Choose your language:</span>
+        <div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="value"
+                onChange={this.handleLangSelection}
+                value="spanish"
+                checked={this.state.radioButton1}
+              />
+                                Spanish
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="value"
+                onChange={this.handleLangSelection}
+                value="chance"
+                checked={this.state.radioButton2}
+              />
+                                Take a chance
+            </label>
+          </div>
+        </div>
 
+
+        <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleStartGame}>
+          <button>START GAME</button>
+        </Link>
+        <Link to={'/'} onClick={this.handleLogOut}>
+          <button>LOG OUT</button>
+        </Link>
       </div>
     );
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    if (this.state.input.length === 0) return;
-    this.props.saveUsername(this.state.input);
+  handleStartGame() {
+    console.log('handling start game');
+  }
+
+  handleLogOut() {
+    console.log('handling log out');
+  }
+
+  handleLangSelection(e) {
+    this.setState({
+      language: e.target.value,
+      radioButton1: (e.target.value === 'spanish') ? true : false,
+      radioButton2: (e.target.value === 'chance') ? true : false
+    });
   }
 
 }
@@ -39,7 +87,7 @@ UserPage.propTypes = {
   match: PT.object,
   fetchUser: PT.func,
   userData: PT.object,
-  saveUsername: PT.func
+  language: PT.bool
 };
 
 

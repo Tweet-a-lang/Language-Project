@@ -1,10 +1,9 @@
 import * as types from '../actions/types';
-import testData from './TESTLeaderboardData';
 
 export const initialState = {
   loading: false,
   error: null,
-  leaderboardData: testData
+  leaderboardData: []
 };
 
 export default (prevState = initialState, action) => {
