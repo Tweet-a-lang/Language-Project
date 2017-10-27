@@ -5,6 +5,7 @@ import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
 import LetterHint from './LetterHint';
 import { increaseScore } from '../../actions/updateScore';
+import _ from 'underscore';
 
 class GamePage extends React.Component {
   constructor(props) {
@@ -33,8 +34,9 @@ class GamePage extends React.Component {
               if (word === tweetData.answers.chosenWord) return word.toUpperCase();
               return word;
             }).join(' ')}</p>
+            
 
-            {tweetData.answers.choices.map((choice, i) => {
+            {_.shuffle(tweetData.answers.choices).map((choice, i) => {
               return <button key={i} onClick={(choice.result) ? this.handleScoreInc : '' }>{choice.text}</button>;
             })}
             <div><LetterHint
