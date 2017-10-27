@@ -3,7 +3,14 @@ import * as types from '../actions/types';
 export const initialState = {
   loading: false,
   error: null,
-  userData: {score: 0}
+  userData: {
+    _id: 0,
+    name: '',
+    __v: 0,
+    avatar: '',
+    completedTweets: [],
+    score: 0
+  }
 };
 
 export default (prevState = initialState, action) => {
@@ -36,6 +43,24 @@ export default (prevState = initialState, action) => {
     newState.userData.score = prevState.userData.score - action.payload;
     return newState;
   }
+  case types.PATCH_USER_REQUEST:
+    return Object.assign({}, prevState, {
+      loading: !prevState.loading,
+      error: null,
+      userData: {}
+    });
+  case types.PATCH_USER_SUCCESS:
+    return Object.assign({}, prevState, {
+      loading: false,
+      error: null,
+      userData: action.payload
+    });
+  case types.PATCH_USER_FAILURE:
+    return Object.assign({}, prevState, {
+      loading: false,
+      error: action.payload,
+      userData: {}
+    });
   default:
     return prevState;
   }
