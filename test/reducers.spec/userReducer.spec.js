@@ -1,10 +1,11 @@
 import { expect } from 'chai';
-import fetchUserReducer, { initialState } from '../../src/reducers/fetchUserReducer';
+import userReducer, { initialState } from '../../src/reducers/userReducer';
 import {
   fetchUserRequest,
   fetchUserSuccess,
   fetchUserFailure
 } from '../../src/actions/fetchUser';
+import { increaseScore, decreaseScore, updateUserScore } from '../../src/actions/updateScore';
 
 
 describe('fetchUser reducer', () => {
@@ -44,5 +45,19 @@ describe('fetchUser reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
     expect(newState.userData).to.eql({});
+  });
+  describe('actions::INCREASE_SCORE', () => {
+    it('increases the score', () => {
+      let action = increaseScore(10);
+      let newState = gameScoreReducer(initialState, action);
+      expect(newState.gameScore).to.eql(10);
+    });
+  });
+  describe('actions::DECREASE_SCORE', () => {
+    it('decreases the score', () => {
+      let action = decreaseScore(2);
+      let newState = gameScoreReducer(initialState, action);
+      expect(newState.gameScore).to.eql(-2);
+    });
   });
 });
