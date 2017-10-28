@@ -28,7 +28,7 @@ class GamePage extends React.Component {
         <p>Players Profile Image here</p>
         {this.props.data.map((tweetData, i) => {
           return (<div key={i}>
-            <h5>Tweets from: @{tweetData.user_screen_name}</h5>
+            <h5>Tweets from: @{tweetData.tweet.user_screen_name}</h5>
 
             <p>{tweetData.tweet.text.split(' ').map((word) => {
               if (word === tweetData.answers.chosenWord) return word.toUpperCase();

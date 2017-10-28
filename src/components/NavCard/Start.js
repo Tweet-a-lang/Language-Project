@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { saveUsername } from '../../actions/saveUsername';
+import NewUser from '../UserPage/NewUser';
 import PT from 'prop-types';
 
 class Start extends React.Component {
@@ -25,6 +26,7 @@ class Start extends React.Component {
             </button>
           </Link>
         </form>
+        <NewUser />
       </div>
     );
   }
@@ -54,5 +56,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(Start);
-
-// export default connect()(Start);

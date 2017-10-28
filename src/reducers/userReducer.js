@@ -61,6 +61,24 @@ export default (prevState = initialState, action) => {
       error: action.payload,
       userData: prevState.userData
     });
+  case types.POST_NEW_USER_REQUEST:
+    return Object.assign({}, prevState, {
+      loading: !prevState.loading,
+      error: null,
+      userData: prevState.userData
+    });
+  case types.POST_NEW_USER_SUCCESS:
+    return Object.assign({}, prevState, {
+      loading: false,
+      error: null,
+      userData: action.payload
+    });
+  case types.POST_NEW_USER_FAILURE:
+    return Object.assign({}, prevState, {
+      loading: false,
+      error: action.payload,
+      userData: prevState.userData
+    });
   default:
     return prevState;
   }
