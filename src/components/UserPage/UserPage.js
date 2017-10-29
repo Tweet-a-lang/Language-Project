@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PT from 'prop-types';
 import fetchUser from '../../actions/fetchUser';
+import LogOut from './LogOut';
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -53,14 +54,10 @@ class UserPage extends React.Component {
             </label>
           </div>
         </div>
-
-
         <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleStartGame}>
           <button>START GAME</button>
         </Link>
-        <Link to={'/'} onClick={this.handleLogOut}>
-          <button>LOG OUT</button>
-        </Link>
+        <LogOut />
       </div>
     );
   }
