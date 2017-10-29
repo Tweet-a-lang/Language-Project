@@ -11,7 +11,15 @@ import _ from 'underscore';
 class GamePage extends React.Component {
   constructor(props) {
     super(props);
-    this.handleScoreInc = this.handleScoreInc.bind(this);
+    this.state = {
+      tweet0: false,
+      tweet1: false,
+      tweet2: false,
+      tweet3: false,
+      tweet4: false
+    };
+    this.handleCorrect = this.handleCorrect.bind(this);
+    this.handleIncorrect = this.handleIncorrect.bind(this);
   }
 
 
@@ -22,13 +30,15 @@ class GamePage extends React.Component {
   }
 
   render() {
+    
     return (
       <div>
         <GameNavbar />
         <p>Player: {this.props.match.params.username}</p>
         <p>Players Profile Image here</p>
-        {this.props.data.map((tweetData, i) => {
-          return (<div key={i}>
+        {this.props.data.map((tweetData, tweetIndex) => {
+          
+          return (<div key={tweetIndex}>
             <h5>Tweets from: @{tweetData.user_screen_name}</h5>
 
             <p>{tweetData.tweet.text.split(' ').map((word) => {
@@ -36,8 +46,8 @@ class GamePage extends React.Component {
               return word;
             }).join(' ')}</p>
             
-            {_.shuffle(tweetData.answers.choices).map((choice, i) => {
-              return <button key={i} value={tweetData.tweet.id} onClick={(choice.result) ? this.handleScoreInc : '' }>{choice.text}</button>;
+            {_.shuffle(tweetData.answers.choices).map((choice, buttonIndex) => {
+              return <button key={buttonIndex} type='submit' value={[tweetData.tweet.id, tweetIndex]} disabled={this.state['tweet' + tweetIndex]} onClick={(choice.result) ? this.handleCorrect : this.handleIncorrect }>{choice.text}</button>;
             })}
             <div><LetterHint
               word={tweetData.answers.choices[0]}/></div>
@@ -47,9 +57,31 @@ class GamePage extends React.Component {
     );
   }
 
-  handleScoreInc(e) {
+
+
+  handleCorrect(e) {
+
+    //disable the buttons once clicked
+    let tweetValue = e.target.value.split(',');
+    let tweetStateKey = 'tweet' + tweetValue[1];
+    let tweetStateObj = {};
+    tweetStateObj[tweetStateKey] = true;
+
     this.props.increaseScore(10);
-    this.props.updateCompletedTweets(e.target.value);
+    this.props.updateCompletedTweets(tweetValue[0]);
+    this.setState(tweetStateObj);
+  }
+
+  handleIncorrect(e) {
+    
+    //disable the buttons once clicked
+    let tweetValue = e.target.value.split(',');
+    let tweetStateKey = 'tweet' + tweetValue[1];
+    let tweetStateObj = {};
+    tweetStateObj[tweetStateKey] = true;
+   
+    // this.props.updateCompletedTweets(tweetValue[0]); // use if wish to only allow one attempt at tweets, even if incorrect answer chosen.
+    this.setState(tweetStateObj);
   }
 
 }
