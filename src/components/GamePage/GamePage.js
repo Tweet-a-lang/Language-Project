@@ -5,6 +5,7 @@ import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
 import LetterHint from './LetterHint';
 import { increaseScore } from '../../actions/updateScore';
+import { updateCompletedTweets } from '../../actions/updateCompletedTweets';
 import _ from 'underscore';
 
 class GamePage extends React.Component {
@@ -35,9 +36,8 @@ class GamePage extends React.Component {
               return word;
             }).join(' ')}</p>
             
-
             {_.shuffle(tweetData.answers.choices).map((choice, i) => {
-              return <button key={i} onClick={(choice.result) ? this.handleScoreInc : '' }>{choice.text}</button>;
+              return <button key={i} value={tweetData.tweet.id} onClick={(choice.result) ? this.handleScoreInc : '' }>{choice.text}</button>;
             })}
             <div><LetterHint
               word={tweetData.answers.choices[0]}/></div>
@@ -47,8 +47,9 @@ class GamePage extends React.Component {
     );
   }
 
-  handleScoreInc() {
+  handleScoreInc(e) {
     this.props.increaseScore(10);
+    this.props.updateCompletedTweets(e.target.value);
   }
 
 }
@@ -57,8 +58,9 @@ GamePage.propTypes = {
   match: PT.object,
   fetchTweets: PT.func,
   data: PT.array,
-  increaseScore: PT.func
-  
+  increaseScore: PT.func,
+  updateCompletedTweets: PT.func,
+  completedTweets: PT.array
 };
 
 const mapStateToProps = (state) => {
@@ -66,7 +68,8 @@ const mapStateToProps = (state) => {
     data: state.fetchTweetsReducer.data,
     loading: state.fetchTweetsReducer.loading,
     error: state.fetchTweetsReducer.error,
-    score: state.userReducer.userData.score
+    score: state.userReducer.userData.score,
+    completedTweets: state.userReducer.completedTweets
   };
 };
 
@@ -76,8 +79,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchTweets(username));
     },
     increaseScore: (score) => {
-      console.log('score has been dispatched', score);
       dispatch(increaseScore(score));
+    },
+    updateCompletedTweets: (id) => {
+      dispatch(updateCompletedTweets(id));
     }
   };
 };

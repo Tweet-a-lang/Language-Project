@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import GameScore from './GameScore';
 import PT from 'prop-types';
 import patchUser from '../../actions/patchUser';
+import fetchTweets from '../../actions/fetchTweets';
 
 class GameNavbar extends React.Component {
   constructor(props) {
@@ -30,12 +31,12 @@ class GameNavbar extends React.Component {
     );
   }
   handleEndGame() {
-    this.props.patchUser(this.props.userData.name, this.props.score, [123,123,123]);
+    this.props.patchUser(this.props.userData.name, this.props.score, this.props.completedTweets);
   }
 
   handleNextRound() {
-    console.log('to the next round', this.props.score);
     this.props.patchUser(this.props.userData.name, this.props.score, this.props.completedTweets);
+    this.props.fetchTweets(this.props.userData.name);
   }
 
 }
@@ -45,7 +46,8 @@ GameNavbar.propTypes = {
   score: PT.number,
   userData: PT.object,
   patchUser: PT.func,
-  completedTweets: PT.array
+  completedTweets: PT.array,
+  fetchTweets: PT.func
 
 };
 
@@ -61,6 +63,9 @@ const mapDispatchToProps = dispatch => {
   return {
     patchUser: (username, score, completedTweets) => {
       dispatch(patchUser(username, score, completedTweets));
+    },
+    fetchTweets: (username) => {
+      dispatch(fetchTweets(username));
     }
   };
 };

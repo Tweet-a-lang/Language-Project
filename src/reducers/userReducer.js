@@ -61,6 +61,11 @@ export default (prevState = initialState, action) => {
       error: action.payload,
       userData: prevState.userData
     });
+  case types.UPDATE_COMPLETED_TWEETS: {
+    const newState = Object.assign({}, prevState);
+    newState.userData.completedTweets = prevState.userData.completedTweets.concat(action.payload);
+    return newState;
+  }
   default:
     return prevState;
   }
