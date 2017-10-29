@@ -84,9 +84,9 @@ describe('user reducer', () => {
   });
   describe('actions::UPDATE_COMPLETED_TWEETS', () => {
     it('adds the tweets completed in the game to the userData overall completedTweets', () => {
-      let action = updateCompletedTweets(1234567890123456);
+      let action = updateCompletedTweets('1234567890123456');
       let newState = userReducer(initialState, action);
-      expect(newState.userData.completedTweets).to.eql([1234567890123456]);
+      expect(newState.userData.completedTweets).to.eql(['1234567890123456']);
     });
   });
 });
