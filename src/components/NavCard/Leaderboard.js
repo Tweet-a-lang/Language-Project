@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import fetchLeaderboard from '../../actions/fetchLeaderboard';
+import LoadingPage from '../Errors/LoadingPage';
 import PT from 'prop-types';
 
 class Leaderboard extends React.Component {
@@ -16,6 +17,7 @@ class Leaderboard extends React.Component {
     return (
       <div>
         <h3>Leaderboard</h3>
+        {(this.props.loading) ? <LoadingPage /> : ''}
         <table>
           <thead>
             <tr>
@@ -41,7 +43,8 @@ class Leaderboard extends React.Component {
 
 Leaderboard.propTypes = {
   fetchLeaderboard: PT.func,
-  leaderboardData: PT.array
+  leaderboardData: PT.array,
+  loading: PT.bool
 };
 
 const mapStateToProps = (state) => {
