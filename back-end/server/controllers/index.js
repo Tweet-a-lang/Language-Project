@@ -129,7 +129,7 @@ const getScoreboard = (req, res) => {
     });
 };
 
-const patchUser = (req, res, next) => {
+const patchUser = (req, res, next) => {  
   const { username } = req.params;
   const { completedTweets: tweetsDone = [], score: newScore = 0 } = req.body;
 
