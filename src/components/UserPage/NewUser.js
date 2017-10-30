@@ -2,6 +2,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import PT from 'prop-types';
 import postNewUser from '../../actions/postNewUser';
+// import UsernameExists from '../Errors/UsernameExists';
 import { connect } from 'react-redux';
 
 
