@@ -23,15 +23,31 @@ describe('API', () => {
         });
     }).timeout(5000);
   });
+  describe.only('GET tweets/:username/:topic', () => {
+    it('returns with a status code of 200', () => {
+      return request(app)
+        .get('/api/tweets/Olie/news')
+        .expect(200)
+        .then(res => {
+          const tweets = res.body;
+          expect(tweets).to.be.an('array');
+          expect(tweets[0].tweet.topic).to.equal('news');
+          expect(tweets[1].tweet.topic).to.equal('news');
+          expect(tweets[2].tweet.topic).to.equal('news');
+          expect(tweets[3].tweet.topic).to.equal('news');
+          expect(tweets[4].tweet.topic).to.equal('news');
+        });
+    });
+  });
   describe('GET user/:username', () => {
     it('returns with a status code of 200', () => {
       return request(app)
-        .get('/api/user/olie')
+        .get('/api/user/Olie')
         .expect(200)
         .then(res => {
           const {name, score, completedTweets} = res.body;
           expect(name).to.be.a('string');
-          expect(name).to.eql('olie');
+          expect(name).to.eql('Olie');
           expect(score).to.be.a('number');
           expect(completedTweets).to.be.a('array');
         });
@@ -67,7 +83,7 @@ describe('API', () => {
         .send({
           name: 'olie'
         })
-        .expect(400);
+        .expect(400).then(() => request(app).delete('/dev/olie'));
     });
   });
   describe('PATCH user/:username', () => {

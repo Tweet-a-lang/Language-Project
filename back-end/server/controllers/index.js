@@ -81,14 +81,14 @@ const getUnseenTweets = (req, res, next) => {
 
   const numOfTweets = +req.query.count || 5;
   let unseenTweets = [];
-  const { username } = req.params;
+  const { username , topic = 'news'} = req.params;
   return Promise.all([
     Users.findOne({ name: username }),
     Tweets.find()
   ])
     .then((data) => {
       const user = data[0];
-      const tweets = data[1];
+      const tweets = data[1].filter(t => t.tweet.topic === topic);
       const completedTweets = user.completedTweets;
 
       //Filters Tweets that have not been seen by the user
@@ -111,7 +111,7 @@ const getUnseenTweets = (req, res, next) => {
       });
       res.send(finalResult);
     })
-    .catch(console.error);
+    .catch(err => next({type: 500}));
 };
 
 const getScoreboard = (req, res) => {
@@ -177,6 +177,7 @@ const deleteUser = (req, res, next) => {
     });
 };
 
+const getUnseenTweetsByTopic = (req, res, next) => getUnseenTweets(req, res,next);
 module.exports = {
   getUser,
   addUser,
@@ -188,5 +189,6 @@ module.exports = {
   patchUser,
   resetUser,
   deleteUser,
-  getNumOfTweets
+  getNumOfTweets,
+  getUnseenTweetsByTopic
 };

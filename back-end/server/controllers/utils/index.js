@@ -6,9 +6,7 @@ const LanguageServiceClient = require('@google-cloud/language')
 const language = new LanguageServiceClient();
 const translate = require('@google-cloud/translate')();
 const ranWords = require('random-words');
-
 require('dotenv').config();
-const {OX_ID, OX_KEY} = process.env;
 const axios = require('axios');
 const DICTIONARY_API = 'https://glosbe.com/gapi/translate?from=spa&dest=eng&format=json&phrase=';
 
