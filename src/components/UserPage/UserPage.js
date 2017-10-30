@@ -26,43 +26,37 @@ class UserPage extends React.Component {
   render () {
     return (
       <div>
-        {(!this.props.userData.name) ? <div>
+{(!this.props.username) ? <div>
           <NoUser />
         </div> : 
           <div>
-            <h1>Hi, {this.props.userData.name}</h1>
-            <h3>Current Total Score: {this.props.userData.score}</h3>
-            <span>Choose your language:</span>
-            <div>
-              <div className="radio">
-                <label>
-                  <input
-                    type="radio"
-                    name="value"
-                    onChange={this.handleLangSelection}
-                    value="spanish"
-                    checked={this.state.radioButton1}
-                  />
-                                Spanish
-                </label>
-              </div>
-              <div className="radio">
-                <label>
-                  <input
-                    type="radio"
-                    name="value"
-                    onChange={this.handleLangSelection}
-                    value="chance"
-                    checked={this.state.radioButton2}
-                  />
-                                Take a chance
-                </label>
-              </div>
-            </div>
-            <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleStartGame}>
-              <button>START GAME</button>
-            </Link>
-            <LogOut />
+        <h1>Hi, {this.props.username}</h1>
+        <h3>Total Score: {this.props.score}</h3>
+        <span>Choose your language:</span>
+        <div>
+          <div className="radio">
+            <label><input
+              type="radio"
+              name="value"
+              onChange={this.handleLangSelection}
+              value="spanish"
+              checked={this.state.radioButton1}
+            />Spanish</label>
+          </div>
+          <div className="radio">
+            <label><input
+              type="radio"
+              name="value"
+              onChange={this.handleLangSelection}
+              value="chance"
+              checked={this.state.radioButton2}
+            />Take a chance</label>
+          </div>
+        </div>
+        <Link onClick={this.handleStartGame} to={`/tweets/${this.props.username}`}>
+          <button>START GAME</button>
+        </Link>
+        <LogOut />
           </div>
         }
       </div>
@@ -70,11 +64,9 @@ class UserPage extends React.Component {
   }
 
   handleStartGame() {
-    console.log('handling start game');
   }
 
   handleLogOut() {
-    console.log('handling log out');
   }
 
   handleLangSelection(e) {
@@ -91,16 +83,19 @@ UserPage.propTypes = {
   match: PT.object,
   fetchUser: PT.func,
   userData: PT.object,
-  language: PT.bool
+  language: PT.bool,
+  username: PT.string,
+  score: PT.number
 };
 
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    userData: state.userReducer.userData,
     loading: state.userReducer.loading,
-    error: state.userReducer.error
+    error: state.userReducer.error,
+    userData: state.userReducer.userData,
+    score: state.userReducer.userData.score,
+    username: state.userReducer.userData.name
   };
 };
 

@@ -21,22 +21,39 @@ class GamePage extends React.Component {
     this.handleCorrect = this.handleCorrect.bind(this);
     this.handleIncorrect = this.handleIncorrect.bind(this);
   }
-
-
   
   componentDidMount() {
     const username = this.props.match.params.username;
     this.props.fetchTweets(username);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.gameData !== newProps.gameData) {
+      this.setState({
+        tweet0: false,
+        tweet1: false,
+        tweet2: false,
+        tweet3: false,
+        tweet4: false
+      });
+      this.props.fetchTweets(this.props.username);
+    }    
+  }
+
   render() {
     
     return (
       <div>
-        <GameNavbar />
+        <GameNavbar 
+          tweet0={this.state.tweet0} 
+          tweet1={this.state.tweet1}
+          tweet2={this.state.tweet2} 
+          tweet3={this.state.tweet3}
+          tweet4={this.state.tweet4}
+        />
         <p>Player: {this.props.match.params.username}</p>
         <p>Players Profile Image here</p>
-        {this.props.data.map((tweetData, tweetIndex) => {
+        {this.props.tweetArr.map((tweetData, tweetIndex) => {
           return (<div key={tweetIndex}>
             <h5>Tweets from: @{tweetData.tweet.user_screen_name}</h5>
 
@@ -56,30 +73,21 @@ class GamePage extends React.Component {
     );
   }
 
-
-
   handleCorrect(e) {
-
-    //disable the buttons once clicked
     let tweetValue = e.target.value.split(',');
     let tweetStateKey = 'tweet' + tweetValue[1];
     let tweetStateObj = {};
     tweetStateObj[tweetStateKey] = true;
-
     this.props.increaseScore(10);
     this.props.updateCompletedTweets(tweetValue[0]);
     this.setState(tweetStateObj);
   }
 
   handleIncorrect(e) {
-    
-    //disable the buttons once clicked
     let tweetValue = e.target.value.split(',');
     let tweetStateKey = 'tweet' + tweetValue[1];
     let tweetStateObj = {};
     tweetStateObj[tweetStateKey] = true;
-   
-    // this.props.updateCompletedTweets(tweetValue[0]); // use if wish to only allow one attempt at tweets, even if incorrect answer chosen.
     this.setState(tweetStateObj);
   }
 
@@ -88,19 +96,20 @@ class GamePage extends React.Component {
 GamePage.propTypes = {
   match: PT.object,
   fetchTweets: PT.func,
-  data: PT.array,
+  tweetArr: PT.array,
   increaseScore: PT.func,
   updateCompletedTweets: PT.func,
-  completedTweets: PT.array
+  gameData: PT.object,
+  username: PT.string
 };
 
 const mapStateToProps = (state) => {
   return {
-    data: state.fetchTweetsReducer.data,
+    tweetArr: state.fetchTweetsReducer.data,
     loading: state.fetchTweetsReducer.loading,
     error: state.fetchTweetsReducer.error,
-    score: state.userReducer.userData.score,
-    completedTweets: state.userReducer.completedTweets
+    gameData: state.userReducer.gameData,
+    username: state.userReducer.userData.name
   };
 };
 
