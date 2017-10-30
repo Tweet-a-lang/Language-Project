@@ -6,6 +6,7 @@ import fetchUser from '../../actions/fetchUser';
 import LogOut from './LogOut';
 import NoUser from '../Errors/NoUser';
 import LoadingPage from '../Errors/LoadingPage';
+import UsernameExists from '../Errors/UsernameExists';
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class UserPage extends React.Component {
   render () {
     return (
       <div>
-        {(this.props.loading) ? <LoadingPage /> :
+        {(this.props.loading) ? <LoadingPage /> : (this.props.error === 'Request failed with status code 405') ? <UsernameExists /> :
           (!this.props.username) ? <div>
             <NoUser />
           </div> : 
@@ -88,7 +89,8 @@ UserPage.propTypes = {
   language: PT.bool,
   username: PT.string,
   score: PT.number,
-  loading: PT.bool
+  loading: PT.bool,
+  error: PT.string
 };
 
 

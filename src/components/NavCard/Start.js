@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { saveUsername } from '../../actions/saveUsername';
 import NewUser from '../UserPage/NewUser';
+import UsernameExists from '../Errors/UsernameExists';
 import PT from 'prop-types';
 
 class Start extends React.Component {
@@ -17,16 +18,20 @@ class Start extends React.Component {
   render() {
     return (
       <div>
-        <span>Enter your twitter handle:</span>
-        <form>
-          <input placeholder="@handle" onChange={this.handleChange}></input>
-          <Link to={(this.state.input.length > 0)? `/user/${this.state.input}` : '/'} onClick={this.handleLogin}>
-            <button >
+        {(this.props.error === 'Request failed with status code 405') ? <UsernameExists /> :
+          <div>
+            <span>Enter your twitter handle:</span>
+            <form>
+              <input placeholder="@handle" onChange={this.handleChange}></input>
+              <Link to={(this.state.input.length > 0)? `/user/${this.state.input}` : '/'} onClick={this.handleLogin}>
+                <button >
             Login
-            </button>
-          </Link>
-        </form>
-        <NewUser />
+                </button>
+              </Link>
+            </form>
+            <NewUser />
+          </div>
+        }
       </div>
     );
   }
@@ -43,9 +48,15 @@ class Start extends React.Component {
 }
 
 Start.propTypes = {
-  saveUsername: PT.func.isRequired
+  saveUsername: PT.func.isRequired,
+  error: PT.string
 };
 
+const mapStateToProps = (state) => {
+  return {
+    error: state.userReducer.error
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -55,4 +66,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Start);
+export default connect(mapStateToProps, mapDispatchToProps)(Start);

@@ -25,7 +25,7 @@ export default (name) => {
       .then(res => {
         return dispatch(postNewUserSuccess(res.data));
       })
-      .catch(error => {
+      .catch(error => { 
         return dispatch(postNewUserFailure(error.message));
       });
   };
