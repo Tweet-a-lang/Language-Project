@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import fetchLeaderboard from '../../actions/fetchLeaderboard';
-import LoadingPage from '../Errors/LoadingPage';
+import LoadingPage from '../../components/Errors/LoadingPage';
+import LeaderboardUI from '../../components/Homepage/Leaderboard';
 import PT from 'prop-types';
 
 class Leaderboard extends React.Component {
@@ -16,26 +17,9 @@ class Leaderboard extends React.Component {
   render() {
     return (
       <div>
-        <h3>Leaderboard</h3>
-        {(this.props.loading) ? <LoadingPage /> : ''}
-        <table>
-          <thead>
-            <tr>
-              <th>UserName</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.leaderboardData.map((user, i) => {
-              return (
-                <tr key={i}>
-                  <td key={user.name}>{user.name}</td>
-                  <td key={user.name + user.score}>{user.score}</td>
-                </tr>
-              );
-            })}            
-          </tbody>
-        </table>
+        {(this.props.loading) ? <LoadingPage /> : <LeaderboardUI 
+          data={this.props.leaderboardData}
+        /> }
       </div>
     );
   }
