@@ -24,7 +24,7 @@ const addUser = (req, res, next) => {
   if (!name) return next({ type: 400, msg: 'missing name' });
   return Users.findOne({ name: name })
     .then(user => {
-      if (user) return next({ type: 400, msg: 'the user already exists' });
+      if (user) return next({ type: 405, msg: 'the user already exists' });
       else {
         const newUser = new Users({ name, score, completedTweets, avatar });
         newUser.save()
