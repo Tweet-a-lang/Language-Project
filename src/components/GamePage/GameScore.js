@@ -3,25 +3,22 @@ import { connect } from 'react-redux';
 import PT from 'prop-types';
 
 class GameScore extends React.Component {
-  constructor(props) { 
-    super(props);
-  }
   render() {
     return (
       <div>
-        <span>Score: {this.props.score}</span>
+        <span>Game score: {this.props.gameScore}</span>
       </div>
     );
   }
 }
 
 GameScore.propTypes = {
-  score: PT.number
+  gameScore: PT.number
 };
 
 const mapStateToProps = state => {
   return {
-    score: state.userReducer.userData.score
+    gameScore: state.userReducer.gameData.score
   };
 };
 

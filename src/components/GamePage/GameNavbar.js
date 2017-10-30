@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import GameScore from './GameScore';
 import PT from 'prop-types';
 import patchUser from '../../actions/patchUser';
-import fetchTweets from '../../actions/fetchTweets';
 
 class GameNavbar extends React.Component {
   constructor(props) {
@@ -12,60 +11,54 @@ class GameNavbar extends React.Component {
     this.handleEndGame = this.handleEndGame.bind(this);
     this.handleNextRound = this.handleNextRound.bind(this);
   }
+  
   render() {
     return (
       <div>
         <nav>
-          <Link to={`/user/${this.props.userData.name}`} onClick={this.handleEndGame}>
+          <Link onClick={this.handleEndGame} to={`/user/${this.props.username}`}>
             <button>End Game</button>
           </Link>
-          <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleNextRound}>
+          <Link onClick={this.handleNextRound} to={`/tweets/${this.props.username}`}>
             <button>
               Next Game
             </button>
           </Link>
-
           <GameScore />
         </nav>
       </div>
     );
   }
   handleEndGame() {
-    this.props.patchUser(this.props.userData.name, this.props.score, this.props.completedTweets);
+    this.props.patchUser(this.props.username, this.props.gameScore, this.props.gameCompletedTweets);
   }
 
   handleNextRound() {
-    this.props.patchUser(this.props.userData.name, this.props.score, this.props.completedTweets);
-    this.props.fetchTweets(this.props.userData.name);
+    this.props.patchUser(this.props.username, this.props.gameScore, this.props.gameCompletedTweets);
   }
 
 }
 
 GameNavbar.propTypes = {
-  match: PT.object,
-  score: PT.number,
-  userData: PT.object,
-  patchUser: PT.func,
-  completedTweets: PT.array,
-  fetchTweets: PT.func
-
+  username: PT.string,
+  gameData: PT.object,
+  gameScore: PT.number,
+  gameCompletedTweets: PT.array,
+  patchUser: PT.func
 };
 
 const mapStateToProps = (state) => {
   return {
-    score: state.userReducer.userData.score,
-    userData: state.userReducer.userData,
-    completedTweets: state.userReducer.userData.completedTweets
+    username: state.userReducer.userData.name,
+    gameScore: state.userReducer.gameData.score,
+    gameCompletedTweets: state.userReducer.gameData.completedTweets
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    patchUser: (username, score, completedTweets) => {
-      dispatch(patchUser(username, score, completedTweets));
-    },
-    fetchTweets: (username) => {
-      dispatch(fetchTweets(username));
+    patchUser: (username, gameScore, gameCompletedTweets) => {
+      dispatch(patchUser(username, gameScore, gameCompletedTweets));
     }
   };
 };

@@ -10,6 +10,10 @@ export const initialState = {
     avatar: '',
     completedTweets: [],
     score: 0
+  },
+  gameData: {
+    score: 0,
+    completedTweets: []
   }
 };
 
@@ -35,39 +39,43 @@ export default (prevState = initialState, action) => {
     });
   case types.INCREASE_SCORE: {
     const newState = Object.assign({}, prevState);
-    newState.userData.score = prevState.userData.score + action.payload;
+    newState.gameData.score = prevState.gameData.score + action.payload;
     return newState;
   }
   case types.DECREASE_SCORE: {
     const newState = Object.assign({}, prevState);
-    newState.userData.score = prevState.userData.score - action.payload;
+    newState.gameData.score = prevState.gameData.score - action.payload;
+    return newState;
+  }
+  case types.UPDATE_COMPLETED_TWEETS: {
+    const newState = Object.assign({}, prevState);
+    newState.gameData.completedTweets = prevState.gameData.completedTweets.concat(action.payload);
     return newState;
   }
   case types.PATCH_USER_REQUEST:
     return Object.assign({}, prevState, {
       loading: !prevState.loading,
       error: null,
-      userData: prevState.userData
+      userData: prevState.userData,
+      gameData: prevState.gameData
     });
   case types.PATCH_USER_SUCCESS:
     return Object.assign({}, prevState, {
       loading: false,
       error: null,
-      userData: action.payload
+      userData: action.payload,
+      gameData: {
+        score: 0,
+        completedTweets: []
+      }
     });
   case types.PATCH_USER_FAILURE:
     return Object.assign({}, prevState, {
       loading: false,
       error: action.payload,
-      userData: prevState.userData
+      userData: prevState.userData,
+      gameData: prevState.gameData
     });
-<<<<<<< HEAD
-  case types.UPDATE_COMPLETED_TWEETS: {
-    const newState = Object.assign({}, prevState);
-    newState.userData.completedTweets = prevState.userData.completedTweets.concat(action.payload);
-    return newState;
-  }
-=======
   case types.POST_NEW_USER_REQUEST:
     return Object.assign({}, prevState, {
       loading: !prevState.loading,
@@ -86,7 +94,6 @@ export default (prevState = initialState, action) => {
       error: action.payload,
       userData: prevState.userData
     });
->>>>>>> feat-newUser
   default:
     return prevState;
   }
