@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { saveUsername } from '../../actions/saveUsername';
-import NewUser from '../UserPage/NewUser';
-import UsernameExists from '../Errors/UsernameExists';
+import UsernameExists from '../../components/Errors/UsernameExists';
+import UserInput from '../../components/Homepage/UserInput';
 import PT from 'prop-types';
 
 class Start extends React.Component {
@@ -19,18 +18,11 @@ class Start extends React.Component {
     return (
       <div>
         {(this.props.error === 'Request failed with status code 405') ? <UsernameExists /> :
-          <div>
-            <span>Enter your twitter handle:</span>
-            <form>
-              <input placeholder="@handle" onChange={this.handleChange}></input>
-              <Link to={(this.state.input.length > 0)? `/user/${this.state.input}` : '/'} onClick={this.handleLogin}>
-                <button >
-            Login
-                </button>
-              </Link>
-            </form>
-            <NewUser />
-          </div>
+          <UserInput 
+            onChange={this.handleChange}
+            input={this.state.input}
+            onLogin={this.handleLogin}
+          />
         }
       </div>
     );

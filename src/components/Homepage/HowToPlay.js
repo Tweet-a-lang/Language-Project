@@ -1,3 +1,9 @@
+
+
+//solution for spliting up the modal to the container and presentational component
+//https://stackoverflow.com/questions/45266732/how-to-trigger-react-modal-from-the-layout-container
+
+
 import React from 'react';
 import ReactModal from 'react-modal';
 
