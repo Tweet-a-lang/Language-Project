@@ -4,8 +4,7 @@ class LoadingPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Loading.....</h1>
-        <p>No need to rush, kick back and take it easy, we are busy compiling this page...</p>
+        <img src="https://cms-assets.tutsplus.com/uploads/users/1112/posts/25209/image/animate-bird-slide-25.gif" alt='loading' />
       </div>
     );
   }
