@@ -81,14 +81,14 @@ const getUnseenTweets = (req, res, next) => {
 
   const numOfTweets = +req.query.count || 5;
   let unseenTweets = [];
-  const { username , topic = 'news'} = req.params;
+  const { username , topic} = req.params;
   return Promise.all([
     Users.findOne({ name: username }),
     Tweets.find()
   ])
     .then((data) => {
       const user = data[0];
-      const tweets = data[1].filter(t => t.tweet.topic === topic);
+      const tweets = topic? data[1].filter(t => t.tweet.topic === topic): data[1];
       const completedTweets = user.completedTweets;
 
       //Filters Tweets that have not been seen by the user
