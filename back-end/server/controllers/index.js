@@ -131,16 +131,16 @@ const getScoreboard = (req, res) => {
 
 const patchUser = (req, res, next) => {
   const { username } = req.params;
-  const { completedTweets: tweetsDone = [], score = 0 } = req.body;
+  const { completedTweets: tweetsDone = [], score: newScore = 0 } = req.body;
 
   Users.findOne({ name: username })
     .then(user => {
       if (user === null) return next({ type: 400 });
 
       const newTweetsDone = [...user.completedTweets, ...tweetsDone];
-      const newScore = score;
+      const oldScore = user.score;
       user.completedTweets = newTweetsDone;
-      user.score = newScore;
+      user.score = oldScore + newScore;
 
       user.save()
         .then(result => {
