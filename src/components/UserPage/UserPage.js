@@ -26,37 +26,37 @@ class UserPage extends React.Component {
   render () {
     return (
       <div>
-{(!this.props.username) ? <div>
+        {(!this.props.username) ? <div>
           <NoUser />
         </div> : 
           <div>
-        <h1>Hi, {this.props.username}</h1>
-        <h3>Total Score: {this.props.score}</h3>
-        <span>Choose your language:</span>
-        <div>
-          <div className="radio">
-            <label><input
-              type="radio"
-              name="value"
-              onChange={this.handleLangSelection}
-              value="spanish"
-              checked={this.state.radioButton1}
-            />Spanish</label>
-          </div>
-          <div className="radio">
-            <label><input
-              type="radio"
-              name="value"
-              onChange={this.handleLangSelection}
-              value="chance"
-              checked={this.state.radioButton2}
-            />Take a chance</label>
-          </div>
-        </div>
-        <Link onClick={this.handleStartGame} to={`/tweets/${this.props.username}`}>
-          <button>START GAME</button>
-        </Link>
-        <LogOut />
+            <h1>Hi, {this.props.username}</h1>
+            <h3>Total Score: {this.props.score}</h3>
+            <span>Choose your language:</span>
+            <div>
+              <div className="radio">
+                <label><input
+                  type="radio"
+                  name="value"
+                  onChange={this.handleLangSelection}
+                  value="spanish"
+                  checked={this.state.radioButton1}
+                />Spanish</label>
+              </div>
+              <div className="radio">
+                <label><input
+                  type="radio"
+                  name="value"
+                  onChange={this.handleLangSelection}
+                  value="chance"
+                  checked={this.state.radioButton2}
+                />Take a chance</label>
+              </div>
+            </div>
+            <Link onClick={this.handleStartGame} to={`/tweets/${this.props.username}`}>
+              <button>START GAME</button>
+            </Link>
+            <LogOut />
           </div>
         }
       </div>
