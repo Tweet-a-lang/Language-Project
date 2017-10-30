@@ -23,7 +23,7 @@ describe('API', () => {
         });
     }).timeout(5000);
   });
-  describe.only('GET tweets/:username/:topic', () => {
+  describe('GET tweets/:username/:topic', () => {
     it('returns with a status code of 200', () => {
       return request(app)
         .get('/api/tweets/Olie/news')
