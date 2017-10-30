@@ -24,6 +24,8 @@ class NewUser extends React.Component {
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleNewUser = this.handleNewUser.bind(this);
   }
 
   openModal() {
@@ -46,9 +48,9 @@ class NewUser extends React.Component {
           contentLabel="Create New User">
           <h1>Welcome to Tweet-a-lang!</h1>
           <form> 
-            <input type="submit" placeholder="enter a username"></input> 
+            <input type="text" placeholder="enter a username" onChange={this.handleChange}></input> 
           </form>
-          <button onClick={this.closeModal} >Close</button>
+          <button onClick={this.closeModal} >Submit</button>
         </ReactModal>
       </div>
     );
