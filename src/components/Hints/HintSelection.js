@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import PT from 'prop-types';
-import { decreaseScore } from '../../actions/updateScore';
-import { connect } from 'react-redux';
-import _ from 'underscore';
+import LetterHint from './LetterHint';
+import DefinitionHint from './DefinitionHint';
 
 const customStyles = {
   content : {
@@ -15,7 +14,7 @@ const customStyles = {
   }
 };
 
-class LetterHint extends React.Component {
+class HintSelection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +22,6 @@ class LetterHint extends React.Component {
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.handleScoreDec = this.handleScoreDec.bind(this);
   }
 
   openModal() {
@@ -32,7 +30,6 @@ class LetterHint extends React.Component {
 
   closeModal() {
     this.setState({modalIsOpen: false});
-    this.handleScoreDec();
   }
   render() {
     return (
@@ -43,36 +40,22 @@ class LetterHint extends React.Component {
           onRequestClose={this.closeModal}
           shouldCloseOnOverlayClick={true}
           style={customStyles}
-          contentLabel="Letter Hint Modal">
-          <h1>{_.sample(this.props.word.text, 2)}</h1>
+          contentLabel="Hint Selection Modal">
+          <h1>Chose your Hint!</h1>
+          <LetterHint 
+            word={this.props.word}/>
+          <DefinitionHint 
+            word={this.props.word}/>
           <button onClick={this.closeModal} >Close</button>
         </ReactModal>
       </div>
     );
   }
-  handleScoreDec() {
-    this.props.decreaseScore(1);
-  }
 }
 
-LetterHint.propTypes = {
-  word: PT.string,
-  decreaseScore: PT.func
-};
-
-const mapStateToProps = (state) => {
-  return {
-    score: state.userReducer.userData.score
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    decreaseScore: (score) => {
-      dispatch(decreaseScore(score));
-    }
-  };
+HintSelection.propTypes = {
+  word: PT.string
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(LetterHint);
+export default HintSelection;

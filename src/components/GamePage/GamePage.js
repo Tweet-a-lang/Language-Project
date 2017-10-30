@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import GameNavbar from './GameNavbar';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
-import LetterHint from './LetterHint';
+import HintSelection from '../Hints/HintSelection';
 import { increaseScore } from '../../actions/updateScore';
 import { updateCompletedTweets } from '../../actions/updateCompletedTweets';
 import _ from 'underscore';
@@ -49,7 +49,7 @@ class GamePage extends React.Component {
             {_.shuffle(tweetData.answers.choices).map((choice, buttonIndex) => {
               return <button key={buttonIndex} type='submit' value={[tweetData.tweet.id, tweetIndex]} disabled={this.state['tweet' + tweetIndex]} onClick={(choice.result) ? this.handleCorrect : this.handleIncorrect }>{choice.text}</button>;
             })}
-            <div><LetterHint
+            <div><HintSelection
               word={tweetData.answers.choices[0]}/></div>
           </div>);
         })}
