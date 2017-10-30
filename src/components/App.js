@@ -4,6 +4,7 @@ import Homepage from './Homepage';
 import GamePage from './GamePage/GamePage';
 import UserPage from './UserPage/UserPage';
 import Leaderboard from './NavCard/Leaderboard';
+import NoUser from './Errors/NoUser';
 
 class App extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class App extends React.Component {
             <Route exact path='/tweets/:username' component={GamePage} />
             <Route exact path='/user/:username' component={UserPage} />
             <Route exact path='/scoreboard' component={Leaderboard} />
+            <Route path='/*' component={NoUser} />
           </Switch>
         </div>
       </Router>

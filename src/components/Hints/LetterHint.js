@@ -56,7 +56,7 @@ class LetterHint extends React.Component {
 }
 
 LetterHint.propTypes = {
-  word: PT.string,
+  word: PT.object,
   decreaseScore: PT.func
 };
 

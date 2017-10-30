@@ -36,16 +36,9 @@ class GamePage extends React.Component {
         <GameNavbar />
         <p>Player: {this.props.match.params.username}</p>
         <p>Players Profile Image here</p>
-<<<<<<< HEAD
         {this.props.data.map((tweetData, tweetIndex) => {
-          
           return (<div key={tweetIndex}>
-            <h5>Tweets from: @{tweetData.user_screen_name}</h5>
-=======
-        {this.props.data.map((tweetData, i) => {
-          return (<div key={i}>
             <h5>Tweets from: @{tweetData.tweet.user_screen_name}</h5>
->>>>>>> feat-newUser
 
             <p>{tweetData.tweet.text.split(' ').map((word) => {
               if (word === tweetData.answers.chosenWord) return word.toUpperCase();

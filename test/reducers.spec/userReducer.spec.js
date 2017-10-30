@@ -3,12 +3,9 @@ import userReducer, { initialState } from '../../src/reducers/userReducer';
 import { fetchUserRequest, fetchUserSuccess, fetchUserFailure } from '../../src/actions/fetchUser';
 import { increaseScore, decreaseScore } from '../../src/actions/updateScore';
 import { patchUserRequest, patchUserSuccess, patchUserFailure } from '../../src/actions/patchUser';
-<<<<<<< HEAD
 import { updateCompletedTweets } from '../../src/actions/updateCompletedTweets';
-=======
 import { postNewUserRequest, postNewUserSuccess, postNewUserFailure } from '../../src/actions/postNewUser';
 
->>>>>>> feat-newUser
 
 describe('user reducer', () => {
   describe('default behaviour', () => {
@@ -87,38 +84,36 @@ describe('user reducer', () => {
     expect(newState.error).to.eql(error);
     expect(newState.userData).to.eql(initialState.userData);
   });
-<<<<<<< HEAD
   describe('actions::UPDATE_COMPLETED_TWEETS', () => {
     it('adds the tweets completed in the game to the userData overall completedTweets', () => {
       let action = updateCompletedTweets('1234567890123456');
       let newState = userReducer(initialState, action);
       expect(newState.userData.completedTweets).to.eql(['1234567890123456']);
     });
-=======
-  it('handles POST_NEW_USER_REQUEST', () => {
-    const action = postNewUserRequest('rosie');
-    const newState = userReducer(undefined, action);
-    expect(newState.loading).to.be.true;
-    expect(newState.error).to.be.null;
-    expect(newState.userData).to.eql(initialState.userData);
-  });
-  it('handles POST_NEW_USER_SUCCESS', () => {
-    const prevState = userReducer(undefined, postNewUserRequest());
-    const data = [1, 2, 3];
-    const action = postNewUserSuccess(data);
-    const newState = userReducer(prevState, action);
-    expect(newState.loading).to.be.false;
-    expect(newState.error).to.be.null;
-    expect(newState.userData).to.eql(data);
-  });
-  it('handles POST_NEW_USER_FAILURE', () => {
-    const prevState = userReducer(undefined, postNewUserRequest());
-    const error = 'Something went wrong';
-    const action = postNewUserFailure(error);
-    const newState = userReducer(prevState, action);
-    expect(newState.loading).to.be.false;
-    expect(newState.error).to.eql(error);
-    expect(newState.userData).to.eql(initialState.userData);
->>>>>>> feat-newUser
+    it('handles POST_NEW_USER_REQUEST', () => {
+      const action = postNewUserRequest('rosie');
+      const newState = userReducer(undefined, action);
+      expect(newState.loading).to.be.true;
+      expect(newState.error).to.be.null;
+      expect(newState.userData).to.eql(initialState.userData);
+    });
+    it('handles POST_NEW_USER_SUCCESS', () => {
+      const prevState = userReducer(undefined, postNewUserRequest());
+      const data = [1, 2, 3];
+      const action = postNewUserSuccess(data);
+      const newState = userReducer(prevState, action);
+      expect(newState.loading).to.be.false;
+      expect(newState.error).to.be.null;
+      expect(newState.userData).to.eql(data);
+    });
+    it('handles POST_NEW_USER_FAILURE', () => {
+      const prevState = userReducer(undefined, postNewUserRequest());
+      const error = 'Something went wrong';
+      const action = postNewUserFailure(error);
+      const newState = userReducer(prevState, action);
+      expect(newState.loading).to.be.false;
+      expect(newState.error).to.eql(error);
+      expect(newState.userData).to.eql(initialState.userData);
+    });
   });
 });

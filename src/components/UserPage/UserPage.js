@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PT from 'prop-types';
 import fetchUser from '../../actions/fetchUser';
 import LogOut from './LogOut';
+import NoUser from '../Errors/NoUser';
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -21,43 +22,49 @@ class UserPage extends React.Component {
   componentDidMount() {
     const username = this.props.match.params.username;
     this.props.fetchUser(username);
-  }
+  } 
   render () {
     return (
       <div>
-        <h1>Hi, {this.props.userData.name}</h1>
-        <h3>Current Total Score: {this.props.userData.score}</h3>
-        <span>Choose your language:</span>
-        <div>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="value"
-                onChange={this.handleLangSelection}
-                value="spanish"
-                checked={this.state.radioButton1}
-              />
+        {(!this.props.userData.name) ? <div>
+          <NoUser />
+        </div> : 
+          <div>
+            <h1>Hi, {this.props.userData.name}</h1>
+            <h3>Current Total Score: {this.props.userData.score}</h3>
+            <span>Choose your language:</span>
+            <div>
+              <div className="radio">
+                <label>
+                  <input
+                    type="radio"
+                    name="value"
+                    onChange={this.handleLangSelection}
+                    value="spanish"
+                    checked={this.state.radioButton1}
+                  />
                                 Spanish
-            </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="value"
-                onChange={this.handleLangSelection}
-                value="chance"
-                checked={this.state.radioButton2}
-              />
+                </label>
+              </div>
+              <div className="radio">
+                <label>
+                  <input
+                    type="radio"
+                    name="value"
+                    onChange={this.handleLangSelection}
+                    value="chance"
+                    checked={this.state.radioButton2}
+                  />
                                 Take a chance
-            </label>
+                </label>
+              </div>
+            </div>
+            <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleStartGame}>
+              <button>START GAME</button>
+            </Link>
+            <LogOut />
           </div>
-        </div>
-        <Link to={`/tweets/${this.props.userData.name}`} onClick={this.handleStartGame}>
-          <button>START GAME</button>
-        </Link>
-        <LogOut />
+        }
       </div>
     );
   }

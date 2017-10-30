@@ -61,13 +61,11 @@ export default (prevState = initialState, action) => {
       error: action.payload,
       userData: prevState.userData
     });
-<<<<<<< HEAD
   case types.UPDATE_COMPLETED_TWEETS: {
     const newState = Object.assign({}, prevState);
     newState.userData.completedTweets = prevState.userData.completedTweets.concat(action.payload);
     return newState;
   }
-=======
   case types.POST_NEW_USER_REQUEST:
     return Object.assign({}, prevState, {
       loading: !prevState.loading,
@@ -86,7 +84,6 @@ export default (prevState = initialState, action) => {
       error: action.payload,
       userData: prevState.userData
     });
->>>>>>> feat-newUser
   default:
     return prevState;
   }

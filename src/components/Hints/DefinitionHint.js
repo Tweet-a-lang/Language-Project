@@ -55,7 +55,7 @@ class DefinitionHint extends React.Component {
 }
 
 DefinitionHint.propTypes = {
-  word: PT.string,
+  word: PT.object,
   decreaseScore: PT.func
 };
 
