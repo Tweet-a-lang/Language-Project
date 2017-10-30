@@ -12,15 +12,15 @@ const {json} = require('body-parser');
 const cors = require('cors');
 mongoose.Promise = global.Promise;
 
-mongoose.connect(config.url, {
-  useMongoClient:true
-})
-  .then(() => {
-    console.log('connected');
-  })
-  .catch((err) => {
-    if(err) console.log('could not connect to the database');
-  });
+// mongoose.connect(config.url, {
+//   useMongoClient:true
+// })
+//   .then(() => {
+//     console.log('connected');
+//   })
+//   .catch((err) => {
+//     if(err) console.log('could not connect to the database');
+//   });
 
 app.get('/', (req, res) => {
   res.send('the root is working');
