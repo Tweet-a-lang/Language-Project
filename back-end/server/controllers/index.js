@@ -121,11 +121,9 @@ const getScoreboard = (req, res) => {
         user = user.toObject();
         const { name, score } = user;
         return { name, score };
-      })
-        .sort((a, b) => {
-          return a.score < b.score;
-        });
-      res.send(scoresArray);
+      });
+      const scoreboard = scoresArray.sort((b,a) => a.score - b.score);
+      res.send(scoreboard);
     });
 };
 
