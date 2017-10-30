@@ -54,7 +54,7 @@ class HintSelection extends React.Component {
 }
 
 HintSelection.propTypes = {
-  word: PT.string
+  word: PT.object
 };
 
 

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PT from 'prop-types';
 import fetchUser from '../../actions/fetchUser';
 import LogOut from './LogOut';
+import NoUser from '../Errors/NoUser';
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -21,10 +22,14 @@ class UserPage extends React.Component {
   componentDidMount() {
     const username = this.props.match.params.username;
     this.props.fetchUser(username);
-  }
+  } 
   render () {
     return (
       <div>
+{(!this.props.username) ? <div>
+          <NoUser />
+        </div> : 
+          <div>
         <h1>Hi, {this.props.username}</h1>
         <h3>Total Score: {this.props.score}</h3>
         <span>Choose your language:</span>
@@ -52,6 +57,8 @@ class UserPage extends React.Component {
           <button>START GAME</button>
         </Link>
         <LogOut />
+          </div>
+        }
       </div>
     );
   }
