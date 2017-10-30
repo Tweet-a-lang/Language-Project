@@ -4,6 +4,8 @@ import GameNavbar from './GameNavbar';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
 import HintSelection from '../Hints/HintSelection';
+import CorrectPopUp from './Results/CorrectPopUp';
+import InCorrectPopUp from './Results/InCorrectPopUp';
 import { increaseScore } from '../../actions/updateScore';
 import { updateCompletedTweets } from '../../actions/updateCompletedTweets';
 import _ from 'underscore';
@@ -16,10 +18,17 @@ class GamePage extends React.Component {
       tweet1: false,
       tweet2: false,
       tweet3: false,
-      tweet4: false
+      tweet4: false,
+      modalCorrectIsOpen: false,
+      modalInCorrectIsOpen: false
     };
     this.handleCorrect = this.handleCorrect.bind(this);
     this.handleIncorrect = this.handleIncorrect.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  closeModal() {
+    this.setState({modalCorrectIsOpen: false,  modalInCorrectIsOpen: false});
   }
   
   componentDidMount() {
@@ -44,13 +53,7 @@ class GamePage extends React.Component {
     
     return (
       <div>
-        <GameNavbar 
-          tweet0={this.state.tweet0} 
-          tweet1={this.state.tweet1}
-          tweet2={this.state.tweet2} 
-          tweet3={this.state.tweet3}
-          tweet4={this.state.tweet4}
-        />
+        <GameNavbar />
         <p>Player: {this.props.match.params.username}</p>
         <p>Players Profile Image here</p>
         {this.props.tweetArr.map((tweetData, tweetIndex) => {
@@ -67,6 +70,8 @@ class GamePage extends React.Component {
             })}
             <div><HintSelection
               word={tweetData.answers.choices[0]}/></div>
+            <div><CorrectPopUp closeModal={this.closeModal} modalCorrectIsOpen={this.state.modalCorrectIsOpen}/></div>
+            <div><InCorrectPopUp closeModal={this.closeModal} modalInCorrectIsOpen={this.state.modalInCorrectIsOpen} /></div>
           </div>);
         })}
       </div>
@@ -76,7 +81,9 @@ class GamePage extends React.Component {
   handleCorrect(e) {
     let tweetValue = e.target.value.split(',');
     let tweetStateKey = 'tweet' + tweetValue[1];
-    let tweetStateObj = {};
+    let tweetStateObj = {
+      modalCorrectIsOpen: true
+    };
     tweetStateObj[tweetStateKey] = true;
     this.props.increaseScore(10);
     this.props.updateCompletedTweets(tweetValue[0]);
@@ -86,7 +93,9 @@ class GamePage extends React.Component {
   handleIncorrect(e) {
     let tweetValue = e.target.value.split(',');
     let tweetStateKey = 'tweet' + tweetValue[1];
-    let tweetStateObj = {};
+    let tweetStateObj = {
+      modalInCorrectIsOpen: true
+    };
     tweetStateObj[tweetStateKey] = true;
     this.setState(tweetStateObj);
   }
