@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import GameNavbar from './GameNavbar';
+import LoadingPage from '../Errors/LoadingPage';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
 import HintSelection from '../Hints/HintSelection';
@@ -53,6 +54,7 @@ class GamePage extends React.Component {
         />
         <p>Player: {this.props.match.params.username}</p>
         <p>Players Profile Image here</p>
+        {(this.props.loading) ? <LoadingPage /> : ''}
         {this.props.tweetArr.map((tweetData, tweetIndex) => {
           return (<div key={tweetIndex}>
             <h5>Tweets from: @{tweetData.tweet.user_screen_name}</h5>
@@ -100,7 +102,8 @@ GamePage.propTypes = {
   increaseScore: PT.func,
   updateCompletedTweets: PT.func,
   gameData: PT.object,
-  username: PT.string
+  username: PT.string,
+  loading: PT.bool
 };
 
 const mapStateToProps = (state) => {
