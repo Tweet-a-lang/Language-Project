@@ -27,7 +27,6 @@ class InCorrectPopUp extends React.Component {
           style={resultsPopUpStyles}
           contentLabel="InCorrect Modal">
           <h1>Oops WRONG - better luck next time!</h1>
-          <p>Try a hint</p>
           <button onClick={this.props.closeModal} >Back to Game</button>
         </ReactModal>
       </div>
@@ -36,7 +35,7 @@ class InCorrectPopUp extends React.Component {
 }
 
 InCorrectPopUp.propTypes = {
-  modalInCorrectIsOpen: PT.func,
+  modalInCorrectIsOpen: PT.bool,
   closeModal: PT.func
 };
 

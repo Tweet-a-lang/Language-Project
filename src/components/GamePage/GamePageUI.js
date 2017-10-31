@@ -30,8 +30,14 @@ const GamePageUI = ({ username, tweetArr, onCorrect, onIncorrect, modalCorrectIs
             word={tweetData.answers.choices[0]}
             disabled={tweetDisabledArr[tweetIndex]}
             dictionaryHint={tweetData.answers.hints} /></div>
-        <div><CorrectPopUp closeModal={closeModal} modalCorrectIsOpen={modalCorrectIsOpen} /></div>
-        <div><InCorrectPopUp closeModal={closeModal} modalInCorrectIsOpen={modalInCorrectIsOpen} /></div>
+            
+        <div><CorrectPopUp 
+          closeModal={closeModal} 
+          modalCorrectIsOpen={modalCorrectIsOpen} 
+          correctIndex={tweetIndex} /></div>
+        <div><InCorrectPopUp 
+          closeModal={closeModal} 
+          modalInCorrectIsOpen={modalInCorrectIsOpen} /></div>
       </div>);
     })}
   </div>

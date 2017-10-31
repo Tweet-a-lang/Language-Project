@@ -22,7 +22,6 @@ class LetterHint extends React.Component {
       modalIsOpen: false   
     };
     this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
     this.handleScoreDec = this.handleScoreDec.bind(this);
   }
 
@@ -30,10 +29,6 @@ class LetterHint extends React.Component {
     this.setState({modalIsOpen: true});
   }
 
-  closeModal() {
-    this.setState({modalIsOpen: false});
-    this.handleScoreDec();
-  }
   render() {
     return (
       <div>
@@ -45,7 +40,7 @@ class LetterHint extends React.Component {
           style={customStyles}
           contentLabel="Letter Hint Modal">
           <h1>{_.sample(this.props.word.text, 2)}</h1>
-          <button onClick={this.closeModal} >Close</button>
+          <button onClick={this.props.closeModal} >OK back to Game</button>
         </ReactModal>
       </div>
     );
@@ -57,7 +52,8 @@ class LetterHint extends React.Component {
 
 LetterHint.propTypes = {
   word: PT.object,
-  decreaseScore: PT.func
+  decreaseScore: PT.func,
+  closeModal: PT.func
 };
 
 const mapStateToProps = (state) => {
