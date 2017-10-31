@@ -12,48 +12,75 @@ class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      language: 'spanish',
       radioButton1: true,
-      radioButton2: false
+      radioButton2: false,
+      radioButton3: false,
+      radioButton4: false,
     };
     this.handleStartGame = this.handleStartGame.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
     this.handleLangSelection = this.handleLangSelection.bind(this);
   }
-  
+
   componentDidMount() {
     const username = this.props.match.params.username;
     this.props.fetchUser(username);
-  } 
-  render () {
+  }
+  render() {
     return (
       <div>
         {(this.props.loading) ? <LoadingPage /> : (this.props.error === 'Request failed with status code 405') ? <UsernameExists /> :
           (!this.props.username) ? <div>
             <NoUser />
-          </div> : 
+          </div> :
             <div>
               <h1>Hi, {this.props.username}</h1>
               <h3>Total Score: {this.props.score}</h3>
-              <span>Choose your language:</span>
+              <span>Choose your tweety topic:</span>
               <div>
                 <div className="radio">
-                  <label><input
-                    type="radio"
-                    name="value"
-                    onChange={this.handleLangSelection}
-                    value="spanish"
-                    checked={this.state.radioButton1}
-                  />Spanish</label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="value"
+                      onChange={this.handleLangSelection}
+                      value="news"
+                      checked={this.state.radioButton1}
+                    />News
+                  </label>
                 </div>
                 <div className="radio">
-                  <label><input
-                    type="radio"
-                    name="value"
-                    onChange={this.handleLangSelection}
-                    value="chance"
-                    checked={this.state.radioButton2}
-                  />Take a chance</label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="value"
+                      onChange={this.handleLangSelection}
+                      value="sport"
+                      checked={this.state.radioButton2}
+                    />Sport
+                  </label>
+                </div>
+                <div className="radio">
+                  <label>
+                    <input
+                      type="radio"
+                      name="value"
+                      onChange={this.handleLangSelection}
+                      value="food"
+                      checked={this.state.radioButton3}
+                    />Food
+                  </label>
+                </div>
+                <div className="radio">
+                  <label>
+                    <input
+                      type="radio"
+                      name="value"
+                      onChange={this.handleLangSelection}
+                      value="film"
+                      checked={this.state.radioButton4}
+                    />Film
+                  </label>
                 </div>
               </div>
               <Link onClick={this.handleStartGame} to={`/tweets/${this.props.username}`}>
@@ -74,9 +101,10 @@ class UserPage extends React.Component {
 
   handleLangSelection(e) {
     this.setState({
-      language: e.target.value,
-      radioButton1: (e.target.value === 'spanish') ? true : false,
-      radioButton2: (e.target.value === 'chance') ? true : false
+      radioButton1: (e.target.value === 'news') ? true : false,
+      radioButton2: (e.target.value === 'sport') ? true : false,
+      radioButton3: (e.target.value === 'food') ? true : false,
+      radioButton4: (e.target.value === 'film') ? true : false
     });
   }
 
