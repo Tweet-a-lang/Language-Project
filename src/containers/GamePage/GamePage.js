@@ -51,7 +51,6 @@ class GamePage extends React.Component {
     
     return (
       <div>
-        <GameNavbar />
         {(this.props.loading) ? <LoadingPage /> : ''}
         <GamePageUI 
           username={this.props.username}
@@ -67,6 +66,7 @@ class GamePage extends React.Component {
           tweet3={this.state.tweet3}
           tweet4={this.state.tweet4}
         />
+        <GameNavbar />
       </div>
     );
   }
