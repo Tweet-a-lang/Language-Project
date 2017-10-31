@@ -29,9 +29,13 @@ class Start extends React.Component {
 
 
   handleChange(e) {
-    this.setState({
-      input: e.target.value
-    });
+    const {value} = e.target;
+    if(!value.includes(' ') && value.length < 15){
+      this.setState({
+        input: e.target.value
+      });
+    }
+    else window.alert('usernames cannot contain spaces and must be less than 15 characters in length');
   }
   handleLogin() {
 
