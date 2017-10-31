@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import { connect } from 'react-redux';
 import PT from 'prop-types';
 
 const resultsPopUpStyles = {
@@ -27,6 +28,7 @@ class CorrectPopUp extends React.Component {
           style={resultsPopUpStyles}
           contentLabel="Correct Modal">
           <h1>Well done - Correct!</h1>
+          <p>{this.props.tweetArr[this.props.correctIndex].answers.chosenWord} in Spanish = {this.props.tweetArr[this.props.correctIndex].answers.translatedWord} in English </p>
           <p>10 points added</p>
           <button onClick={this.props.closeModal} >Back to Game</button>
         </ReactModal>
@@ -36,8 +38,17 @@ class CorrectPopUp extends React.Component {
 }
 
 CorrectPopUp.propTypes = {
-  modalCorrectIsOpen: PT.func,
-  closeModal: PT.func
+  modalCorrectIsOpen: PT.bool,
+  closeModal: PT.func,
+  tweetArr: PT.array,
+  correctIndex: PT.number
 };
 
-export default CorrectPopUp;
+
+const mapStateToProps = (state) => {
+  return {
+    tweetArr: state.fetchTweetsReducer.data
+  };
+};
+
+export default connect(mapStateToProps)(CorrectPopUp);

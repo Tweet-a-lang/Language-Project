@@ -30,12 +30,13 @@ class Start extends React.Component {
 
   handleChange(e) {
     const {value} = e.target;
-    if(!value.includes(' ') && value.length < 15){
+    if(!/'|"|\s/g.test(value) && value.length < 15){
       this.setState({
         input: e.target.value
       });
     }
-    else window.alert('usernames cannot contain spaces and must be less than 15 characters in length');
+    else if(value.length >=15) window.alert('Sorry your username is too long');
+    else window.alert('Sorry that character is not allowed');
   }
   handleLogin() {
 

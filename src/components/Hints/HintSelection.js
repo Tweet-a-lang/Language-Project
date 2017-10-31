@@ -18,7 +18,9 @@ class HintSelection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalIsOpen: false   
+      modalIsOpen: false,
+      modalLettersIsOpen: false,
+      modalDefinitionIsOpen: false     
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -29,7 +31,11 @@ class HintSelection extends React.Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({
+      modalIsOpen: false,
+      modalLettersIsOpen: false,
+      modalDefinitionIsOpen: false 
+    });
   }
   render() {
     return (
@@ -43,11 +49,14 @@ class HintSelection extends React.Component {
           contentLabel="Hint Selection Modal">
           <h1>Chose your Hint!</h1>
           <LetterHint 
-            word={this.props.word}/>
-          <DefinitionHint 
             word={this.props.word}
-            dictionaryHint={this.props.dictionaryHint}/>
-          <button onClick={this.closeModal} >Close</button>
+            closeModal={this.closeModal}/>
+          {(!this.props.dictionaryHint) ? '' : 
+            <DefinitionHint 
+              word={this.props.word}
+              dictionaryHint={this.props.dictionaryHint}
+              closeModal={this.closeModal} />} 
+          <button onClick={this.closeModal} >Changed my mind - Back to Game</button>
         </ReactModal>
       </div>
     );

@@ -29,8 +29,8 @@ export const initialState = {
         topic: ''
       },
       answers: {
-        chosenWord: '',
-        translatedWord: '',
+        chosenWord: 'abc',
+        translatedWord: 'abc',
         choices: [
           {
             text: '',
@@ -49,9 +49,7 @@ export const initialState = {
             result: false
           }
         ],
-        hints: [
-          'sorry definitions are unavailable for this word'
-        ]
+        hints: [false]
       }
     }
   ]
