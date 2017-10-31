@@ -2,7 +2,7 @@ import React from 'react';
 import PT from 'prop-types';
 
 const leaderBoardStyle = {
-  'border-radius': '50%',
+  'borderRadius': '50%',
   
 };
 
