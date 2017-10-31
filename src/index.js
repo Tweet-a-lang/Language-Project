@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import store from './store';
 
-import GamePage from './components/GamePage/GamePage';
+import GamePage from  './containers/GamePage/GamePage';
 import UserPage from './components/UserPage/UserPage';
 import Leaderboard from './components/Homepage/Leaderboard';
 import NoUser from './components/Errors/NoUser';
