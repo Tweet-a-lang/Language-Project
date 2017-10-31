@@ -13,12 +13,17 @@ const resultsPopUpStyles = {
   }
 };
 
+let spanishWord = '';
+let englishWord = '';
+
 class CorrectPopUp extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    {spanishWord = (!this.props.tweetArr[this.props.correctIndex]) ? 'tbc' : this.props.tweetArr[this.props.correctIndex].answers.chosenWord;}
+    {englishWord = (!this.props.tweetArr[this.props.correctIndex]) ? 'tbc' : this.props.tweetArr[this.props.correctIndex].answers.translatedWord;}
     return (
       <div>
         <ReactModal
@@ -28,7 +33,7 @@ class CorrectPopUp extends React.Component {
           style={resultsPopUpStyles}
           contentLabel="Correct Modal">
           <h1>Well done - Correct!</h1>
-          <p>{this.props.tweetArr[this.props.correctIndex].answers.chosenWord} in Spanish = {this.props.tweetArr[this.props.correctIndex].answers.translatedWord} in English </p>
+          <p>{spanishWord} in Spanish = {englishWord} in English </p>
           <p>10 points added</p>
           <button onClick={this.props.closeModal} >Back to Game</button>
         </ReactModal>
