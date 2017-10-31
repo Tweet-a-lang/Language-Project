@@ -7,10 +7,8 @@ import { connect } from 'react-redux';
 const customStyles = {
   content : {
     top                   : '50%',
-    // left                  : '50%',
     right                 : 'auto',
-    bottom                : 'auto',
-    // marginRight           : '-50%'    
+    bottom                : 'auto'   
   }
 };
 
@@ -43,7 +41,9 @@ class DefinitionHint extends React.Component {
           shouldCloseOnOverlayClick={true}
           style={customStyles}
           contentLabel="Definition Hint Modal">
-          <h1>Definition of the english word goes here...</h1>
+          <h3>Hint - Dictionary Definition of the Correct Answer</h3>
+          {this.props.dictionaryHint.map((hint, i) => <p key={i}>{hint}</p>)
+          }
           <button onClick={this.closeModal} >Close</button>
         </ReactModal>
       </div>
@@ -56,7 +56,8 @@ class DefinitionHint extends React.Component {
 
 DefinitionHint.propTypes = {
   word: PT.object,
-  decreaseScore: PT.func
+  decreaseScore: PT.func,
+  dictionaryHint: PT.array
 };
 
 const mapStateToProps = (state) => {
