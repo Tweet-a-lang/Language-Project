@@ -2,6 +2,18 @@
 const { Users, Tweets } = require('../../models/models');
 const { pickCorrectWord, filterUnseenTweets } = require('./utils');
 const _ = require('underscore');
+require('dotenv').config();
+
+const Twit = require('twit');
+const {CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET} = process.env;
+const T = new Twit({
+  consumer_key:         CONSUMER_KEY,
+  consumer_secret:      CONSUMER_SECRET,
+  access_token:         ACCESS_TOKEN,
+  access_token_secret:  ACCESS_TOKEN_SECRET,
+  timeout_ms:           3*1000,  // optional HTTP request timeout to apply to all requests. 
+});
+
 
 const getUser = (req, res, next) => {
   let { username } = req.params;
@@ -17,7 +29,7 @@ const getUser = (req, res, next) => {
 
 const addUser = (req, res, next) => {
   const avatarUrlDefault = 'https://avatars0.githubusercontent.com/u/30082843?s=460&v=4';
-  const {
+  let {
     name, score = 0, completedTweets = [], avatar = avatarUrlDefault
   } = req.body;
 
@@ -26,13 +38,20 @@ const addUser = (req, res, next) => {
     .then(user => {
       if (user) return next({ type: 405, msg: 'the user already exists' });
       else {
-        const newUser = new Users({ name, score, completedTweets, avatar });
-        newUser.save()
-          .then(user => {
-            res.send(user);
+        return T.get('users/show', {screen_name: name})
+          .then(res => {
+            const {profile_image_url} = res.data;
+            return profile_image_url || avatar;
           })
-          .catch(err => {
-            if (err) next({ type: 500 });
+          .then((avatar) => {
+            const newUser = new Users({ name, score, completedTweets, avatar });
+            newUser.save()
+              .then(user => {
+                res.send(user);
+              })
+              .catch(err => {
+                if (err) next({ type: 500 });
+              });
           });
       }
     });

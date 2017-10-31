@@ -100,7 +100,7 @@ function pickCorrectWord(tweet, type) {
       const hints = meanings.filter(definition => definition.language === 'en').map(def => def.text);
       finalResult.hints = hints;
       return finalResult;
-    });
+    }).catch(console.error);
   
 }
 
