@@ -27,7 +27,9 @@ const GamePageUI = ({username,tweetArr,onCorrect,onIncorrect,modalCorrectIsOpen,
           return <button key={buttonIndex} type='submit' value={[tweetData.tweet.id, tweetIndex]} disabled={tweetDisabledArr[tweetIndex]} onClick={(choice.result) ? onCorrect : onIncorrect }>{choice.text}</button>;
         })}
         <div><HintSelection
-          word={tweetData.answers.choices[0]}/></div>
+          word={tweetData.answers.choices[0]}
+          disabled={tweetDisabledArr[tweetIndex]}
+          dictionaryHint={tweetData.answers.hints}/></div>
         <div><CorrectPopUp closeModal={closeModal} modalCorrectIsOpen={modalCorrectIsOpen}/></div>
         <div><InCorrectPopUp closeModal={closeModal} modalInCorrectIsOpen={modalInCorrectIsOpen} /></div>
       </div>);

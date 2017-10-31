@@ -34,7 +34,7 @@ class HintSelection extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.openModal}>Take a Hint</button>
+        <button disabled={this.props.disabled} onClick={this.openModal}>Take a Hint</button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -45,7 +45,8 @@ class HintSelection extends React.Component {
           <LetterHint 
             word={this.props.word}/>
           <DefinitionHint 
-            word={this.props.word}/>
+            word={this.props.word}
+            dictionaryHint={this.props.dictionaryHint}/>
           <button onClick={this.closeModal} >Close</button>
         </ReactModal>
       </div>
@@ -54,7 +55,9 @@ class HintSelection extends React.Component {
 }
 
 HintSelection.propTypes = {
-  word: PT.object
+  word: PT.object,
+  disabled: PT.bool,
+  dictionaryHint: PT.array
 };
 
 
