@@ -1,0 +1,12 @@
+#App {
+    background-size: 10000px;
+}
+
+.gameHeader {
+    font-family: 'Fredoka One', cursive;
+    font-size: 100px;
+    color: #1DA1F2;
+    -webkit-text-stroke:  5px #e6ecf0;
+    text-align: center;
+    margin-bottom: 50px;
+}
