@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { saveUsername } from '../../actions/saveUsername';
 import UsernameExists from '../../components/Errors/UsernameExists';
 import UserInput from '../../components/Homepage/UserInput';
 import PT from 'prop-types';
@@ -35,12 +34,11 @@ class Start extends React.Component {
     });
   }
   handleLogin() {
-    this.props.saveUsername(this.state.input);
+
   }
 }
 
 Start.propTypes = {
-  saveUsername: PT.func.isRequired,
   error: PT.string
 };
 
@@ -50,11 +48,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {
-    saveUsername: (username) => {
-      dispatch(saveUsername(username));
-    }
   };
 };
 
