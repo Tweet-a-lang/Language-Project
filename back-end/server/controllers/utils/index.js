@@ -106,7 +106,7 @@ function filterUnseenTweets(completedTweets, tweets, numOfTweets) {
 
   //Loop through tweets and push to filteredTweets if not seen
   for (let i = 0; i < tweets.length; i++) {
-    if (completedTweets.indexOf(tweets[i].tweet.id) === -1) {
+    if (completedTweets.indexOf(+tweets[i].tweet.id) === -1) {
       filteredTweets.push(tweets[i]);
     }
     if (filteredTweets.length === numOfTweets) break;

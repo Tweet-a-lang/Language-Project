@@ -1,6 +1,6 @@
 // const saveTestData = require('../../seed/test.seed')
 const { Users, Tweets } = require('../../models/models');
-const { syntaxOfTweet, normaliseTweet, selectWordType, translateWord, randomWords, pickCorrectWord, filterUnseenTweets } = require('./utils');
+const { pickCorrectWord, filterUnseenTweets } = require('./utils');
 const _ = require('underscore');
 
 const getUser = (req, res, next) => {
@@ -122,7 +122,7 @@ const getScoreboard = (req, res) => {
         const { name, score } = user;
         return { name, score };
       });
-      const scoreboard = scoresArray.sort((b,a) => a.score - b.score);
+      const scoreboard = scoresArray.sort((b,a) => a.score - b.score).slice(0,10);
       res.send(scoreboard);
     });
 };
