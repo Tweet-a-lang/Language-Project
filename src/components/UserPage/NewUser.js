@@ -50,8 +50,8 @@ class NewUser extends React.Component {
           <h1>Welcome to Tweet-a-lang!</h1>
           <form> 
             <input type="text" placeholder="enter a username" onChange={this.handleChange}></input> 
+            <button onClick={this.closeModal} >Submit</button>
           </form>
-          <button onClick={this.closeModal} >Submit</button>
         </ReactModal>
       </div>
     );
