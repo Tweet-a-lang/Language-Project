@@ -49,7 +49,7 @@ class NewUser extends React.Component {
           contentLabel="Create New User">
           <h1>Welcome to Tweet-a-lang!</h1>
           <form> 
-            <input type="text" placeholder="enter a username" onChange={this.handleChange}></input> 
+            <input type="text" placeholder="enter a username" onChange={this.handleChange} value={this.state.input}></input> 
             <button onClick={this.closeModal} >Submit</button>
           </form>
         </ReactModal>
@@ -57,9 +57,14 @@ class NewUser extends React.Component {
     );
   }
   handleChange(e) {
-    this.setState({
-      input: e.target.value
-    });
+    const {value} = e.target;
+    if(!/'|"|\s/g.test(value) && value.length < 15){
+      this.setState({
+        input: e.target.value
+      });
+    }
+    else if(value.length >=15) window.alert('Sorry your username is too long');
+    else window.alert('Sorry that character is not allowed');
   }
   handleNewUser() {
     this.props.postNewUser(this.state.input);
