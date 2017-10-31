@@ -29,15 +29,16 @@ const GamePageUI = ({ username, tweetArr, onCorrect, onIncorrect, modalCorrectIs
           <HintSelection
             word={tweetData.answers.choices[0]}
             disabled={tweetDisabledArr[tweetIndex]}
-            dictionaryHint={tweetData.answers.hints} /></div>
+            dictionaryHint={tweetData.answers.hints} />
             
-        <div><CorrectPopUp 
-          closeModal={closeModal} 
-          modalCorrectIsOpen={modalCorrectIsOpen} 
-          correctIndex={tweetIndex} /></div>
-        <div><InCorrectPopUp 
-          closeModal={closeModal} 
-          modalInCorrectIsOpen={modalInCorrectIsOpen} /></div>
+          <CorrectPopUp 
+            closeModal={closeModal} 
+            modalCorrectIsOpen={modalCorrectIsOpen} 
+            correctIndex={tweetIndex} />
+
+          <InCorrectPopUp 
+            closeModal={closeModal} 
+            modalInCorrectIsOpen={modalInCorrectIsOpen} /></div>
       </div>);
     })}
   </div>
@@ -45,8 +46,9 @@ const GamePageUI = ({ username, tweetArr, onCorrect, onIncorrect, modalCorrectIs
 
 function parseTweet(tweetData) {
   let linkCount = 0;
+  let dataIfUndefined = (!tweetData || !tweetData.answers) ? 'tbc' : tweetData.answers.chosenWord;
 
-  const chosenWordRegEx = new RegExp(tweetData.answers.chosenWord, 'i');
+  const chosenWordRegEx = new RegExp(dataIfUndefined, 'i');
   const linkRegEx = /(https?:\/\/[^\s]+)/;
 
   return tweetData.tweet.text.split(' ').map((word, i) => {

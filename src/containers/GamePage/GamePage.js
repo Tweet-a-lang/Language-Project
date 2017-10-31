@@ -35,6 +35,7 @@ class GamePage extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    console.log('cwrp', newProps);
     if (this.props.gameData !== newProps.gameData) {
       this.setState({
         tweet0: false,
@@ -44,7 +45,10 @@ class GamePage extends React.Component {
         tweet4: false
       });
       this.props.fetchTweets(this.props.username);
-    }    
+    }
+    if (this.props.tweetArr !== newProps.tweetArr) {
+      console.log('rerender');
+    }
   }
 
   render() {
