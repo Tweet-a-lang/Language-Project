@@ -39,8 +39,9 @@ const addUser = (req, res, next) => {
       else {
         return T.get('users/show', {screen_name: name})
           .then(res => {
-            let {profile_image_url} = res.data;
-            return profile_image_url.replace('_normal', '') || avatar;
+            let data = res.data;
+            if(data.errors) return avatar;
+            else return data.profile_image_url.replace('_normal', '');
           })
           .then((avatar) => {
             const newUser = new Users({ name, score, completedTweets, avatar });
@@ -193,6 +194,17 @@ const deleteUser = (req, res, next) => {
     });
 };
 
+const deleteTweet = (req, res, next) => {
+  const {id} = req.params;
+  Tweets.findOneAndRemove({_id: id})
+    .then(data => {
+      console.log(data);
+      res.send(JSON.stringify(data));
+    })
+    .catch(err => {
+      return next(err);
+    });
+};
 const getUnseenTweetsByTopic = (req, res, next) => getUnseenTweets(req, res,next);
 module.exports = {
   getUser,
@@ -206,5 +218,6 @@ module.exports = {
   resetUser,
   deleteUser,
   getNumOfTweets,
-  getUnseenTweetsByTopic
+  getUnseenTweetsByTopic,
+  deleteTweet
 };

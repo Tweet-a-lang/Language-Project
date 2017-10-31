@@ -91,7 +91,7 @@ function pickCorrectWord(tweet, type) {
     //Get data from oxford dictionary onto tweet object
     })
     .then(tweetObj => {
-      const wordChosen = encodeURIComponent(tweetObj.chosenWord.toLowerCase());
+      const wordChosen = tweetObj.chosenWord.toLowerCase();
       return axios.get(`${DICTIONARY_API}${wordChosen}&pretty=true`);
     })
     .then(res => {
