@@ -42,8 +42,7 @@ class DefinitionHint extends React.Component {
           style={customStyles}
           contentLabel="Definition Hint Modal">
           <h3>Hint - Dictionary Definition of the Correct Answer</h3>
-          {this.props.dictionaryHint.map((hint, i) => <p key={i}>{hint}</p>)
-          }
+          {this.props.dictionaryHint.map((hint, i) => <div key={i} dangerouslySetInnerHTML={{__html: hint}}></div>)}
           <button onClick={this.closeModal} >Close</button>
         </ReactModal>
       </div>
