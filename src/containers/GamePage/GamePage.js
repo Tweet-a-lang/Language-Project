@@ -1,15 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import GameNavbar from './GameNavbar';
-import LoadingPage from '../Errors/LoadingPage';
+import LoadingPage from '../../components/Errors/LoadingPage';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
-import HintSelection from '../Hints/HintSelection';
-import CorrectPopUp from './Results/CorrectPopUp';
-import InCorrectPopUp from './Results/InCorrectPopUp';
+import GamePageUI from '../../components/GamePage/GamePageUI';
 import { increaseScore } from '../../actions/updateScore';
 import { updateCompletedTweets } from '../../actions/updateCompletedTweets';
-import _ from 'underscore';
 
 class GamePage extends React.Component {
   constructor(props) {
@@ -55,27 +52,21 @@ class GamePage extends React.Component {
     return (
       <div>
         <GameNavbar />
-        <p>Player: {this.props.match.params.username}</p>
-        <p>Players Profile Image here</p>
         {(this.props.loading) ? <LoadingPage /> : ''}
-        {this.props.tweetArr.map((tweetData, tweetIndex) => {
-          return (<div key={tweetIndex}>
-            <h5>Tweets from: @{tweetData.tweet.user_screen_name}</h5>
-
-            <p>{tweetData.tweet.text.split(' ').map((word) => {
-              if (word === tweetData.answers.chosenWord) return word.toUpperCase();
-              return word;
-            }).join(' ')}</p>
-            
-            {_.shuffle(tweetData.answers.choices).map((choice, buttonIndex) => {
-              return <button key={buttonIndex} type='submit' value={[tweetData.tweet.id, tweetIndex]} disabled={this.state['tweet' + tweetIndex]} onClick={(choice.result) ? this.handleCorrect : this.handleIncorrect }>{choice.text}</button>;
-            })}
-            <div><HintSelection
-              word={tweetData.answers.choices[0]}/></div>
-            <div><CorrectPopUp closeModal={this.closeModal} modalCorrectIsOpen={this.state.modalCorrectIsOpen}/></div>
-            <div><InCorrectPopUp closeModal={this.closeModal} modalInCorrectIsOpen={this.state.modalInCorrectIsOpen} /></div>
-          </div>);
-        })}
+        <GamePageUI 
+          username={this.props.username}
+          tweetArr={this.props.tweetArr}
+          onCorrect={this.handleCorrect}
+          onIncorrect={this.handleIncorrect}
+          modalCorrectIsOpen={this.state.modalCorrectIsOpen}
+          modalInCorrectIsOpen={this.state.modalInCorrectIsOpen}
+          closeModal={this.closeModal}
+          tweet0={this.state.tweet0}
+          tweet1={this.state.tweet1}
+          tweet2={this.state.tweet2}
+          tweet3={this.state.tweet3}
+          tweet4={this.state.tweet4}
+        />
       </div>
     );
   }
