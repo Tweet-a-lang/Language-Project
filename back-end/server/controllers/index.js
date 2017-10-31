@@ -138,8 +138,8 @@ const getScoreboard = (req, res) => {
     .then(users => {
       const scoresArray = users.map(user => {
         user = user.toObject();
-        const { name, score } = user;
-        return { name, score };
+        const { name, score, avatar } = user;
+        return { name, score , avatar};
       });
       const scoreboard = scoresArray.sort((b,a) => a.score - b.score).slice(0,10);
       res.send(scoreboard);

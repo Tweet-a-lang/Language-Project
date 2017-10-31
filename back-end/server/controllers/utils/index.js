@@ -97,7 +97,7 @@ function pickCorrectWord(tweet, type) {
     .then(res => {
       const noDefinition = [{language: 'en', text: 'sorry definitions are unavailable for this word'}];
       const {meanings = noDefinition} = res.data.tuc[0];
-      const hints = meanings.filter(definition => definition.language === 'en').map(def => def.text);
+      const hints = meanings.filter(definition => definition.language === 'en').map(def => def.text).slice(0,1);
       finalResult.hints = hints;
       return finalResult;
     }).catch(console.error);
