@@ -1,7 +1,6 @@
 // const saveTestData = require('../../seed/test.seed')
 const { Users, Tweets } = require('../../models/models');
 const { pickCorrectWord, filterUnseenTweets } = require('./utils');
-const _ = require('underscore');
 require('dotenv').config();
 
 const Twit = require('twit');
@@ -40,8 +39,8 @@ const addUser = (req, res, next) => {
       else {
         return T.get('users/show', {screen_name: name})
           .then(res => {
-            const {profile_image_url} = res.data;
-            return profile_image_url || avatar;
+            let {profile_image_url} = res.data;
+            return profile_image_url.replace('_normal', '') || avatar;
           })
           .then((avatar) => {
             const newUser = new Users({ name, score, completedTweets, avatar });

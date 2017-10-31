@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const faker = require('faker');
 const UserSchema = new Schema({
   name: {
     type: String,
@@ -19,7 +19,7 @@ const UserSchema = new Schema({
   avatar: {
     type: String,
     required: false,
-    default: 'https://avatars0.githubusercontent.com/u/30082843?s=460&v=4'
+    default: faker.image.avatar()
   }
 });
 
