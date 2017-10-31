@@ -3,6 +3,7 @@ import PT from 'prop-types';
 import HintSelection from '../Hints/HintSelection';
 import CorrectPopUp from './Results/CorrectPopUp';
 import InCorrectPopUp from './Results/InCorrectPopUp';
+import GameScore from '../../containers/GamePage/GameScore';
 import _ from 'underscore';
 
 let tweetDisabledArr = [];
@@ -11,12 +12,12 @@ const GamePageUI = ({username,tweetArr,onCorrect,onIncorrect,modalCorrectIsOpen,
   
   <div>
     <p>Player: {username}</p>
+    <GameScore />
     {tweetArr.map((tweetData, tweetIndex) => {
       return (<div key={tweetIndex}>
         <h5>Tweets from: @{tweetData.tweet.user_screen_name}</h5>
 
         <p>{tweetData.tweet.text.split(' ').map((word) => {
-          console.log(tweetData);
           if (word === tweetData.answers.chosenWord) return word.toUpperCase();
           return word;
         }).join(' ')}</p>

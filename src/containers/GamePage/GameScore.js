@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PT from 'prop-types';
+import GameScoreUI from '../../components/GamePage/GameScoreUI';
 
 class GameScore extends React.Component {
   render() {
     return (
-      <div>
-        <span>Game score: {this.props.gameScore}</span>
-      </div>
+      <GameScoreUI 
+        gameScore={this.props.gameScore}
+      />
     );
   }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import GameScore from './GameScore';
 import PT from 'prop-types';
 
 const GameNavbarUI = ({onEndGame, onNextGame, username}) => (
@@ -10,11 +9,8 @@ const GameNavbarUI = ({onEndGame, onNextGame, username}) => (
         <button>End Game</button>
       </Link>
       <Link onClick={onNextGame} to={`/tweets/${username}`}>
-        <button>
-              Next Game
-        </button>
+        <button>Next Game</button>
       </Link>
-      <GameScore />
     </nav>
   </div>
 );
