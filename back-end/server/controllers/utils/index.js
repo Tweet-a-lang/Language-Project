@@ -91,11 +91,14 @@ function pickCorrectWord(tweet, type) {
     //Get data from oxford dictionary onto tweet object
     })
     .then(tweetObj => {
-      const wordChosen = tweetObj.chosenWord.toLowerCase();
+      const wordChosen = encodeURIComponent(tweetObj.chosenWord.toLowerCase());
       return axios.get(`${DICTIONARY_API}${wordChosen}&pretty=true`);
     })
     .then(res => {
-      finalResult.hints = res.data.tuc[0];
+      const noDefinition = [{language: 'en', text: 'sorry definitions are unavailable for this word'}];
+      const {meanings = noDefinition} = res.data.tuc[0];
+      const hints = meanings.filter(definition => definition.language === 'en').map(def => def.text);
+      finalResult.hints = hints;
       return finalResult;
     });
   
