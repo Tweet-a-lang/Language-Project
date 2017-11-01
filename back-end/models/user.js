@@ -20,6 +20,11 @@ const UserSchema = new Schema({
     type: String,
     required: false,
     default: faker.image.avatar()
+  },
+  vocab: {
+    type: Array,
+    required: false,
+    default: []
   }
 });
 

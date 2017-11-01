@@ -30,16 +30,16 @@ describe('API', () => {
   describe('GET tweets/:username/:topic', () => {
     it('returns with a status code of 200', () => {
       return request(app)
-        .get('/api/tweets/Northcoders?topic=news')
+        .get('/api/tweets/Northcoders?topic=sport')
         .then(res => {
           expect(200);
           const tweets = res.body;
           expect(tweets).to.be.an('array');
-          expect(tweets[0].tweet.topic).to.equal('news');
-          expect(tweets[1].tweet.topic).to.equal('news');
-          expect(tweets[2].tweet.topic).to.equal('news');
-          expect(tweets[3].tweet.topic).to.equal('news');
-          expect(tweets[4].tweet.topic).to.equal('news');
+          expect(tweets[0].tweet.topic).to.equal('sport');
+          expect(tweets[1].tweet.topic).to.equal('sport');
+          expect(tweets[2].tweet.topic).to.equal('sport');
+          expect(tweets[3].tweet.topic).to.equal('sport');
+          expect(tweets[4].tweet.topic).to.equal('sport');
           expect(tweets[0].answers).to.be.an('object');
           expect(tweets[1].answers).to.be.an('object');
           expect(tweets[2].answers).to.be.an('object');
@@ -59,11 +59,12 @@ describe('API', () => {
       return request(app)
         .get('/api/user/Northcoders')
         .then(res => {
-          const {name, score, completedTweets} = res.body;
+          const {name, score, completedTweets, vocab} = res.body;
           expect(name).to.be.a('string');
           expect(name).to.eql('Northcoders');
           expect(score).to.be.a('number');
           expect(completedTweets).to.be.a('array');
+          expect(vocab).to.be.a('array');
         });
     });
     it('returns a 400 error if the user is not found', () => {
@@ -109,17 +110,23 @@ describe('API', () => {
         });
     }).timeout(8000);
   });
-  describe('PATCH user/:username', () => {
+  describe.only('PATCH user/:username', () => {
     it('returns with a status code of 200', () => {
       const patchBody = {
         completedTweets: ['test'],
-        score: 1
+        score: 1,
+        vocab: ['hola']
       };
       return request(app)
         .patch('/api/user/Northcoders')
         .send(patchBody)
         .then((res) => {
+          const {name, completedTweets, score, vocab} = res.body;
           expect(200);
+          expect(vocab).to.be.an('array');
+          expect(name).to.equal('Northcoders');
+          expect(completedTweets).to.be.an('array');
+          expect(score).to.be.a('number');
         });
     }).timeout(8000);
     it('returns an object containing the updated user', () => {

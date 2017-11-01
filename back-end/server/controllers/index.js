@@ -109,6 +109,7 @@ const getUnseenTweets = (req, res, next) => {
     .then((data) => {
       const user = data[0];
       const tweets = topic? data[1].filter(t => t.tweet.topic === topic): data[1];
+
       const completedTweets = user.completedTweets;
 
       //Filters Tweets that have not been seen by the user
@@ -131,7 +132,7 @@ const getUnseenTweets = (req, res, next) => {
       });
       res.send(finalResult);
     })
-    .catch(err => next({type: 500}));
+    .catch(err => next({type: 500, msg: 'internal server error, are there users in the database?'}));
 };
 
 const getScoreboard = (req, res) => {
@@ -149,7 +150,7 @@ const getScoreboard = (req, res) => {
 
 const patchUser = (req, res, next) => {  
   const { username } = req.params;
-  const { completedTweets: tweetsDone = [], score: newScore = 0 } = req.body;
+  const { completedTweets: tweetsDone = [], score: newScore = 0 , vocab = []} = req.body;
 
   Users.findOne({ name: username })
     .then(user => {
@@ -157,9 +158,10 @@ const patchUser = (req, res, next) => {
 
       const newTweetsDone = [...user.completedTweets, ...tweetsDone];
       const oldScore = user.score;
+      const newVocab = [...user.vocab, ...vocab];
       user.completedTweets = newTweetsDone;
       user.score = oldScore + newScore;
-
+      user.vocab = newVocab;
       user.save()
         .then(result => {
           res.send(result);
