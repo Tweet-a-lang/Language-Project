@@ -11,37 +11,27 @@ let tweetDisabledArr = [];
 const GamePageUI = ({ tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4, correctTweetIndex }) => (
 
   <div>
-    <div className='user-container'>
-      <div className='user-ui'>
-      </div>
-    </div>
     <div className='tweet-container'>
       {tweetArr.map((tweetData, tweetIndex) => {
         return (<div key={tweetIndex} className='tweet'>
-          <h5>Tweets from: @{tweetData.tweet.user_screen_name}</h5>
-
+          <img className="tweet-avatar" src={tweetData.tweet.user_profile_image} />
+          <h5>@{tweetData.tweet.user_screen_name}</h5>
           {parseTweet(tweetData)}
-
           {tweetDisabledArr = [tweet0, tweet1, tweet2, tweet3, tweet4]}
-
-          <div>
+          <div className="multiplechoice">
             {_.shuffle(tweetData.answers.choices).map((choice, buttonIndex) => {
               return <button key={buttonIndex} className='choice-button' type='submit' value={[tweetData.tweet.id, tweetIndex]} disabled={tweetDisabledArr[tweetIndex]} onClick={(choice.result) ? onCorrect : onIncorrect}>{choice.text}</button>;
             })}
-
             <HintSelection
               word={tweetData.answers.choices[0]}
               disabled={tweetDisabledArr[tweetIndex]}
               dictionaryHint={tweetData.answers.hints} /> </div>
-
         </div>);
       })}
-
       <CorrectPopUp
         closeModal={closeModal}
         modalCorrectIsOpen={modalCorrectIsOpen}
         correctIndex={correctTweetIndex} />
-
       <InCorrectPopUp
         closeModal={closeModal}
         modalInCorrectIsOpen={modalInCorrectIsOpen} />
