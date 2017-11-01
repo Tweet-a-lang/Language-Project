@@ -24,3 +24,5 @@ export const PATCH_USER_SUCCESS = 'PATCH_USER_SUCCESS';
 export const PATCH_USER_FAILURE = 'PATCH_USER_FAILURE';
 
 export const UPDATE_VOCAB = 'UPDATE_VOCAB';
+
+export const SAVE_TOPIC = 'SAVE_TOPIC';

@@ -15,7 +15,8 @@ export const initialState = {
   gameData: {
     score: 0,
     completedTweets: [],
-    vocab: []
+    vocab: [],
+    topic: ''
   }
 };
 
@@ -59,6 +60,11 @@ export default (prevState = initialState, action) => {
     newState.gameData.vocab = prevState.gameData.vocab.concat(action.payload);
     return newState;
   }
+  case types.SAVE_TOPIC: {
+    const newState = Object.assign({}, prevState);
+    newState.gameData.topic = action.payload;
+    return newState;
+  }
   case types.PATCH_USER_REQUEST:
     return Object.assign({}, prevState, {
       loading: !prevState.loading,
@@ -74,7 +80,8 @@ export default (prevState = initialState, action) => {
       gameData: {
         score: 0,
         completedTweets: [],
-        vocab: []
+        vocab: [],
+        topic: prevState.gameData.topic
       }
     });
   case types.PATCH_USER_FAILURE:

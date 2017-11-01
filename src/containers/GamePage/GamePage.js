@@ -8,6 +8,7 @@ import GamePageUI from '../../components/GamePage/GamePageUI';
 import { increaseScore } from '../../actions/updateScore';
 import { updateCompletedTweets } from '../../actions/updateCompletedTweets';
 import { updateVocab } from '../../actions/updateVocab';
+import { saveTopic } from '../../actions/saveTopic';
 
 class GamePage extends React.Component {
   constructor(props) {
@@ -35,10 +36,10 @@ class GamePage extends React.Component {
     const username = this.props.match.params.username;
     const topic = this.props.location.search.split('=')[1];
     this.props.fetchTweets(username, topic);
+    this.props.saveTopic(topic);
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('cwrp', newProps);
     if (this.props.gameData !== newProps.gameData) {
       this.setState({
         tweet0: false,
@@ -47,8 +48,8 @@ class GamePage extends React.Component {
         tweet3: false,
         tweet4: false
       });
-      const topic = this.props.location.search.split('=')[1];
-      this.props.fetchTweets(this.props.username, topic);
+      // const topic = this.props.location.search.split('=')[1];
+      this.props.fetchTweets(this.props.username, this.props.topic);
     }
     if (this.props.tweetArr !== newProps.tweetArr) {
       console.log('rerender');
@@ -118,17 +119,19 @@ class GamePage extends React.Component {
 }
 
 GamePage.propTypes = {
-  match: PT.object,
-  fetchTweets: PT.func,
-  tweetArr: PT.array,
-  increaseScore: PT.func,
-  updateCompletedTweets: PT.func,
-  updateVocab: PT.func,
-  gameData: PT.object,
-  username: PT.string,
-  loading: PT.bool,
-  location: PT.object,
-  gameScore: PT.number
+  match: PT.object.isRequired,
+  fetchTweets: PT.func.isRequired,
+  tweetArr: PT.array.isRequired,
+  increaseScore: PT.func.isRequired,
+  updateCompletedTweets: PT.func.isRequired,
+  updateVocab: PT.func.isRequired,
+  saveTopic: PT.func.isRequired,
+  topic: PT.string.isRequired,
+  gameData: PT.object.isRequired,
+  username: PT.string.isRequired,
+  loading: PT.bool.isRequired,
+  location: PT.object.isRequired,
+  gameScore: PT.number.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -138,6 +141,7 @@ const mapStateToProps = (state) => {
     error: state.fetchTweetsReducer.error,
     gameData: state.userReducer.gameData,
     username: state.userReducer.userData.name,
+    topic: state.userReducer.gameData.topic,
     gameScore: state.userReducer.gameData.score
   };
 };
@@ -155,6 +159,9 @@ const mapDispatchToProps = dispatch => {
     },
     updateVocab: (newPair) => {
       dispatch(updateVocab(newPair));
+    },
+    saveTopic: (topic) => {
+      dispatch(saveTopic(topic));
     }
   };
 };

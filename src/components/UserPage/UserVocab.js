@@ -16,7 +16,7 @@ class UserVocab extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.vocab.map((wordPair, i) => {
+            {(!this.props.vocab)? '' : this.props.vocab.map((wordPair, i) => {
               return (
                 <tr key={i}>
                   <td key={wordPair.Spanish}>{wordPair.Spanish}</td>

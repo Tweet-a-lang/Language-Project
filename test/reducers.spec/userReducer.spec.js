@@ -93,7 +93,8 @@ describe('user reducer', () => {
     expect(newState.gameData).to.eql({
       score: 0,
       completedTweets: [],
-      vocab: []
+      vocab: [],
+      topic: newState.gameData.topic
     });
   });
   it('handles PATCH_USER_FAILURE', () => {
