@@ -18,7 +18,7 @@ const getUser = (req, res, next) => {
   let { username } = req.params;
   Users.findOne({ name: username })
     .then(data => {
-      if (!data) return next({ type: 400 });
+      if (!data) return next({ type: 404 });
       else return res.send(data);
     })
     .catch(err => {
@@ -198,7 +198,6 @@ const deleteTweet = (req, res, next) => {
   const {id} = req.params;
   Tweets.findOneAndRemove({_id: id})
     .then(data => {
-      console.log(data);
       res.send(JSON.stringify(data));
     })
     .catch(err => {

@@ -95,6 +95,7 @@ function pickCorrectWord(tweet, type) {
       return axios.get(`${DICTIONARY_API}${wordChosen}&pretty=true`);
     })
     .then(res => {
+      console.log('*****',res.data.tuc);
       const {meanings = false} = res.data.tuc[0];
       let hints;
       if(meanings) hints = meanings.filter(def => def.language === 'en').map(enDef => enDef.text).slice(0,1);
