@@ -17,7 +17,8 @@ class UserPage extends React.Component {
       radioButton2: false,
       radioButton3: false,
       radioButton4: false,
-      radioButton5: false
+      radioButton5: false,
+      radioButton6: false
     };
     this.handleStartGame = this.handleStartGame.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -46,9 +47,9 @@ class UserPage extends React.Component {
                       type="radio"
                       name="value"
                       onChange={this.handleLangSelection}
-                      value="news"
+                      value="food"
                       checked={this.state.radioButton1}
-                    />News
+                    />Food
                   </label>
                 </div>
                 <div className="radio">
@@ -68,9 +69,9 @@ class UserPage extends React.Component {
                       type="radio"
                       name="value"
                       onChange={this.handleLangSelection}
-                      value="food"
+                      value="news"
                       checked={this.state.radioButton3}
-                    />Food
+                    />News
                   </label>
                 </div>
                 <div className="radio">
@@ -79,9 +80,20 @@ class UserPage extends React.Component {
                       type="radio"
                       name="value"
                       onChange={this.handleLangSelection}
-                      value="film"
+                      value="technology"
                       checked={this.state.radioButton4}
-                    />Film
+                    />Technology
+                  </label>
+                </div>
+                <div className="radio">
+                  <label>
+                    <input
+                      type="radio"
+                      name="value"
+                      onChange={this.handleLangSelection}
+                      value="fashion"
+                      checked={this.state.radioButton5}
+                    />Fashion
                   </label>
                 </div>
                 <div className="radio">
@@ -91,7 +103,7 @@ class UserPage extends React.Component {
                       name="value"
                       onChange={this.handleLangSelection}
                       value="random"
-                      checked={this.state.radioButton5}
+                      checked={this.state.radioButton6}
                     />Random
                   </label>
                 </div>
@@ -114,12 +126,13 @@ class UserPage extends React.Component {
 
   handleLangSelection(e) {
     this.setState({
-      chosenTopic: e.target.value,
-      radioButton1: (e.target.value === 'news') ? true : false,
+      chosenTopic: e.target.value.toLowerCase(),
+      radioButton1: (e.target.value === 'food') ? true : false,
       radioButton2: (e.target.value === 'sport') ? true : false,
-      radioButton3: (e.target.value === 'food') ? true : false,
-      radioButton4: (e.target.value === 'film') ? true : false,
-      radioButton5: (e.target.value === 'random') ? true : false
+      radioButton3: (e.target.value === 'news') ? true : false,
+      radioButton4: (e.target.value === 'technology') ? true : false,
+      radioButton5: (e.target.value === 'fashion') ? true : false,
+      radioButton6: (e.target.value === 'random') ? true : false
     });
   }
 
