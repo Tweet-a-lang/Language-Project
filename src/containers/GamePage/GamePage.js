@@ -60,25 +60,27 @@ class GamePage extends React.Component {
 
     return (
       <div>
-        {(this.props.loading) ? <LoadingPage /> :
-          <div>
-            <GamePageUI
-              username={this.props.username}
-              tweetArr={this.props.tweetArr}
-              onCorrect={this.handleCorrect}
-              onIncorrect={this.handleIncorrect}
-              modalCorrectIsOpen={this.state.modalCorrectIsOpen}
-              modalInCorrectIsOpen={this.state.modalInCorrectIsOpen}
-              closeModal={this.closeModal}
-              tweet0={this.state.tweet0}
-              tweet1={this.state.tweet1}
-              tweet2={this.state.tweet2}
-              tweet3={this.state.tweet3}
-              tweet4={this.state.tweet4}
-              correctTweetIndex={this.state.correctTweetIndex}
-            />
-            <GameNavbar />
-          </div>}
+        {(this.props.loading) ? <LoadingPage /> : ''}
+        <div className="game-scoreboard">
+          <p>PLAYER: {this.props.username}</p>
+          <p>SCORE: {this.props.gameScore}</p>
+        </div>
+        <GamePageUI 
+          username={this.props.username}
+          tweetArr={this.props.tweetArr}
+          onCorrect={this.handleCorrect}
+          onIncorrect={this.handleIncorrect}
+          modalCorrectIsOpen={this.state.modalCorrectIsOpen}
+          modalInCorrectIsOpen={this.state.modalInCorrectIsOpen}
+          closeModal={this.closeModal}
+          tweet0={this.state.tweet0}
+          tweet1={this.state.tweet1}
+          tweet2={this.state.tweet2}
+          tweet3={this.state.tweet3}
+          tweet4={this.state.tweet4}
+          correctTweetIndex={this.state.correctTweetIndex}
+        />
+        <GameNavbar />
       </div>
     );
   }
@@ -128,7 +130,8 @@ GamePage.propTypes = {
   gameData: PT.object.isRequired,
   username: PT.string.isRequired,
   loading: PT.bool.isRequired,
-  location: PT.object.isRequired
+  location: PT.object.isRequired,
+  gameScore: PT.number.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -138,7 +141,8 @@ const mapStateToProps = (state) => {
     error: state.fetchTweetsReducer.error,
     gameData: state.userReducer.gameData,
     username: state.userReducer.userData.name,
-    topic: state.userReducer.gameData.topic
+    topic: state.userReducer.gameData.topic,
+    gameScore: state.userReducer.gameData.score
   };
 };
 
