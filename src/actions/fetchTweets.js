@@ -17,10 +17,16 @@ export const fetchTweetsFailure = (error) => ({
   payload: error
 });
 
-export default (username) => {
+export default (username, topic) => {
   return (dispatch) => {
     dispatch(fetchTweetsRequest());
-    return axios.get(`${API_URL}/tweets/${username}`)
+    let getTweetsURL = '';
+    if(topic === 'random' || topic === undefined) {
+      getTweetsURL = `${API_URL}/tweets/${username}`;
+    } else {
+      getTweetsURL = `${API_URL}/tweets/${username}/${topic}`;
+    }
+    return axios.get(getTweetsURL)
       .then(res => {
         dispatch(fetchTweetsSuccess(res.data));
       })

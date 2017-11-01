@@ -31,7 +31,8 @@ class GamePage extends React.Component {
   
   componentDidMount() {
     const username = this.props.match.params.username;
-    this.props.fetchTweets(username);
+    const topic = this.props.location.search.split('=')[1];
+    this.props.fetchTweets(username, topic);
   }
 
   componentWillReceiveProps(newProps) {
@@ -44,7 +45,8 @@ class GamePage extends React.Component {
         tweet3: false,
         tweet4: false
       });
-      this.props.fetchTweets(this.props.username);
+      const topic = this.props.location.search.split('=')[1];
+      this.props.fetchTweets(this.props.username, topic);
     }
     if (this.props.tweetArr !== newProps.tweetArr) {
       console.log('rerender');
@@ -107,7 +109,8 @@ GamePage.propTypes = {
   updateCompletedTweets: PT.func,
   gameData: PT.object,
   username: PT.string,
-  loading: PT.bool
+  loading: PT.bool,
+  location: PT.object
 };
 
 const mapStateToProps = (state) => {
@@ -122,8 +125,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTweets: (username) => {
-      dispatch(fetchTweets(username));
+    fetchTweets: (username, topic) => {
+      dispatch(fetchTweets(username, topic));
     },
     increaseScore: (score) => {
       dispatch(increaseScore(score));

@@ -26,6 +26,7 @@ class LetterHint extends React.Component {
   }
 
   openModal() {
+    this.handleScoreDec();
     this.setState({modalIsOpen: true});
   }
 
