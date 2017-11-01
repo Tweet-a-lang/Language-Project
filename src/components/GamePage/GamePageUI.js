@@ -10,7 +10,7 @@ let tweetDisabledArr = [];
 
 const GamePageUI = ({ tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4, correctTweetIndex }) => (
 
-  <div>
+  <div className="game-card">
     <div className='tweet-container'>
       {tweetArr.map((tweetData, tweetIndex) => {
         return (<div key={tweetIndex} className='tweet'>
