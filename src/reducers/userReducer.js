@@ -9,11 +9,13 @@ export const initialState = {
     __v: 0,
     avatar: '',
     completedTweets: [],
-    score: 0
+    score: 0,
+    vocab: []
   },
   gameData: {
     score: 0,
-    completedTweets: []
+    completedTweets: [],
+    vocab: []
   }
 };
 
@@ -52,6 +54,11 @@ export default (prevState = initialState, action) => {
     newState.gameData.completedTweets = prevState.gameData.completedTweets.concat(action.payload);
     return newState;
   }
+  case types.UPDATE_VOCAB: {
+    const newState = Object.assign({}, prevState);
+    newState.gameData.vocab = prevState.gameData.vocab.concat(action.payload);
+    return newState;
+  }
   case types.PATCH_USER_REQUEST:
     return Object.assign({}, prevState, {
       loading: !prevState.loading,
@@ -66,7 +73,8 @@ export default (prevState = initialState, action) => {
       userData: action.payload,
       gameData: {
         score: 0,
-        completedTweets: []
+        completedTweets: [],
+        vocab: []
       }
     });
   case types.PATCH_USER_FAILURE:

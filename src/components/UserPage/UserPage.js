@@ -7,6 +7,7 @@ import LogOut from './LogOut';
 import NoUser from '../Errors/NoUser';
 import LoadingPage from '../Errors/LoadingPage';
 import UsernameExists from '../Errors/UsernameExists';
+import UserVocab from './UserVocab';
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -112,6 +113,7 @@ class UserPage extends React.Component {
                 <button>START GAME</button>
               </Link>
               <LogOut />
+              <UserVocab />
             </div>
         }
       </div>

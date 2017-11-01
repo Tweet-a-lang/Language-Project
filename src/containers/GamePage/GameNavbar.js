@@ -24,11 +24,11 @@ class GameNavbar extends React.Component {
     );
   }
   handleEndGame() {
-    this.props.patchUser(this.props.username, this.props.gameScore, this.props.gameCompletedTweets);
+    this.props.patchUser(this.props.username, this.props.gameScore, this.props.gameCompletedTweets, this.props.vocab);
   }
 
   handleNextGame() {
-    this.props.patchUser(this.props.username, this.props.gameScore, this.props.gameCompletedTweets);
+    this.props.patchUser(this.props.username, this.props.gameScore, this.props.gameCompletedTweets, this.props.vocab);
   }
 
 }
@@ -38,21 +38,23 @@ GameNavbar.propTypes = {
   gameData: PT.object,
   gameScore: PT.number,
   gameCompletedTweets: PT.array,
-  patchUser: PT.func
+  patchUser: PT.func,
+  vocab: PT.array
 };
 
 const mapStateToProps = (state) => {
   return {
     username: state.userReducer.userData.name,
     gameScore: state.userReducer.gameData.score,
-    gameCompletedTweets: state.userReducer.gameData.completedTweets
+    gameCompletedTweets: state.userReducer.gameData.completedTweets,
+    vocab: state.userReducer.gameData.vocab
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    patchUser: (username, gameScore, gameCompletedTweets) => {
-      dispatch(patchUser(username, gameScore, gameCompletedTweets));
+    patchUser: (username, gameScore, gameCompletedTweets, gameVocab) => {
+      dispatch(patchUser(username, gameScore, gameCompletedTweets, gameVocab));
     }
   };
 };
