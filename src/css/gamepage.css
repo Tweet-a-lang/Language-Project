@@ -10,6 +10,30 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.tweetCorrect {
+    
+    background-color: #0F9D58;
+    border: 2px solid #0F9D58;
+    border-radius: 5px;
+    /*       T   R   B    L*/
+    margin: 20px 35% 20px auto;
+    padding: 10px;
+    width: 60%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.tweetIncorrect {
+    
+    background-color: #DB4437;
+    border: 2px solid #DB4437;
+    border-radius: 5px;
+    /*       T   R   B    L*/
+    margin: 20px 35% 20px auto;
+    padding: 10px;
+    width: 60%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .tweet-container {
     display: flex;
     flex-direction: column;

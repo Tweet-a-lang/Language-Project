@@ -5,15 +5,28 @@ import CorrectPopUp from './Results/CorrectPopUp';
 import InCorrectPopUp from './Results/InCorrectPopUp';
 import _ from 'underscore';
 import '../../css/gamepage.css';
+var classNames = require('classnames');
 
 let tweetDisabledArr = [];
+let tweetResultArr = [];
 
-const GamePageUI = ({ tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4, correctTweetIndex }) => (
+const GamePageUI = ({ tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4, correctTweetIndex, tweetAnswer0, tweetAnswer1, tweetAnswer2, tweetAnswer3, tweetAnswer4 }) => (
 
   <div>
     <div className='tweet-container'>
+      {tweetResultArr = [tweetAnswer0, tweetAnswer1, tweetAnswer2, tweetAnswer3, tweetAnswer4]}
+      
       {tweetArr.map((tweetData, tweetIndex) => {
-        return (<div key={tweetIndex} className='tweet'>
+        
+        let answerStyle = (tweetResultArr[tweetIndex] === 'incorrect') ? classNames({
+          'tweetIncorrect': true
+        }) :
+          (tweetResultArr[tweetIndex] === 'correct') ? classNames({
+            'tweetCorrect': true
+          }) : classNames({
+            'tweet': true
+          });
+        return (<div key={tweetIndex} className={answerStyle}>
           <img className="tweet-avatar" src={tweetData.tweet.user_profile_image} />
           <h5>@{tweetData.tweet.user_screen_name}</h5>
           {parseTweet(tweetData)}
@@ -63,22 +76,25 @@ function parseTweet(tweetData) {
 
 }
 
-
-
 GamePageUI.propTypes = {
-  username: PT.string,
-  tweetArr: PT.array,
-  onCorrect: PT.func,
-  onIncorrect: PT.func,
-  modalCorrectIsOpen: PT.bool,
-  modalInCorrectIsOpen: PT.bool,
-  closeModal: PT.func,
-  tweet0: PT.bool,
-  tweet1: PT.bool,
-  tweet2: PT.bool,
-  tweet3: PT.bool,
-  tweet4: PT.bool,
-  correctTweetIndex: PT.number
+  username: PT.string.isRequired,
+  tweetArr: PT.array.isRequired,
+  onCorrect: PT.func.isRequired,
+  onIncorrect: PT.func.isRequired,
+  modalCorrectIsOpen: PT.bool.isRequired,
+  modalInCorrectIsOpen: PT.bool.isRequired,
+  closeModal: PT.func.isRequired,
+  tweet0: PT.bool.isRequired,
+  tweet1: PT.bool.isRequired,
+  tweet2: PT.bool.isRequired,
+  tweet3: PT.bool.isRequired,
+  tweet4: PT.bool.isRequired,
+  correctTweetIndex: PT.number.isRequired,
+  tweetAnswer0: PT.string.isRequired,
+  tweetAnswer1: PT.string.isRequired,
+  tweetAnswer2: PT.string.isRequired,
+  tweetAnswer3: PT.string.isRequired,
+  tweetAnswer4: PT.string.isRequired
 };
 
 export default GamePageUI;
