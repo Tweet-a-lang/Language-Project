@@ -24,8 +24,9 @@ export default (username, topic) => {
     if(topic === 'random' || topic === undefined) {
       getTweetsURL = `${API_URL}/tweets/${username}`;
     } else {
-      getTweetsURL = `${API_URL}/tweets/${username}/${topic}`;
+      getTweetsURL = `${API_URL}/tweets/${username}/?topic=${topic}`;
     }
+    console.log(topic, getTweetsURL);
     return axios.get(getTweetsURL)
       .then(res => {
         dispatch(fetchTweetsSuccess(res.data));
