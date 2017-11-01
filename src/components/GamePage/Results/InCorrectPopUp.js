@@ -5,10 +5,8 @@ import PT from 'prop-types';
 const resultsPopUpStyles = {
   content : {
     top                   : '50%',
-    // left                  : '50%',
     right                 : 'auto',
-    bottom                : 'auto',
-    // marginRight           : '-50%'    
+    bottom                : 'auto'
   }
 };
 
@@ -27,7 +25,7 @@ class InCorrectPopUp extends React.Component {
           style={resultsPopUpStyles}
           contentLabel="InCorrect Modal">
           <h1>Oops WRONG - better luck next time!</h1>
-          <button onClick={this.props.closeModal} >Back to Game</button>
+          {/* <button onClick={this.props.closeModal} >Back to Game</button> */} 
         </ReactModal>
       </div>
     );

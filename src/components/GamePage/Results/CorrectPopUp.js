@@ -6,10 +6,8 @@ import PT from 'prop-types';
 const resultsPopUpStyles = {
   content : {
     top                   : '50%',
-    // left                  : '50%',
     right                 : 'auto',
-    bottom                : 'auto',
-    // marginRight           : '-50%'    
+    bottom                : 'auto'
   }
 };
 
@@ -33,9 +31,9 @@ class CorrectPopUp extends React.Component {
           style={resultsPopUpStyles}
           contentLabel="Correct Modal">
           <h1>Well done - Correct!</h1>
-          <p>{spanishWord} in Spanish = {englishWord} in English </p>
           <p>10 points added</p>
-          <button onClick={this.props.closeModal} >Back to Game</button>
+          <p>This word pair will be added to your vocab list: <strong>{spanishWord}</strong> = <strong>{englishWord}</strong></p>
+          {/* <button onClick={this.props.closeModal} >Back to Game</button> */}
         </ReactModal>
       </div>
     );
