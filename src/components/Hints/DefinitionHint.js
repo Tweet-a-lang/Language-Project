@@ -25,28 +25,37 @@ class DefinitionHint extends React.Component {
 
   openModal() {
     this.setState({modalIsOpen: true});
-    this.handleScoreDec();
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.openModal}>See a definition - it will cost you 2 points!</button>
-        <ReactModal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={this.closeModal}
-          shouldCloseOnOverlayClick={true}
-          style={customStyles}
-          contentLabel="Definition Hint Modal">
-          <h3>Hint - Dictionary Definition of the Correct Answer</h3>
-          {this.props.dictionaryHint.map((hint, i) => <div key={i}>{Parser(hint)}</div>)}
-          <button onClick={this.props.closeModal} >OK back to Game</button>
-        </ReactModal>
+        {(this.props.score < 5) ? 
+          <div>
+            <p>See a definition of the English word <button disbaled="true">not enough points!</button></p> </div> :
+          <div>
+            <p>See a definition of the English word <button onClick={this.openModal}>5 points!</button></p>
+            <ReactModal
+              isOpen={this.state.modalIsOpen}
+              onRequestClose={this.closeModal}
+              shouldCloseOnOverlayClick={true}
+              style={customStyles}
+              contentLabel="Definition Hint Modal">
+              <h3>Hint - Dictionary Definition of the Correct Answer</h3>
+              {this.props.dictionaryHint.map((hint, i) => <div key={i}>{Parser(hint)}</div>)}
+              <button onClick={this.handleScoreDec} >OK back to Game</button>
+            </ReactModal>
+          </div>
+        }
       </div>
     );
   }
-  handleScoreDec() {
-    this.props.decreaseScore(2);
+  handleScoreDec(e) {
+    this.setState({
+      isAvailable: false
+    });
+    this.props.decreaseScore(5);
+    this.props.closeModal(e);
   }
 }
 
@@ -54,12 +63,13 @@ DefinitionHint.propTypes = {
   word: PT.object,
   decreaseScore: PT.func,
   closeModal: PT.func,
-  dictionaryHint: PT.array
+  dictionaryHint: PT.array,
+  score: PT.number.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    score: state.userReducer.userData.score
+    score: state.userReducer.gameData.score
   };
 };
 

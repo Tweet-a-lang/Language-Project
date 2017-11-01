@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 import PT from 'prop-types';
 import LetterHint from './LetterHint';
@@ -40,34 +41,46 @@ class HintSelection extends React.Component {
   render() {
     return (
       <div>
-        <button disabled={this.props.disabled} onClick={this.openModal}>Take a Hint</button>
-        <ReactModal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={this.closeModal}
-          shouldCloseOnOverlayClick={true}
-          style={customStyles}
-          contentLabel="Hint Selection Modal">
-          <h1>Chose your Hint!</h1>
-          <LetterHint 
-            word={this.props.word}
-            closeModal={this.closeModal}/>
-          {(!this.props.dictionaryHint) ? '' : 
-            <DefinitionHint 
-              word={this.props.word}
-              dictionaryHint={this.props.dictionaryHint}
-              closeModal={this.closeModal} />} 
-          <button onClick={this.closeModal} >Changed my mind - Back to Game</button>
-        </ReactModal>
+        {(this.props.gameScore <3) ? <div>
+          <p>Earn points to buy <button disabled="true">clues!</button></p></div> :
+          <div>
+            <p>You can now use points to buy a <button disabled={this.props.disabled} onClick={this.openModal}>clue?</button></p>
+            <ReactModal
+              isOpen={this.state.modalIsOpen}
+              onRequestClose={this.closeModal}
+              shouldCloseOnOverlayClick={true}
+              style={customStyles}
+              contentLabel="Hint Selection Modal">
+              <h1>Choose your Hint!</h1>
+              <LetterHint 
+                word={this.props.word}
+                closeModal={this.closeModal}/>
+              {(!this.props.dictionaryHint) ? '' : 
+                <DefinitionHint 
+                  word={this.props.word}
+                  dictionaryHint={this.props.dictionaryHint}
+                  closeModal={this.closeModal} />} 
+              <button onClick={this.closeModal} >Back</button>
+            </ReactModal>
+          </div>
+        }
       </div>
     );
   }
 }
 
 HintSelection.propTypes = {
-  word: PT.object,
-  disabled: PT.bool,
-  dictionaryHint: PT.array
+  word: PT.object.isRequired,
+  disabled: PT.bool.isRequired,
+  dictionaryHint: PT.array.isRequired,
+  gameScore: PT.number.isRequired
+};
+
+const mapStateToProps = state => {
+  return {
+    gameScore: state.userReducer.gameData.score
+  };
 };
 
 
-export default HintSelection;
+export default connect(mapStateToProps)(HintSelection);
