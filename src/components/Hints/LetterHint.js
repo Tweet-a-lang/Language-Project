@@ -26,13 +26,14 @@ class LetterHint extends React.Component {
   }
 
   openModal() {
+    this.handleScoreDec();
     this.setState({modalIsOpen: true});
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.openModal}>See two random letters from the english word - this will cost you 1 point!</button>
+        <button onClick={this.openModal}>See two random letters from the english word - this will cost you 3 points!</button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -46,7 +47,7 @@ class LetterHint extends React.Component {
     );
   }
   handleScoreDec() {
-    this.props.decreaseScore(1);
+    this.props.decreaseScore(3);
   }
 }
 

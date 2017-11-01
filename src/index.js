@@ -14,7 +14,7 @@ import App from './components/App';
 
 ReactDOM.render(
   <Provider store={store} >
-
+ 
     <Router>
       <Switch>
         <Route exact path='/' component={App} />

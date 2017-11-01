@@ -12,10 +12,12 @@ class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      chosenTopic: 'news',
       radioButton1: true,
       radioButton2: false,
       radioButton3: false,
       radioButton4: false,
+      radioButton5: false
     };
     this.handleStartGame = this.handleStartGame.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -82,8 +84,19 @@ class UserPage extends React.Component {
                     />Film
                   </label>
                 </div>
+                <div className="radio">
+                  <label>
+                    <input
+                      type="radio"
+                      name="value"
+                      onChange={this.handleLangSelection}
+                      value="random"
+                      checked={this.state.radioButton5}
+                    />Random
+                  </label>
+                </div>
               </div>
-              <Link onClick={this.handleStartGame} to={`/tweets/${this.props.username}`}>
+              <Link onClick={this.handleStartGame} to={`/tweets/${this.props.username}?topic=${this.state.chosenTopic}`}>
                 <button>START GAME</button>
               </Link>
               <LogOut />
@@ -101,10 +114,12 @@ class UserPage extends React.Component {
 
   handleLangSelection(e) {
     this.setState({
+      chosenTopic: e.target.value,
       radioButton1: (e.target.value === 'news') ? true : false,
       radioButton2: (e.target.value === 'sport') ? true : false,
       radioButton3: (e.target.value === 'food') ? true : false,
-      radioButton4: (e.target.value === 'film') ? true : false
+      radioButton4: (e.target.value === 'film') ? true : false,
+      radioButton5: (e.target.value === 'random') ? true : false
     });
   }
 
