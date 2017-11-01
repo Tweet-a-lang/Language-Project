@@ -48,7 +48,8 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res) => {
-  return res.status(500).send({err});
+  const {msg: message} = err;
+  return res.status(500).send({message: message || 'Sorry there is an internal server error'});
 });
 
 
