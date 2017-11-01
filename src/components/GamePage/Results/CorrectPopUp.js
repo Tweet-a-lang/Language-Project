@@ -46,7 +46,8 @@ CorrectPopUp.propTypes = {
   modalCorrectIsOpen: PT.bool,
   closeModal: PT.func,
   tweetArr: PT.array,
-  correctIndex: PT.number
+  correctIndex: PT.number,
+  correctWord: PT.string
 };
 
 

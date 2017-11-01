@@ -18,7 +18,8 @@ class GamePage extends React.Component {
       tweet3: false,
       tweet4: false,
       modalCorrectIsOpen: false,
-      modalInCorrectIsOpen: false
+      modalInCorrectIsOpen: false,
+      correctTweetIndex: 0
     };
     this.handleCorrect = this.handleCorrect.bind(this);
     this.handleIncorrect = this.handleIncorrect.bind(this);
@@ -71,6 +72,7 @@ class GamePage extends React.Component {
           tweet2={this.state.tweet2}
           tweet3={this.state.tweet3}
           tweet4={this.state.tweet4}
+          correctTweetIndex={this.state.correctTweetIndex}
         />
         <GameNavbar />
       </div>
@@ -81,7 +83,8 @@ class GamePage extends React.Component {
     let tweetValue = e.target.value.split(',');
     let tweetStateKey = 'tweet' + tweetValue[1];
     let tweetStateObj = {
-      modalCorrectIsOpen: true
+      modalCorrectIsOpen: true,
+      correctTweetIndex: tweetValue[1]
     };
     tweetStateObj[tweetStateKey] = true;
     this.props.increaseScore(10);

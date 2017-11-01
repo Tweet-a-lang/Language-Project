@@ -9,7 +9,7 @@ import '../../css/gamepage.css';
 
 let tweetDisabledArr = [];
 
-const GamePageUI = ({ username, tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4 }) => (
+const GamePageUI = ({ username, tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4, correctTweetIndex }) => (
 
   <div>
     <div className='user-container'>
@@ -35,18 +35,19 @@ const GamePageUI = ({ username, tweetArr, onCorrect, onIncorrect, modalCorrectIs
             <HintSelection
               word={tweetData.answers.choices[0]}
               disabled={tweetDisabledArr[tweetIndex]}
-              dictionaryHint={tweetData.answers.hints} />
+              dictionaryHint={tweetData.answers.hints} /> </div>
 
-            <CorrectPopUp
-              closeModal={closeModal}
-              modalCorrectIsOpen={modalCorrectIsOpen}
-              correctIndex={tweetIndex} />
-
-            <InCorrectPopUp
-              closeModal={closeModal}
-              modalInCorrectIsOpen={modalInCorrectIsOpen} /></div>
         </div>);
       })}
+
+      <CorrectPopUp
+        closeModal={closeModal}
+        modalCorrectIsOpen={modalCorrectIsOpen}
+        correctIndex={correctTweetIndex} />
+
+      <InCorrectPopUp
+        closeModal={closeModal}
+        modalInCorrectIsOpen={modalInCorrectIsOpen} />
     </div>
   </div>
 );
@@ -89,7 +90,8 @@ GamePageUI.propTypes = {
   tweet1: PT.bool,
   tweet2: PT.bool,
   tweet3: PT.bool,
-  tweet4: PT.bool
+  tweet4: PT.bool,
+  correctTweetIndex: PT.number
 };
 
 export default GamePageUI;
