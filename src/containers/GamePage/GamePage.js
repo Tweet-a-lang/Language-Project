@@ -71,7 +71,11 @@ class GamePage extends React.Component {
     return (
       <div>
         {(this.props.loading) ? <LoadingPage /> :
-          <div>
+        <div className="game-scoreboard">
+          <p>PLAYER: {this.props.username}</p>
+          <p>SCORE: {this.props.gameScore}</p>
+        </div>
+      <div>
             <GamePageUI
               username={this.props.username}
               tweetArr={this.props.tweetArr}
@@ -147,7 +151,8 @@ GamePage.propTypes = {
   gameData: PT.object.isRequired,
   username: PT.string.isRequired,
   loading: PT.bool.isRequired,
-  location: PT.object.isRequired
+  location: PT.object.isRequired,
+  gameScore: PT.number.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -157,7 +162,8 @@ const mapStateToProps = (state) => {
     error: state.fetchTweetsReducer.error,
     gameData: state.userReducer.gameData,
     username: state.userReducer.userData.name,
-    topic: state.userReducer.gameData.topic
+    topic: state.userReducer.gameData.topic,
+    gameScore: state.userReducer.gameData.score
   };
 };
 
