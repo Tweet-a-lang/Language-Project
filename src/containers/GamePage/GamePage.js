@@ -21,7 +21,12 @@ class GamePage extends React.Component {
       tweet4: false,
       modalCorrectIsOpen: false,
       modalInCorrectIsOpen: false,
-      correctTweetIndex: 0
+      correctTweetIndex: 0,
+      tweetAnswer0: '',
+      tweetAnswer1: '',
+      tweetAnswer2: '',
+      tweetAnswer3: '',
+      tweetAnswer4: ''
     };
     this.handleCorrect = this.handleCorrect.bind(this);
     this.handleIncorrect = this.handleIncorrect.bind(this);
@@ -46,41 +51,53 @@ class GamePage extends React.Component {
         tweet1: false,
         tweet2: false,
         tweet3: false,
-        tweet4: false
+        tweet4: false,
+        tweetAnswer0: '',
+        tweetAnswer1: '',
+        tweetAnswer2: '',
+        tweetAnswer3: '',
+        tweetAnswer4: ''
       });
       // const topic = this.props.location.search.split('=')[1];
       this.props.fetchTweets(this.props.username, this.props.topic);
     }
-    if (this.props.tweetArr !== newProps.tweetArr) {
-      console.log('rerender');
-    }
+    // if (this.props.tweetArr !== newProps.tweetArr) {
+    //   console.log('rerender');
+    // }
   }
 
   render() {
 
     return (
       <div>
-        {(this.props.loading) ? <LoadingPage /> : ''}
+        {(this.props.loading) ? <LoadingPage /> :
         <div className="game-scoreboard">
           <p>PLAYER: {this.props.username}</p>
           <p>SCORE: {this.props.gameScore}</p>
         </div>
-        <GamePageUI 
-          username={this.props.username}
-          tweetArr={this.props.tweetArr}
-          onCorrect={this.handleCorrect}
-          onIncorrect={this.handleIncorrect}
-          modalCorrectIsOpen={this.state.modalCorrectIsOpen}
-          modalInCorrectIsOpen={this.state.modalInCorrectIsOpen}
-          closeModal={this.closeModal}
-          tweet0={this.state.tweet0}
-          tweet1={this.state.tweet1}
-          tweet2={this.state.tweet2}
-          tweet3={this.state.tweet3}
-          tweet4={this.state.tweet4}
-          correctTweetIndex={this.state.correctTweetIndex}
-        />
-        <GameNavbar />
+      <div>
+            <GamePageUI
+              username={this.props.username}
+              tweetArr={this.props.tweetArr}
+              onCorrect={this.handleCorrect}
+              onIncorrect={this.handleIncorrect}
+              modalCorrectIsOpen={this.state.modalCorrectIsOpen}
+              modalInCorrectIsOpen={this.state.modalInCorrectIsOpen}
+              closeModal={this.closeModal}
+              tweet0={this.state.tweet0}
+              tweet1={this.state.tweet1}
+              tweet2={this.state.tweet2}
+              tweet3={this.state.tweet3}
+              tweet4={this.state.tweet4}
+              correctTweetIndex={this.state.correctTweetIndex}
+              tweetAnswer0={this.state.tweetAnswer0}
+              tweetAnswer1={this.state.tweetAnswer1}
+              tweetAnswer2={this.state.tweetAnswer2}
+              tweetAnswer3={this.state.tweetAnswer3}
+              tweetAnswer4={this.state.tweetAnswer4}
+            />
+            <GameNavbar />
+          </div>}
       </div>
     );
   }
@@ -92,11 +109,13 @@ class GamePage extends React.Component {
 
     let tweetValue = e.target.value.split(',');
     let tweetStateKey = 'tweet' + tweetValue[1];
+    let tweetResultKey = 'tweetAnswer' + tweetValue[1];
     let tweetStateObj = {
       modalCorrectIsOpen: true,
       correctTweetIndex: tweetValue[1]
     };
     tweetStateObj[tweetStateKey] = true;
+    tweetStateObj[tweetResultKey] = 'correct';
     this.props.increaseScore(10);
     this.props.updateCompletedTweets(tweetValue[0]);
     this.props.updateVocab({ Spanish: this.props.tweetArr[tweetValue[1]].answers.chosenWord, English: this.props.tweetArr[tweetValue[1]].answers.translatedWord });
@@ -109,10 +128,12 @@ class GamePage extends React.Component {
     }, 1000);
     let tweetValue = e.target.value.split(',');
     let tweetStateKey = 'tweet' + tweetValue[1];
+    let tweetResultKey = 'tweetAnswer' + tweetValue[1];
     let tweetStateObj = {
       modalInCorrectIsOpen: true
     };
     tweetStateObj[tweetStateKey] = true;
+    tweetStateObj[tweetResultKey] = 'incorrect';
     this.setState(tweetStateObj);
   }
 
