@@ -30,7 +30,7 @@ describe('API', () => {
   describe('GET tweets/:username/:topic', () => {
     it('returns with a status code of 200', () => {
       return request(app)
-        .get('/api/tweets/Northcoders/news')
+        .get('/api/tweets/Northcoders?topic=news')
         .then(res => {
           expect(200);
           const tweets = res.body;

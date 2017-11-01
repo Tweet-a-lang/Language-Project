@@ -100,7 +100,8 @@ const getUnseenTweets = (req, res, next) => {
 
   const numOfTweets = +req.query.count || 5;
   let unseenTweets = [];
-  const { username , topic} = req.params;
+  const { username } = req.params;
+  const {topic} = req.query;
   return Promise.all([
     Users.findOne({ name: username }),
     Tweets.find()
