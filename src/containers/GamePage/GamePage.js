@@ -5,6 +5,7 @@ import LoadingPage from '../../components/Errors/LoadingPage';
 import PT from 'prop-types';
 import fetchTweets from '../../actions/fetchTweets';
 import GamePageUI from '../../components/GamePage/GamePageUI';
+import GameScoreBoardUI from '../../components/GamePage/GameScoreBoardUI';
 import { increaseScore } from '../../actions/updateScore';
 import { updateCompletedTweets } from '../../actions/updateCompletedTweets';
 import { updateVocab } from '../../actions/updateVocab';
@@ -36,7 +37,8 @@ class GamePage extends React.Component {
   closeModal() {
     this.setState({ modalCorrectIsOpen: false, modalInCorrectIsOpen: false });
   }
-
+  
+  
   componentDidMount() {
     const username = this.props.match.params.username;
     const topic = this.props.location.search.split('=')[1];
@@ -71,13 +73,12 @@ class GamePage extends React.Component {
     return (
       <div>
         {(this.props.loading) ? <LoadingPage /> :
-        <div className="game-scoreboard">
-          <p>PLAYER: {this.props.username}</p>
-          <p>SCORE: {this.props.gameScore}</p>
-        </div>
-      <div>
-            <GamePageUI
+          <div>
+            <GameScoreBoardUI 
               username={this.props.username}
+              usernameParams={this.props.match.params.username}
+              gameScore={this.props.gameScore}/>
+            <GamePageUI             
               tweetArr={this.props.tweetArr}
               onCorrect={this.handleCorrect}
               onIncorrect={this.handleIncorrect}
@@ -97,7 +98,8 @@ class GamePage extends React.Component {
               tweetAnswer4={this.state.tweetAnswer4}
             />
             <GameNavbar />
-          </div>}
+          </div>
+        }
       </div>
     );
   }
@@ -115,7 +117,7 @@ class GamePage extends React.Component {
       correctTweetIndex: tweetValue[1]
     };
     tweetStateObj[tweetStateKey] = true;
-    tweetStateObj[tweetResultKey] = 'correct';
+    tweetStateObj[tweetResultKey] = true;
     this.props.increaseScore(10);
     this.props.updateCompletedTweets(tweetValue[0]);
     this.props.updateVocab({ Spanish: this.props.tweetArr[tweetValue[1]].answers.chosenWord, English: this.props.tweetArr[tweetValue[1]].answers.translatedWord });
@@ -133,7 +135,7 @@ class GamePage extends React.Component {
       modalInCorrectIsOpen: true
     };
     tweetStateObj[tweetStateKey] = true;
-    tweetStateObj[tweetResultKey] = 'incorrect';
+    tweetStateObj[tweetResultKey] = false;
     this.setState(tweetStateObj);
   }
 
