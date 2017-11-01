@@ -8,7 +8,7 @@ import store from './store';
 import GamePage from  './containers/GamePage/GamePage';
 import UserPage from './components/UserPage/UserPage';
 import Leaderboard from './components/Homepage/Leaderboard';
-import NoUser from './components/Errors/NoUser';
+import NoMatch from './components/Errors/NoMatch';
 import App from './components/App';
 
 
@@ -21,7 +21,7 @@ ReactDOM.render(
         <Route exact path='/tweets/:username' component={GamePage} />
         <Route exact path='/user/:username' component={UserPage} />
         <Route exact path='/scoreboard' component={Leaderboard} />
-        <Route path='/*' component={NoUser} />
+        <Route path='/*' component={NoMatch} />
       </Switch>
     </Router>
 

@@ -30,7 +30,7 @@ class UserPage extends React.Component {
     return (
       <div>
         {(this.props.loading) ? <LoadingPage /> : (this.props.error === 'Request failed with status code 405') ? <UsernameExists /> :
-          (!this.props.username) ? <div>
+          (this.props.error === 'Request failed with status code 404') ? <div>
             <NoUser />
           </div> :
             <div>
