@@ -15,7 +15,6 @@ class Leaderboard extends React.Component {
   }
 
   render() {
-    console.log('awdawdawdawdwadawdawdawdawdawwd', this.props.leaderboardData);
     return (
       <div>
         {(this.props.loading) ? <LoadingPage /> : <LeaderboardUI 

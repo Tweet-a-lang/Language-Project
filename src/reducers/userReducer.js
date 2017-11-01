@@ -62,7 +62,7 @@ export default (prevState = initialState, action) => {
   }
   case types.SAVE_TOPIC: {
     const newState = Object.assign({}, prevState);
-    newState.gameData.topic = prevState.gameData.topic;
+    newState.gameData.topic = action.payload;
     return newState;
   }
   case types.PATCH_USER_REQUEST:
