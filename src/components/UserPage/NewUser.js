@@ -58,12 +58,12 @@ class NewUser extends React.Component {
   }
   handleChange(e) {
     const {value} = e.target;
-    if(!/'|"|\s/g.test(value) && value.length < 15){
+    if(!/'|"|\s/g.test(value) && value.length < 16){
       this.setState({
         input: e.target.value
       });
     }
-    else if(value.length >=15) window.alert('Sorry your username is too long');
+    else if(value.length >=16) window.alert('Sorry your username is too long');
     else window.alert('Sorry that character is not allowed');
   }
   handleNewUser() {
