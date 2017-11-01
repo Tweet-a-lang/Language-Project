@@ -3,19 +3,16 @@ import PT from 'prop-types';
 import HintSelection from '../Hints/HintSelection';
 import CorrectPopUp from './Results/CorrectPopUp';
 import InCorrectPopUp from './Results/InCorrectPopUp';
-import GameScore from '../../containers/GamePage/GameScore';
 import _ from 'underscore';
 import '../../css/gamepage.css';
 
 let tweetDisabledArr = [];
 
-const GamePageUI = ({ username, tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4, correctTweetIndex }) => (
+const GamePageUI = ({ tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4, correctTweetIndex }) => (
 
   <div>
     <div className='user-container'>
       <div className='user-ui'>
-        <p>Player: {username}</p>
-        <GameScore />
       </div>
     </div>
     <div className='tweet-container'>

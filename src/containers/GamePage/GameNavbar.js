@@ -18,6 +18,7 @@ class GameNavbar extends React.Component {
           onEndGame={this.handleEndGame}
           onNextGame={this.handleNextGame}
           username={this.props.username}
+          gameScore={this.props.gameScore}
         />
       </div>
     );
