@@ -7,6 +7,7 @@ import fetchTweets from '../../actions/fetchTweets';
 import GamePageUI from '../../components/GamePage/GamePageUI';
 import { increaseScore } from '../../actions/updateScore';
 import { updateCompletedTweets } from '../../actions/updateCompletedTweets';
+import { updateVocab } from '../../actions/updateVocab';
 
 class GamePage extends React.Component {
   constructor(props) {
@@ -93,6 +94,7 @@ class GamePage extends React.Component {
     tweetStateObj[tweetStateKey] = true;
     this.props.increaseScore(10);
     this.props.updateCompletedTweets(tweetValue[0]);
+    this.props.updateVocab({Spanish: this.props.tweetArr[tweetValue[1]].answers.chosenWord, English: this.props.tweetArr[tweetValue[1]].answers.translatedWord});
     this.setState(tweetStateObj);
   }
 
@@ -117,6 +119,7 @@ GamePage.propTypes = {
   tweetArr: PT.array,
   increaseScore: PT.func,
   updateCompletedTweets: PT.func,
+  updateVocab: PT.func,
   gameData: PT.object,
   username: PT.string,
   loading: PT.bool,
@@ -143,6 +146,9 @@ const mapDispatchToProps = dispatch => {
     },
     updateCompletedTweets: (id) => {
       dispatch(updateCompletedTweets(id));
+    },
+    updateVocab: (newPair) => {
+      dispatch(updateVocab(newPair));
     }
   };
 };

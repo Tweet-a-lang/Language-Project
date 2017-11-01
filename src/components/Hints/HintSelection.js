@@ -72,7 +72,7 @@ class HintSelection extends React.Component {
 HintSelection.propTypes = {
   word: PT.object.isRequired,
   disabled: PT.bool.isRequired,
-  dictionaryHint: PT.array.isRequired,
+  dictionaryHint: PT.any.isRequired,
   gameScore: PT.number.isRequired
 };
 

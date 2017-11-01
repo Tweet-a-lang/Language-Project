@@ -17,10 +17,10 @@ export const patchUserFailure = (error) => ({
   payload: error
 });
 
-export default (username, score, completedTweets) => {
+export default (username, score, completedTweets, vocab) => {
   return (dispatch) => {
     dispatch(patchUserRequest());
-    return axios.patch(`${API_URL}/user/${username}`, {score, completedTweets})
+    return axios.patch(`${API_URL}/user/${username}`, {score, completedTweets, vocab})
       .then(res => {
         return dispatch(patchUserSuccess(res.data));
       })
