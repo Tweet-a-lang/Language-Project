@@ -80,6 +80,10 @@ class GamePage extends React.Component {
   }
 
   handleCorrect(e) {
+    setTimeout(() => {
+      this.setState({ modalCorrectIsOpen: false });
+    }, 2000);
+
     let tweetValue = e.target.value.split(',');
     let tweetStateKey = 'tweet' + tweetValue[1];
     let tweetStateObj = {
@@ -93,6 +97,9 @@ class GamePage extends React.Component {
   }
 
   handleIncorrect(e) {
+    setTimeout(() => {
+      this.setState({ modalInCorrectIsOpen: false });
+    }, 1000);
     let tweetValue = e.target.value.split(',');
     let tweetStateKey = 'tweet' + tweetValue[1];
     let tweetStateObj = {
