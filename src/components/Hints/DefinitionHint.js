@@ -37,12 +37,14 @@ class DefinitionHint extends React.Component {
             <p>See a definition of the English word <button onClick={this.openModal}>5 points!</button></p>
             <ReactModal
               isOpen={this.state.modalIsOpen}
-              onRequestClose={this.closeModal}
+              onRequestClose={this.props.closeModal}
               shouldCloseOnOverlayClick={true}
               style={customStyles}
               contentLabel="Definition Hint Modal">
-              <h3>Hint - Dictionary Definition of the Correct Answer</h3>
-              {this.props.dictionaryHint.map((hint, i) => <div key={i}>{Parser(hint)}</div>)}
+              {this.props.dictionaryHint.map((hint, i) => {
+                hint = `"${hint}"`;
+                return <div key={i}>{Parser(hint)}</div>;
+              })}
               <button onClick={this.handleScoreDec} >OK back to Game</button>
             </ReactModal>
           </div>
@@ -51,9 +53,6 @@ class DefinitionHint extends React.Component {
     );
   }
   handleScoreDec(e) {
-    this.setState({
-      isAvailable: false
-    });
     this.props.decreaseScore(5);
     this.props.closeModal(e);
   }
