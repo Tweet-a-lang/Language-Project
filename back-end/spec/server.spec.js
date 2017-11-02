@@ -144,7 +144,6 @@ describe('API', () => {
         .then(res => {
           expect(200);
           const {score, completedTweets} = res.body;
-          console.log(res.body);
           expect(score).to.equal(1);
           expect(completedTweets).to.eql(['test']);
         });
