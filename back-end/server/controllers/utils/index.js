@@ -86,6 +86,7 @@ function pickCorrectWord(tweet, type) {
         if (i === 0) choices[i] = { text: translatedWord, result: true };
         else choices[i] = { text: ranWords(), result: false };
       }
+      choices = _.shuffle(choices);
       finalResult.choices = choices;
       return finalResult;
     //Get data from oxford dictionary onto tweet object
