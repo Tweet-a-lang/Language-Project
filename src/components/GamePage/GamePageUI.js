@@ -41,7 +41,7 @@ const GamePageUI = ({tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modal
                   return <button key={buttonIndex} className='button is-info is-inverted' type='submit' value={[tweetData.tweet.id, tweetIndex]} disabled={tweetDisabledArr[tweetIndex]} onClick={(choice.result) ? onCorrect : onIncorrect}>{choice.text}</button>;
                 })}
                 <HintSelection
-                  word={tweetData.answers.choices[0]}
+                  word={tweetData.answers.choices[tweetData.answers.correctTweetIndex]}
                   disabled={tweetDisabledArr[tweetIndex]}
                   dictionaryHint={tweetData.answers.hints} /> 
               </div>
