@@ -15,7 +15,7 @@ class Start extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className='column'>
         {(this.props.error === 'Request failed with status code 405') ? <UsernameExists /> :
           <UserInput 
             onChange={this.handleChange}
