@@ -9,7 +9,7 @@ import GameScoreBoardUI from '../../components/GamePage/GameScoreBoardUI';
 import { increaseScore } from '../../actions/updateScore';
 import { updateCompletedTweets } from '../../actions/updateCompletedTweets';
 import { updateVocab } from '../../actions/updateVocab';
-import { saveTopic } from '../../actions/saveTopic';
+// import { saveTopic } from '../../actions/saveTopic';
 
 class GamePage extends React.Component {
   constructor(props) {
@@ -41,9 +41,9 @@ class GamePage extends React.Component {
   
   componentDidMount() {
     const username = this.props.match.params.username;
-    const topic = this.props.location.search.split('=')[1];
-    this.props.fetchTweets(username, topic);
-    this.props.saveTopic(topic);
+    // const topic = this.props.location.search.split('=')[1];
+    this.props.fetchTweets(username, this.props.topic);
+    // this.props.saveTopic(topic);
   }
 
   componentWillReceiveProps(newProps) {
@@ -60,12 +60,9 @@ class GamePage extends React.Component {
         tweetAnswer3: '',
         tweetAnswer4: ''
       });
-      // const topic = this.props.location.search.split('=')[1];
       this.props.fetchTweets(this.props.username, this.props.topic);
+      // this.props.saveTopic(this.props.topic);
     }
-    // if (this.props.tweetArr !== newProps.tweetArr) {
-    //   console.log('rerender');
-    // }
   }
 
   render() {
@@ -148,7 +145,6 @@ GamePage.propTypes = {
   increaseScore: PT.func.isRequired,
   updateCompletedTweets: PT.func.isRequired,
   updateVocab: PT.func.isRequired,
-  saveTopic: PT.func.isRequired,
   topic: PT.string.isRequired,
   gameData: PT.object.isRequired,
   username: PT.string.isRequired,
@@ -182,9 +178,6 @@ const mapDispatchToProps = dispatch => {
     },
     updateVocab: (newPair) => {
       dispatch(updateVocab(newPair));
-    },
-    saveTopic: (topic) => {
-      dispatch(saveTopic(topic));
     }
   };
 };
