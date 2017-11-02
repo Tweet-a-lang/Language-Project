@@ -3,14 +3,14 @@ import PT from 'prop-types';
 import HintSelection from '../Hints/HintSelection';
 import CorrectPopUp from './Results/CorrectPopUp';
 import InCorrectPopUp from './Results/InCorrectPopUp';
-import _ from 'underscore';
 import '../../css/gamepage.css';
 var classNames = require('classnames');
 
 let tweetDisabledArr = [];
 let tweetResultArr = [];
 
-const GamePageUI = ({ tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4, correctTweetIndex, tweetAnswer0, tweetAnswer1, tweetAnswer2, tweetAnswer3, tweetAnswer4 }) => (
+const GamePageUI = ({tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4, correctTweetIndex, tweetAnswer0, tweetAnswer1, tweetAnswer2, tweetAnswer3, tweetAnswer4 }) => (
+
 
   <div className="game-card">
     <div className='tweet-container'>
@@ -18,10 +18,10 @@ const GamePageUI = ({ tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, moda
       
       {tweetArr.map((tweetData, tweetIndex) => {
         
-        let answerStyle = (tweetResultArr[tweetIndex] === 'incorrect') ? classNames({
+        let answerStyle = (tweetResultArr[tweetIndex] === false) ? classNames({
           'tweetIncorrect': true
         }) :
-          (tweetResultArr[tweetIndex] === 'correct') ? classNames({
+          (tweetResultArr[tweetIndex] === true) ? classNames({
             'tweetCorrect': true
           }) : classNames({
             'tweet': true
@@ -32,7 +32,7 @@ const GamePageUI = ({ tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, moda
           {parseTweet(tweetData)}
           {tweetDisabledArr = [tweet0, tweet1, tweet2, tweet3, tweet4]}
           <div className="multiplechoice">
-            {_.shuffle(tweetData.answers.choices).map((choice, buttonIndex) => {
+            {tweetData.answers.choices.map((choice, buttonIndex) => {
               return <button key={buttonIndex} className='choice-button' type='submit' value={[tweetData.tweet.id, tweetIndex]} disabled={tweetDisabledArr[tweetIndex]} onClick={(choice.result) ? onCorrect : onIncorrect}>{choice.text}</button>;
             })}
             <HintSelection
@@ -77,7 +77,6 @@ function parseTweet(tweetData) {
 }
 
 GamePageUI.propTypes = {
-  username: PT.string.isRequired,
   tweetArr: PT.array.isRequired,
   onCorrect: PT.func.isRequired,
   onIncorrect: PT.func.isRequired,
