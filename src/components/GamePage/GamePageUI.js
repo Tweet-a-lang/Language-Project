@@ -59,7 +59,7 @@ function parseTweet(tweetData) {
   const chosenWordRegEx = new RegExp(dataIfUndefined, 'i');
   const linkRegEx = /(https?:\/\/[^\s]+)/;
 
-  return tweetData.tweet.text.split(' ').map((word, i) => {
+  return tweetData.tweet.text.split(/\s|#|@/g).map((word, i) => {
 
     if (word.match(chosenWordRegEx)) return <strong key={i} className='chosen-word'>{word.toUpperCase() + ' '}</strong>;
     if (word.match(linkRegEx)) {
