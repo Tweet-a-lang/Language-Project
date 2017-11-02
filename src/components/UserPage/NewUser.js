@@ -21,7 +21,7 @@ class NewUser extends React.Component {
     super(props);
     this.state = {
       modalIsOpen: false,
-      input: ''   
+      input: this.props.usernameInput
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -49,7 +49,7 @@ class NewUser extends React.Component {
           contentLabel="Create New User">
           <h1>Welcome to Tweet-a-lang!</h1>
           <form> 
-            <input type="text" placeholder="enter a username" onChange={this.handleChange} value={this.state.input}></input> 
+            <input type="text" placeholder="handle" value={this.state.input} onChange={this.handleChange}></input> 
             <button onClick={this.closeModal} >Submit</button>
           </form>
         </ReactModal>
@@ -75,7 +75,8 @@ class NewUser extends React.Component {
 
 NewUser.propTypes = {
   userData: PT.object,
-  postNewUser: PT.func
+  postNewUser: PT.func,
+  usernameInput: PT.string
 };
 
 const mapStateToProps = (state) => {

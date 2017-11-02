@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import UsernameExists from '../../components/Errors/UsernameExists';
 import UserInput from '../../components/Homepage/UserInput';
+import postNewUser from '../../actions/postNewUser';
 import PT from 'prop-types';
 
 class Start extends React.Component {
@@ -12,6 +13,7 @@ class Start extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleNewUser = this.handleNewUser.bind(this);
   }
   render() {
     return (
@@ -21,6 +23,7 @@ class Start extends React.Component {
             onChange={this.handleChange}
             input={this.state.input}
             onLogin={this.handleLogin}
+            onNewUser={this.handleNewUser}
           />
         }
       </div>
@@ -41,20 +44,30 @@ class Start extends React.Component {
   handleLogin() {
 
   }
+
+  handleNewUser() {
+    this.props.postNewUser(this.state.input);
+  }
 }
 
 Start.propTypes = {
-  error: PT.string
+  error: PT.string,
+  postNewUser: PT.func,
+  userData: PT.object
 };
 
 const mapStateToProps = (state) => {
   return {
-    error: state.userReducer.error
+    error: state.userReducer.error,
+    userData: state.userReducer.userData
   };
 };
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
+    postNewUser: (name) => {
+      dispatch(postNewUser(name));
+    }
   };
 };
 
