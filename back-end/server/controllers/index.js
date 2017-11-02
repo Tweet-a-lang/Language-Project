@@ -2,7 +2,7 @@
 const { Users, Tweets } = require('../../models/models');
 const { pickCorrectWord, filterUnseenTweets } = require('./utils');
 require('dotenv').config();
-
+const _ = require('underscore');
 const Twit = require('twit');
 const {CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET} = process.env;
 const T = new Twit({
@@ -10,7 +10,7 @@ const T = new Twit({
   consumer_secret:      CONSUMER_SECRET,
   access_token:         ACCESS_TOKEN,
   access_token_secret:  ACCESS_TOKEN_SECRET,
-  timeout_ms:           3*1000,  // optional HTTP request timeout to apply to all requests. 
+  timeout_ms:           5*1000,  // optional HTTP request timeout to apply to all requests. 
 });
 
 
@@ -19,7 +19,12 @@ const getUser = (req, res, next) => {
   Users.findOne({ name: username })
     .then(data => {
       if (!data) return next({ type: 404 });
-      else return res.send(data);
+      const {name, _id, vocab, avatar, score, completedTweets} = data.toObject();
+      let uniqueVocab = _.uniq(vocab, false, word => word.Spanish);
+      const info = {
+        name, _id, avatar, score, completedTweets, vocab: uniqueVocab
+      };
+      return res.send(info);
     })
     .catch(err => {
       if (err) next({ type: 500 });
