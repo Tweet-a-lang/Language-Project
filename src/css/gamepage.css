@@ -23,7 +23,8 @@
 }
 
 .game-card {
-    background-image: url(https://media.giphy.com/media/26uf7RM9Nb9WgpMv6/source.gif);
+    /* background-image: url(https://media.giphy.com/media/26uf7RM9Nb9WgpMv6/source.gif); */
+    background-color: #5FB9F0;
     background-size: inherit;
     justify-content: center;
     margin-bottom: 50px;
