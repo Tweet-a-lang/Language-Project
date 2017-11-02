@@ -1,0 +1,29 @@
+table {
+    border: 1px solid lightblue;
+    width: 100%;
+}
+
+th, td {
+    padding: 10px;
+}
+tr:hover {
+    background-color:#f4f5f5;
+}
+th {
+    background-color: #f4f5f5;
+}
+leaderBoard {
+    overflow-x: auto;
+}
+
+td {
+    vertical-align: bottom;
+    font-size: 1.2rem;
+}
+
+th {
+    text-align: left;
+}
+table img {
+    border: 2px solid black;
+}
