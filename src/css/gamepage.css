@@ -19,7 +19,7 @@
     background-color: white;
     border: 2px solid #1DA1F2;
     border-radius: 5px;
-    margin: 20px 20px 20px 10px;
+    margin: 20px 20px 40px 10px;
     padding: 10px;
     width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -36,31 +36,35 @@
 }
 
 .tweetCorrect {
-    
-    background-color: #5EEB46;
+    background-image: url(https://minimops.files.wordpress.com/2012/03/fotolia_32131580_xs.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    background-color: white;
     border: 2px solid #0F9D58;
     border-radius: 5px;
-    /*       T   R   B    L*/
-    margin: 20px 35% 20px auto;
+    margin: 20px 20px 20px 20px;
     padding: 10px;
     width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .tweetIncorrect {
-    
-    background-color: #D61505;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Crystal_128_error.svg/150px-Crystal_128_error.svg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
     border: 2px solid #DB4437;
     border-radius: 5px;
-    /*       T   R   B    L*/
-    margin: 20px 35% 20px auto;
+    margin: 20px 20px 20px 20px;
     padding: 10px;
     width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .tweet-container {
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -84,14 +88,22 @@ img {
 }
 
 .game-bird {
+    display: inline-block;
     width: 30%;
     margin-top: 20px;
     height: 100px;
     display: none;
-    background-image: url(https://i.pinimg.com/736x/bd/6f/13/bd6f13608cb59e61b77ccb92031c6f55--tbi.jpg);
+    background-image: url(http://vignette2.wikia.nocookie.net/thehungergames/images/c/c8/Twitter_question_mark.png/revision/latest?cb=20121008044301);
     background-repeat: no-repeat;
-    background-size: 70px;
+    background-size: contain;
+}
 
+.tweet-container:hover > .tweetCorrect + .game-bird {
+    display: none;
+}
+
+.tweet-container:hover > .tweetIncorrect + .game-bird {
+    display: none;
 }
 
 .tweet-container:hover .game-bird {

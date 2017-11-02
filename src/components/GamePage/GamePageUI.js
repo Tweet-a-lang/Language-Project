@@ -28,7 +28,7 @@ const GamePageUI = ({tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modal
           });
 
         return (
-          <div key={tweetIndex} className="tweet-container">
+          <div key={tweetIndex} className='tweet-container'>
             <div className={answerStyle}>
               <img className="tweet-avatar" src={tweetData.tweet.user_profile_image} />
               <h5>@{tweetData.tweet.user_screen_name}</h5>
