@@ -71,6 +71,7 @@ class HowToPlay extends React.Component {
         <p>Tweet-a-lang is a fun way to practise your language learning. We use real tweets from native speakers so you can learn the language they really speak. You can choose a topic and click on the links and articles they are tweeting about too, so if you are interested in their content you can go and follow them on twitter. Tweet-a-lang will not only help you learn your desired language but also connect you with people from all over the world!</p>
 
         <button onClick={this.openModal}>How to Play</button>
+        
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -82,9 +83,6 @@ class HowToPlay extends React.Component {
             <li>Select a topic for the tweets you want to translate and hit start game!</li>
             <li>You will start every game with zero points, and 5 tweets. There will be one highlighted word in each tweet that you need to translate.</li>
             <li>Every answer you guess correctly you will earn 10 points!</li>
-            {/* <li>You also have a selection of 2 hints, which you can access once you have earned some points in that game.</li>
-        <li>For a cost of 3 points you can see 2 random letters from the translated word</li>
-        <li>For a cost of 5 points you can see a definition of the translated word - there is only one definition per word.</li> */}
             <li>If you get stuck, you can spent some of your points on helpful hints</li>
             <li>Once you have answered all 5 tweets click on End Game if you want to go back to your profile page, or Next Game to start another round.</li>
             <li>Your points for that game will be added to your overall score which you can see on your profile page. If you are one of the top 10 highest scorers you will be displayed on our leaderboard.</li>
