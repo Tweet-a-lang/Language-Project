@@ -1,25 +1,28 @@
 #App {
-
     margin: auto;
     max-width: 70%;
+    min-width: 450px;
+
 }
 
 .gameHeader {
-    font-family: 'Fredoka One', cursive;
-    font-size: 40px;
+    font-family: 'Tahoma', cursive;
+    font-size: 60px;
     color: #1DA1F2;
-    -webkit-text-stroke:  3px #e6ecf0;
+    -webkit-text-stroke:  4px #e6ecf0;
     text-align: center;
     display: flex;
-            /*T R B L */
-    /* margin: auto 20% auto auto; */
-    justify-content: flex-start;
+    justify-content: center;
+    height: 100%;
     align-items: center;
     border-style: solid;
     border-width: 1px;
+    font-weight: 1000;
 }
 
 .log-in {
+    display: block;
+    min-width: 100%;
     font-size: 15px;
     text-align: right;
 }
@@ -35,4 +38,20 @@
 div {
     border-style: solid;
     border-width: 1px;
+}
+
+tr td {
+    padding: 0px !important;
+}
+
+th {
+    padding: 0px !important;
+}
+
+.leader-board {
+    min-width: 200px;
+}
+
+.column {
+    /* padding: 0px; */
 }
