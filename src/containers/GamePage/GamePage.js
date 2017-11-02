@@ -71,32 +71,34 @@ class GamePage extends React.Component {
     return (
       <div>
         {(this.props.loading) ? <LoadingPage /> :
-        <div className="game-scoreboard">
-          <p>PLAYER: {this.props.username}</p>
-          <p>SCORE: {this.props.gameScore}</p>
-        </div>
-      <div>
-            <GamePageUI
-              username={this.props.username}
-              tweetArr={this.props.tweetArr}
-              onCorrect={this.handleCorrect}
-              onIncorrect={this.handleIncorrect}
-              modalCorrectIsOpen={this.state.modalCorrectIsOpen}
-              modalInCorrectIsOpen={this.state.modalInCorrectIsOpen}
-              closeModal={this.closeModal}
-              tweet0={this.state.tweet0}
-              tweet1={this.state.tweet1}
-              tweet2={this.state.tweet2}
-              tweet3={this.state.tweet3}
-              tweet4={this.state.tweet4}
-              correctTweetIndex={this.state.correctTweetIndex}
-              tweetAnswer0={this.state.tweetAnswer0}
-              tweetAnswer1={this.state.tweetAnswer1}
-              tweetAnswer2={this.state.tweetAnswer2}
-              tweetAnswer3={this.state.tweetAnswer3}
-              tweetAnswer4={this.state.tweetAnswer4}
-            />
-            <GameNavbar />
+          <div>
+            <div className="game-scoreboard">
+              <p>PLAYER: {this.props.username}</p>
+              <p>SCORE: {this.props.gameScore}</p>
+            </div>
+            <div>
+              <GamePageUI
+                username={this.props.username}
+                tweetArr={this.props.tweetArr}
+                onCorrect={this.handleCorrect}
+                onIncorrect={this.handleIncorrect}
+                modalCorrectIsOpen={this.state.modalCorrectIsOpen}
+                modalInCorrectIsOpen={this.state.modalInCorrectIsOpen}
+                closeModal={this.closeModal}
+                tweet0={this.state.tweet0}
+                tweet1={this.state.tweet1}
+                tweet2={this.state.tweet2}
+                tweet3={this.state.tweet3}
+                tweet4={this.state.tweet4}
+                correctTweetIndex={this.state.correctTweetIndex}
+                tweetAnswer0={this.state.tweetAnswer0}
+                tweetAnswer1={this.state.tweetAnswer1}
+                tweetAnswer2={this.state.tweetAnswer2}
+                tweetAnswer3={this.state.tweetAnswer3}
+                tweetAnswer4={this.state.tweetAnswer4}
+              />
+              <GameNavbar />
+            </div>
           </div>}
       </div>
     );
