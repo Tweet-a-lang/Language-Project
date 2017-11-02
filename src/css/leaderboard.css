@@ -12,9 +12,6 @@ tr:hover {
 th {
     background-color: #f4f5f5;
 }
-leaderBoard {
-    overflow-x: auto;
-}
 
 td {
     vertical-align: bottom;
