@@ -1,15 +1,23 @@
-import { compose, createStore, applyMiddleware } from 'redux';
-import { autoRehydrate, persistStore } from 'redux-persist';
+import { createStore, applyMiddleware } from 'redux';
+import { persistStore, persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-import reducers from './reducers';
+import reducers from './reducers/index';
 
-const store = compose(
-  applyMiddleware(thunk, logger),
-  autoRehydrate()
-)(createStore)(reducers);
 
-persistStore(store);
+const config = {
+  key: 'root',
+  storage,
+};
 
-export default store;
+const reducer = persistCombineReducers(config, reducers);
+
+
+export default function configureStore () {
+  let store = createStore(reducer, applyMiddleware(thunk, logger));
+  let persistor = persistStore(store);
+
+  return { persistor, store };
+}
 
