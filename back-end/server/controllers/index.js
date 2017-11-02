@@ -2,7 +2,7 @@
 const { Users, Tweets } = require('../../models/models');
 const { pickCorrectWord, filterUnseenTweets } = require('./utils');
 require('dotenv').config();
-
+const _ = require('underscore');
 const Twit = require('twit');
 const {CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET} = process.env;
 const T = new Twit({
@@ -19,7 +19,11 @@ const getUser = (req, res, next) => {
   Users.findOne({ name: username })
     .then(data => {
       if (!data) return next({ type: 404 });
-      else return res.send(data);
+      const {name, _id, vocab, avatar, score, completedTweets} = data.toObject();
+      const info = {
+        name, _id, avatar, score, completedTweets, vocab: _.uniq(vocab, false, obj => obj.Spanish).sort((a,b) => a.Spanish < b.Spanish)
+      };
+      return res.send(info);
     })
     .catch(err => {
       if (err) next({ type: 500 });
@@ -148,7 +152,7 @@ const getScoreboard = (req, res) => {
     });
 };
 
-const patchUser = (req, res, next) => {  
+const patchUser = (req, res, next) => { 
   const { username } = req.params;
   const { completedTweets: tweetsDone = [], score: newScore = 0 , vocab = []} = req.body;
 
