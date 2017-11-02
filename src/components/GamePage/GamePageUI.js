@@ -3,7 +3,6 @@ import PT from 'prop-types';
 import HintSelection from '../Hints/HintSelection';
 import CorrectPopUp from './Results/CorrectPopUp';
 import InCorrectPopUp from './Results/InCorrectPopUp';
-import _ from 'underscore';
 import '../../css/gamepage.css';
 var classNames = require('classnames');
 
@@ -33,7 +32,7 @@ const GamePageUI = ({tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modal
           {parseTweet(tweetData)}
           {tweetDisabledArr = [tweet0, tweet1, tweet2, tweet3, tweet4]}
           <div className="multiplechoice">
-            {_.shuffle(tweetData.answers.choices).map((choice, buttonIndex) => {
+            {tweetData.answers.choices.map((choice, buttonIndex) => {
               return <button key={buttonIndex} className='choice-button' type='submit' value={[tweetData.tweet.id, tweetIndex]} disabled={tweetDisabledArr[tweetIndex]} onClick={(choice.result) ? onCorrect : onIncorrect}>{choice.text}</button>;
             })}
             <HintSelection
