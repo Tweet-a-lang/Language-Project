@@ -7,8 +7,8 @@ class UserVocab extends React.Component {
   render() {
     return (
       <div>
-        <h3>My Vocab</h3>
-        <table>
+        <h3 className="subtitle is-3">My Vocab</h3>
+        <table className="table is-hoverable is-fullwidth">
           <thead>
             <tr>
               <th>Spanish</th>
