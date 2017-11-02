@@ -15,20 +15,29 @@
 
 
 .tweet {
-    
+    display: inline-block;
     background-color: white;
     border: 2px solid #1DA1F2;
     border-radius: 5px;
-    /*       T   R   B    L*/
-    margin: 20px 35% 20px auto;
+    margin: 20px 20px 20px 10px;
     padding: 10px;
     width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.tweet:hover {
+    background-color: white;
+    border: 2px solid greenyellow;
+    border-radius: 5px;
+    margin: 20px 20px 20px 10px;
+    padding: 10px;
+    width: 60%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+}
+
 .tweetCorrect {
     
-    background-color: #0F9D58;
+    background-color: #5EEB46;
     border: 2px solid #0F9D58;
     border-radius: 5px;
     /*       T   R   B    L*/
@@ -40,7 +49,7 @@
 
 .tweetIncorrect {
     
-    background-color: #DB4437;
+    background-color: #D61505;
     border: 2px solid #DB4437;
     border-radius: 5px;
     /*       T   R   B    L*/
@@ -56,6 +65,35 @@
     justify-content: space-between;
 }
 
+.multiplechoice {
+    background-color: rgba(0, 0, 0, 0.10);
+    padding: 5px
+}
+
 a {
     word-wrap: break-word;
+}
+
+button {
+    margin: 3px;
+    border-radius: 10px
+}
+
+img {
+    border-radius: 10px
+}
+
+.game-bird {
+    width: 30%;
+    margin-top: 20px;
+    height: 100px;
+    display: none;
+    background-image: url(https://i.pinimg.com/736x/bd/6f/13/bd6f13608cb59e61b77ccb92031c6f55--tbi.jpg);
+    background-repeat: no-repeat;
+    background-size: 70px;
+
+}
+
+.tweet-container:hover .game-bird {
+    display: inline-block;
 }

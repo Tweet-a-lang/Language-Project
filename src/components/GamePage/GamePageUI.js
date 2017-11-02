@@ -13,7 +13,7 @@ const GamePageUI = ({tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modal
 
 
   <div className="game-card">
-    <div className='tweet-container'>
+    <div className='tweet-card'>
       {tweetResultArr = [tweetAnswer0, tweetAnswer1, tweetAnswer2, tweetAnswer3, tweetAnswer4]}
       
       {tweetArr.map((tweetData, tweetIndex) => {
@@ -26,21 +26,34 @@ const GamePageUI = ({tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modal
           }) : classNames({
             'tweet': true
           });
-        return (<div key={tweetIndex} className={answerStyle}>
-          <img className="tweet-avatar" src={tweetData.tweet.user_profile_image} />
-          <h5>@{tweetData.tweet.user_screen_name}</h5>
-          {parseTweet(tweetData)}
-          {tweetDisabledArr = [tweet0, tweet1, tweet2, tweet3, tweet4]}
-          <div className="multiplechoice">
-            {tweetData.answers.choices.map((choice, buttonIndex) => {
-              return <button key={buttonIndex} className='choice-button' type='submit' value={[tweetData.tweet.id, tweetIndex]} disabled={tweetDisabledArr[tweetIndex]} onClick={(choice.result) ? onCorrect : onIncorrect}>{choice.text}</button>;
-            })}
-            <HintSelection
-              word={tweetData.answers.choices[tweetData.answers.correctTweetIndex]}
-              disabled={tweetDisabledArr[tweetIndex]}
-              dictionaryHint={tweetData.answers.hints} /> </div>
-        </div>);
+
+        return (
+          <div key={tweetIndex} className="tweet-container">
+            <div className={answerStyle}>
+              <img className="tweet-avatar" src={tweetData.tweet.user_profile_image} />
+              <h5>@{tweetData.tweet.user_screen_name}</h5>
+              <div className="tweet-txt">
+                {parseTweet(tweetData)}
+              </div>
+              {tweetDisabledArr = [tweet0, tweet1, tweet2, tweet3, tweet4]}
+              <div className="multiplechoice">
+                {tweetData.answers.choices.map((choice, buttonIndex) => {
+                  return <button key={buttonIndex} className='button is-info is-inverted' type='submit' value={[tweetData.tweet.id, tweetIndex]} disabled={tweetDisabledArr[tweetIndex]} onClick={(choice.result) ? onCorrect : onIncorrect}>{choice.text}</button>;
+                })}
+                <HintSelection
+                  word={tweetData.answers.choices[0]}
+                  disabled={tweetDisabledArr[tweetIndex]}
+                  dictionaryHint={tweetData.answers.hints} /> 
+              </div>
+            </div>
+            <div className="game-bird">
+              
+            </div>
+          </div>
+        );
       })}
+
+
       <CorrectPopUp
         closeModal={closeModal}
         modalCorrectIsOpen={modalCorrectIsOpen}
