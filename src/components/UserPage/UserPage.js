@@ -35,7 +35,7 @@ class UserPage extends React.Component {
       <div>
         {(this.props.loading) ? <LoadingPage /> : (this.props.error === 'Request failed with status code 405') ? <UsernameExists /> :
           (this.props.error === 'Request failed with status code 404') ? <div>
-            <NoUser />
+            <NoUser usernameInput={this.props.match.params.username} />
           </div> :
             <div>
               <h1>Hi, {this.props.username}</h1>

@@ -16,7 +16,7 @@ class Leaderboard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='leader-board'>
         {(this.props.loading) ? <LoadingPage /> : <LeaderboardUI 
           data={this.props.leaderboardData}
         /> }

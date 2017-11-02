@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
-
+import 'bulma/css/bulma.css';
 // import store from './store';
 
 import configureStore from './store';
