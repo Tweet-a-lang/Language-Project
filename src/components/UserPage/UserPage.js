@@ -8,22 +8,23 @@ import NoUser from '../Errors/NoUser';
 import LoadingPage from '../Errors/LoadingPage';
 import UsernameExists from '../Errors/UsernameExists';
 import UserVocab from './UserVocab';
+import { saveTopic } from '../../actions/saveTopic';
 
 class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chosenTopic: 'news',
-      radioButton1: true,
+      chosenTopic: '',
+      radioButton1: false,
       radioButton2: false,
       radioButton3: false,
       radioButton4: false,
       radioButton5: false,
-      radioButton6: false
+      radioButton6: true
     };
     this.handleStartGame = this.handleStartGame.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
-    this.handleLangSelection = this.handleLangSelection.bind(this);
+    this.handleTopicSelection = this.handleTopicSelection.bind(this);
   }
 
   componentDidMount() {
@@ -47,7 +48,7 @@ class UserPage extends React.Component {
                     <input
                       type="radio"
                       name="value"
-                      onChange={this.handleLangSelection}
+                      onChange={this.handleTopicSelection}
                       value="food"
                       checked={this.state.radioButton1}
                     />Food
@@ -58,7 +59,7 @@ class UserPage extends React.Component {
                     <input
                       type="radio"
                       name="value"
-                      onChange={this.handleLangSelection}
+                      onChange={this.handleTopicSelection}
                       value="sport"
                       checked={this.state.radioButton2}
                     />Sport
@@ -69,7 +70,7 @@ class UserPage extends React.Component {
                     <input
                       type="radio"
                       name="value"
-                      onChange={this.handleLangSelection}
+                      onChange={this.handleTopicSelection}
                       value="news"
                       checked={this.state.radioButton3}
                     />News
@@ -80,7 +81,7 @@ class UserPage extends React.Component {
                     <input
                       type="radio"
                       name="value"
-                      onChange={this.handleLangSelection}
+                      onChange={this.handleTopicSelection}
                       value="technology"
                       checked={this.state.radioButton4}
                     />Technology
@@ -91,7 +92,7 @@ class UserPage extends React.Component {
                     <input
                       type="radio"
                       name="value"
-                      onChange={this.handleLangSelection}
+                      onChange={this.handleTopicSelection}
                       value="fashion"
                       checked={this.state.radioButton5}
                     />Fashion
@@ -102,7 +103,7 @@ class UserPage extends React.Component {
                     <input
                       type="radio"
                       name="value"
-                      onChange={this.handleLangSelection}
+                      onChange={this.handleTopicSelection}
                       value="random"
                       checked={this.state.radioButton6}
                     />Random
@@ -121,12 +122,13 @@ class UserPage extends React.Component {
   }
 
   handleStartGame() {
+    this.props.saveTopic(this.state.chosenTopic);
   }
 
   handleLogOut() {
   }
 
-  handleLangSelection(e) {
+  handleTopicSelection(e) {
     this.setState({
       chosenTopic: e.target.value.toLowerCase(),
       radioButton1: (e.target.value === 'food') ? true : false,
@@ -141,14 +143,15 @@ class UserPage extends React.Component {
 }
 
 UserPage.propTypes = {
-  match: PT.object,
-  fetchUser: PT.func,
-  userData: PT.object,
-  language: PT.bool,
-  username: PT.string,
-  score: PT.number,
-  loading: PT.bool,
-  error: PT.string
+  match: PT.object.isRequired,
+  fetchUser: PT.func.isRequired,
+  userData: PT.object.isRequired,
+  language: PT.bool.isRequired,
+  username: PT.string.isRequired,
+  score: PT.number.isRequired,
+  loading: PT.bool.isRequired,
+  error: PT.string.isRequired,
+  saveTopic: PT.func.isRequired
 };
 
 
@@ -165,6 +168,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   fetchUser: (username) => {
     dispatch(fetchUser(username));
+  },
+  saveTopic: (topic) => {
+    dispatch(saveTopic(topic));
   }
 });
 

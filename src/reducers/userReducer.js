@@ -109,6 +109,24 @@ export default (prevState = initialState, action) => {
       error: action.payload,
       userData: prevState.userData
     });
+  case types.FETCH_LEADERBOARD_SUCCESS:
+    return Object.assign({}, prevState, {
+      userData: {
+        _id: 0,
+        name: '',
+        __v: 0,
+        avatar: '',
+        completedTweets: [],
+        score: 0,
+        vocab: []
+      },
+      gameData: {
+        score: 0,
+        completedTweets: [],
+        vocab: [],
+        topic: ''
+      }
+    });
   default:
     return prevState;
   }
