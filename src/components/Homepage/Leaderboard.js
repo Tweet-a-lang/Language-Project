@@ -5,12 +5,12 @@ const leaderBoardStyle = {
   'borderRadius': '50%',
 
 };
-
+import '../../css/leaderboard.css';
 
 const LeaderboardUI = ({ data }) => (
-  <table className="table is-hoverable is-fullwidth">
+  <div className="leaderBoard">
     <h2 className="subtitle is-3">Leaderboard</h2>
-    <table className="table is-fullwidth">
+    <table className="table is-hoverableis-fullwidth">
       <thead>
         <tr>
           <th>UserName</th>
@@ -37,7 +37,7 @@ const LeaderboardUI = ({ data }) => (
         })}
       </tbody>
     </table>
-  </table>
+  </div>
 );
 
 LeaderboardUI.propTypes = {
