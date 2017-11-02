@@ -12,7 +12,7 @@ let tweetResultArr = [];
 const GamePageUI = ({tweetArr, onCorrect, onIncorrect, modalCorrectIsOpen, modalInCorrectIsOpen, closeModal, tweet0, tweet1, tweet2, tweet3, tweet4, correctTweetIndex, tweetAnswer0, tweetAnswer1, tweetAnswer2, tweetAnswer3, tweetAnswer4 }) => (
 
 
-  <div className="game-card">
+  <div className="game-card is-centered">
     <div className='tweet-card'>
       {tweetResultArr = [tweetAnswer0, tweetAnswer1, tweetAnswer2, tweetAnswer3, tweetAnswer4]}
       
