@@ -6,9 +6,10 @@
 
 import React from 'react';
 import ReactModal from 'react-modal';
+import MediaQuery from 'react-responsive';
 
 const customStyles = {
-  content : {
+  content: {
     // top                   : '50%',
     // left                  : '50%',
     // right                 : 'auto',
@@ -19,37 +20,46 @@ const customStyles = {
 
 
 class HowToPlay extends React.Component {
-  constructor () {
+  constructor() {
     super();
     this.state = {
-      modalIsOpen: false   
+      modalIsOpen: false
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
   openModal() {
-    this.setState({modalIsOpen: true});
+    this.setState({ modalIsOpen: true });
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({ modalIsOpen: false });
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.openModal}>How to Play</button>
-                      
-      
-                                                 
+        <MediaQuery minDeviceWidth={1224}>
+          <h1>Welcome to tweet-a-lang!</h1>
+          <h2>The aim of the game:</h2>
+          <p>Tweet-a-lang is a fun way to practise your language learning. We use real tweets from native speakers so you can learn the language they really speak. You can choose a topic and click on the links and articles they are tweeting about too, so if you are interested in their content you can go and follow them on twitter. Tweet-a-lang will not only help you learn your desired language but also connect you with people from all over the world!</p>
+          <h2>How to play:</h2>
+        </MediaQuery>
+
+        <MediaQuery maxDeviceWidth={1224}>
+          <button onClick={this.openModal}>How to Play</button>
+        </MediaQuery>
+
+
+
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           shouldCloseOnOverlayClick={true}
           style={customStyles}
           contentLabel="How To Play Modal">
-                    
+
           <h1>Welcome to tweet-a-lang!</h1>
           <h2>The aim of the game:</h2>
           <p>Tweet-a-lang is a fun way to practise your language learning. We use real tweets from native speakers so you can learn the language they really speak. You can choose a topic and click on the links and articles they are tweeting about too, so if you are interested in their content you can go and follow them on twitter. Tweet-a-lang will not only help you learn your desired language but also connect you with people from all over the world!</p>
