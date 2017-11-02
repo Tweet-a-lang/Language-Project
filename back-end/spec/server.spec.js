@@ -110,7 +110,7 @@ describe('API', () => {
         });
     }).timeout(8000);
   });
-  describe.only('PATCH user/:username', () => {
+  describe('PATCH user/:username', () => {
     it('returns with a status code of 200', () => {
       const patchBody = {
         completedTweets: ['test'],
@@ -139,11 +139,12 @@ describe('API', () => {
         .then(() => {
           return request(app)
             .patch('/api/user/Northcoders')
-            .send(patchBody)
-            .expect(200);
+            .send(patchBody);
         })
         .then(res => {
+          expect(200);
           const {score, completedTweets} = res.body;
+          console.log(res.body);
           expect(score).to.equal(1);
           expect(completedTweets).to.eql(['test']);
         });
