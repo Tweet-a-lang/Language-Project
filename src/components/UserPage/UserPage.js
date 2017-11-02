@@ -9,6 +9,7 @@ import LoadingPage from '../Errors/LoadingPage';
 import UsernameExists from '../Errors/UsernameExists';
 import UserVocab from './UserVocab';
 import { saveTopic } from '../../actions/saveTopic';
+import '../../css/userpage.css';
 
 class UserPage extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class UserPage extends React.Component {
       radioButton3: false,
       radioButton4: false,
       radioButton5: false,
-      radioButton6: true
+      radioButton6: false
     };
     this.handleStartGame = this.handleStartGame.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -41,81 +42,55 @@ class UserPage extends React.Component {
             <div>
               <h1>Hi, {this.props.username}</h1>
               <h3>Total Score: {this.props.score}</h3>
-              <span>Choose your tweety topic:</span>
-              <div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="radio"
-                      name="value"
-                      onChange={this.handleTopicSelection}
-                      value="food"
-                      checked={this.state.radioButton1}
-                    />Food
-                  </label>
-                </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="radio"
-                      name="value"
-                      onChange={this.handleTopicSelection}
-                      value="sport"
-                      checked={this.state.radioButton2}
-                    />Sport
-                  </label>
-                </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="radio"
-                      name="value"
-                      onChange={this.handleTopicSelection}
-                      value="news"
-                      checked={this.state.radioButton3}
-                    />News
-                  </label>
-                </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="radio"
-                      name="value"
-                      onChange={this.handleTopicSelection}
-                      value="technology"
-                      checked={this.state.radioButton4}
-                    />Technology
-                  </label>
-                </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="radio"
-                      name="value"
-                      onChange={this.handleTopicSelection}
-                      value="fashion"
-                      checked={this.state.radioButton5}
-                    />Fashion
-                  </label>
-                </div>
-                <div className="radio">
-                  <label>
-                    <input
-                      type="radio"
-                      name="value"
-                      onChange={this.handleTopicSelection}
-                      value="random"
-                      checked={this.state.radioButton6}
-                    />Random
-                  </label>
-                </div>
+
+              <div className="container">
+                <h2>Choose your tweety topic:</h2>
+                <ul>
+                  <li>
+                    <input type="radio" id="R-option" name="selector" onChange={this.handleTopicSelection} value="random" checked={this.state.radioButton1} />
+                    <label htmlFor="R-option">Random</label>
+                    <div className="check"></div>
+                  </li>
+                  <li>
+                    <input type="radio" id="s-option" name="selector" onChange={this.handleTopicSelection} value="sport" checked={this.state.radioButton2} />
+                    <label htmlFor="s-option">Sport</label>
+                    <div className="check"></div>
+                  </li>
+                  <li>
+                    <input type="radio" id="n-option" name="selector" onChange={this.handleTopicSelection} value="news" checked={this.state.radioButton3} />
+                    <label htmlFor="n-option">News</label>
+                    <div className="check"></div>
+                  </li>
+                  <li>
+                    <input type="radio" id="t-option" name="selector" onChange={this.handleTopicSelection} value="tech" checked={this.state.radioButton4} />
+                    <label htmlFor="t-option">Tech</label>
+                    <div className="check"></div>
+                  </li>
+                  <li>
+                    <input type="radio" id="fa-option" name="selector" onChange={this.handleTopicSelection} value="fashion" checked={this.state.radioButton5} />
+                    <label htmlFor="fa-option">Fashion</label>
+                    <div className="check"></div>
+                  </li>
+                  <li>
+                    <input type="radio" id="fo-option" name="selector" onChange={this.handleTopicSelection} value="food" checked={this.state.radioButton6} />
+                    <label htmlFor="fo-option">Food</label>
+                    <div className="check"></div>
+                  </li>
+
+                </ul>
               </div>
+
+
+
+
+
               <Link onClick={this.handleStartGame} to={`/tweets/${this.props.username}?topic=${this.state.chosenTopic}`}>
                 <button>START GAME</button>
               </Link>
               <LogOut />
               <UserVocab />
             </div>
+
         }
       </div>
     );
@@ -131,12 +106,12 @@ class UserPage extends React.Component {
   handleTopicSelection(e) {
     this.setState({
       chosenTopic: e.target.value.toLowerCase(),
-      radioButton1: (e.target.value === 'food') ? true : false,
+      radioButton1: (e.target.value === 'random') ? true : false,
       radioButton2: (e.target.value === 'sport') ? true : false,
       radioButton3: (e.target.value === 'news') ? true : false,
       radioButton4: (e.target.value === 'technology') ? true : false,
       radioButton5: (e.target.value === 'fashion') ? true : false,
-      radioButton6: (e.target.value === 'random') ? true : false
+      radioButton6: (e.target.value === 'food') ? true : false
     });
   }
 
