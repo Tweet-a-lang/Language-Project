@@ -5,9 +5,9 @@ import * as types from '../../src/actions/types';
 
 describe('persistRehydrate action creator', () => {
   it('adds the state to the payload', () => {
-    expect(persistRehydrate({userData: {example: 'example'}, gameData: {example: 'example'}})).to.eql({
+    expect(persistRehydrate({fetchTweetsReducer: {example: 'example'}, leaderboardReducer: {example: 'example'}, userReducer: {example: 'example'}})).to.eql({
       type: types.PERSIST_REHYDRATE,
-      payload: {userData: {example: 'example'}, gameData: {example: 'example'}}
+      payload: {fetchTweetsReducer: {example: 'example'}, leaderboardReducer: {example: 'example'}, userReducer: {example: 'example'}}
     });
   });
 });
