@@ -8,13 +8,21 @@ class Homepage extends React.Component {
   render() {
     return (
       <div className='rows'>
-        <div className='columns'>
-          <h1 className='gameHeader column is-four-fifths'>TWEET-A-LANG</h1>
-          <Start/>
+        <div className='row'>
+          <div className='columns'>
+            <h1 className='gameHeader column is-two-thirds'>TWEET-A-LANG</h1>
+            <Start />
+          </div>
         </div>
         <div className='row'>
-          <Leaderboard />
-          <HowToPlay />
+          <div className='columns'>
+            <div className='column is-two-thirds'>
+              <HowToPlay />
+            </div>
+            <div className='column'>
+              <Leaderboard />
+            </div>
+          </div>
         </div>
       </div>
     );
