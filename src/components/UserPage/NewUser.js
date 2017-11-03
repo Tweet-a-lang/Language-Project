@@ -2,16 +2,17 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import PT from 'prop-types';
 import postNewUser from '../../actions/postNewUser';
+import { Link } from 'react-router-dom';
 // import UsernameExists from '../Errors/UsernameExists';
 import { connect } from 'react-redux';
 
 
 const customStyles = {
-  content : {
-    top                   : '50%',
+  content: {
+    top: '50%',
     // left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
+    right: 'auto',
+    bottom: 'auto',
     // marginRight           : '-50%'    
   }
 };
@@ -21,7 +22,7 @@ class NewUser extends React.Component {
     super(props);
     this.state = {
       modalIsOpen: false,
-      input: this.props.usernameInput
+      input: (!this.props.usernameInput)? '' : this.props.usernameInput
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -30,16 +31,16 @@ class NewUser extends React.Component {
   }
 
   openModal() {
-    this.setState({modalIsOpen: true});
+    this.setState({ modalIsOpen: true });
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({ modalIsOpen: false });
     this.handleNewUser();
   }
   render() {
     return (
-      <div>
+      <span>
         <button onClick={this.openModal}>New User</button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
@@ -48,22 +49,24 @@ class NewUser extends React.Component {
           style={customStyles}
           contentLabel="Create New User">
           <h1>Welcome to Tweet-a-lang!</h1>
-          <form> 
-            <input type="text" placeholder="handle" value={this.state.input} onChange={this.handleChange}></input> 
-            <button onClick={this.closeModal} >Submit</button>
+          <form>
+            <input type="text" placeholder="handle" value={this.state.input} onChange={this.handleChange}></input>
+            <Link to={(this.state.input.length > 0) ? `/user/${this.state.input}` : '/'} onClick={this.closeModal}>
+              <button>Submit</button>
+            </Link>
           </form>
         </ReactModal>
-      </div>
+      </span>
     );
   }
   handleChange(e) {
-    const {value} = e.target;
-    if(!/'|"|\s/g.test(value) && value.length < 16){
+    const { value } = e.target;
+    if (!/'|"|\s/g.test(value) && value.length < 16) {
       this.setState({
         input: e.target.value
       });
     }
-    else if(value.length >=16) window.alert('Sorry your username is too long');
+    else if (value.length >= 16) window.alert('Sorry your username is too long');
     else window.alert('Sorry that character is not allowed');
   }
   handleNewUser() {
