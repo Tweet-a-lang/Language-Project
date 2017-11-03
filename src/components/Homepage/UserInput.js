@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PT from 'prop-types';
+import NewUser from '../UserPage/NewUser';
 
 const UserInput = ({input, onChange, onLogin,onNewUser}) => (
   <div className='log-in'>
@@ -11,7 +12,8 @@ const UserInput = ({input, onChange, onLogin,onNewUser}) => (
         <button>Login</button>
       </Link>
       <Link to={(input.length > 0)? `/user/${input}` : '/'} onClick={onNewUser}>
-        <button>New User</button>
+        {/* <button>New User</button> */}
+        <NewUser />
       </Link>
     </form>
   </div>
