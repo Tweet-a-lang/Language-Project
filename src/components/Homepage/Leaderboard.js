@@ -13,7 +13,8 @@ const LeaderboardUI = ({ data }) => (
     <table className="table is-hoverableis-fullwidth">
       <thead>
         <tr>
-          <th>UserName</th>
+          <th>User</th>
+          <th></th>
           <th>Score</th>
         </tr>
       </thead>
@@ -22,14 +23,18 @@ const LeaderboardUI = ({ data }) => (
           return (
             <tr key={i}>
 
-              <td key={user.avatar}>
+              <td key={user.avatar}
+                className="userImage">
                 <Link to={`/user/${user.name}`}>
                   <img src={user.avatar} style={leaderBoardStyle} width='50' height='50' />
                 </Link>
+              </td>
+              <td>
                 <Link to={`/user/${user.name}`}>
                   <h2 className="has-text-centered" key={user.name}>{user.name}</h2>
                 </Link>
               </td>
+      
 
               <td className="has-text-centered" key={user.name + user.score}>{user.score}</td>
             </tr>

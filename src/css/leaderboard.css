@@ -24,3 +24,7 @@ th {
 table img {
     border: 2px solid black;
 }
+.userImage {
+    background-size: cover;
+    background-image: url(http://bestanimations.com/Flags/Europe/Western/Spain/spanish-flag-waving-animated-gif-4.gif);
+}
