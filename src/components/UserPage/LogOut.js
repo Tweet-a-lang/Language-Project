@@ -37,7 +37,7 @@ class LogOut extends React.Component {
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
-          shouldCloseOnOverlayClick={true}
+          shouldCloseOnOverlayClick={false}
           style={customStyles}
           contentLabel="Hint Selection Modal">
           <h1>Are you sure you want to leave?</h1>

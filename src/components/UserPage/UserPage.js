@@ -62,7 +62,7 @@ class UserPage extends React.Component {
                     <div className="check"></div>
                   </li>
                   <li>
-                    <input type="radio" id="t-option" name="selector" onChange={this.handleTopicSelection} value="tech" checked={this.state.radioButton4} />
+                    <input type="radio" id="t-option" name="selector" onChange={this.handleTopicSelection} value="technology" checked={this.state.radioButton4} />
                     <label htmlFor="t-option">Tech</label>
                     <div className="check"></div>
                   </li>
@@ -104,6 +104,7 @@ class UserPage extends React.Component {
   }
 
   handleTopicSelection(e) {
+    console.log(e.target.value);
     this.setState({
       chosenTopic: e.target.value.toLowerCase(),
       radioButton1: (e.target.value === 'random') ? true : false,

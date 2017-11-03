@@ -3,11 +3,12 @@ import Start from '../../containers/Homepage/Start';
 import Leaderboard from '../../containers/Homepage/Leaderboard';
 import HowToPlay from './/HowToPlay';
 import '../../css/app.css';
+import '../../css/homepage.css';
 
 class Homepage extends React.Component {
   render() {
     return (
-      <div className='rows app-container'>
+      <div id='homepage' className='rows app-container'>
         <div className='row'>
           <div className='columns'>
             <div className='column is-two-thirds'>
@@ -19,6 +20,7 @@ class Homepage extends React.Component {
         <div className='row'>
           <div className='columns'>
             <div className='column is-two-thirds'>
+              <h2>Welcome, come tweet-a-lang with us!</h2>
               <HowToPlay />
             </div>
             <div className='column'>
