@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../../css/userInput.css';
 import PT from 'prop-types';
 import NewUser from '../UserPage/NewUser';
 
@@ -9,10 +10,9 @@ const UserInput = ({input, onChange, onLogin,onNewUser}) => (
     <form >
       <input className='login input' placeholder="handle" onChange={onChange} value = {input} ></input>
       <Link to={(input.length > 0)? `/user/${input}` : '/'} onClick={onLogin}>
-        <button>Login</button>
+        <button className='button is-info is-inverted' type='submit'>Login</button>
       </Link>
       <Link to={(input.length > 0)? `/user/${input}` : '/'} onClick={onNewUser}>
-        {/* <button>New User</button> */}
         <NewUser />
       </Link>
     </form>

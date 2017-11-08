@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const API_URL = 'http://192.168.100.33:3001/api';
 
+
 export const fetchUserRequest = () => ({
   type: types.FETCH_USER_REQUEST
 });

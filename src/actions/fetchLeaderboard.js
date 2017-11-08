@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const API_URL = 'http://192.168.100.33:3001/api';
 
+
 export const fetchLeaderboardRequest = () => ({
   type: types.FETCH_LEADERBOARD_REQUEST
 });

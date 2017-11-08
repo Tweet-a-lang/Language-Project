@@ -2,17 +2,10 @@
     margin: auto;
     max-width: 70%;
     min-width: 450px;
-
-
+    margin-top: 20px
 }
 
-.gameHeader h1 {
-    background-color: rgba(0, 0, 0, 0.19);
-    margin: 10px;
-    border-radius: 10px;
-}
-
-.gameHeader {
+.game-header {
     font-family: 'Luckiest Guy', cursive;
     font-size: 60px;
     color: #1DA1F2;
@@ -22,11 +15,11 @@
     justify-content: center;
     height: 100%;
     align-items: center;
-    border-style: solid;
-    border-width: 1px;
     font-weight: 1000;
     background-image: url(http://vignette2.wikia.nocookie.net/thehungergames/images/c/c8/Twitter_question_mark.png/revision/latest?cb=20121008044301);
-    background-size: contain;
+    background-position: left;
+    background-size: 1.2em;
+    background-repeat: no-repeat
 }
 
 .log-in {
@@ -44,7 +37,3 @@
     height: 15px;
 }
 
-/* div {
-    border-style: solid;
-    border-width: 1px;
-} */

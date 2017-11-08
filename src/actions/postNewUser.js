@@ -3,6 +3,7 @@ import * as types from './types';
 
 const API_URL = 'http://192.168.100.33:3001/api';
 
+
 export const postNewUserRequest = (name) => ({
   type: types.POST_NEW_USER_REQUEST,
   payload: name
