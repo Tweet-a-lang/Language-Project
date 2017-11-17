@@ -1,21 +1,23 @@
 {
-  "name": "language-project",
+  "name": "Language-Project",
   "version": "1.0.0",
   "description": "Language learning/practising application using real data from twitter",
   "main": "index.js",
   "scripts": {
     "pretest": "npm run lint",
-    "lint": "eslint ./",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore",
     "lint:fix": "npm run lint -- --fix",
     "test": "mocha --require babel-register ./test/*/*.spec.js",
     "dev": "webpack-dev-server",
     "build": "webpack",
-    "precommit": "npm test"
+    "precommit": "npm test",
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tweet-a-lang/Language-Project.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -40,8 +42,13 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.2.2",
     "redux-thunk": "^2.2.0",
-    "underscore": "^1.8.3",
-    "webpack-watch-server": "^1.2.1"
+    "webpack-watch-server": "^1.2.1",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.12.4",
+    "nodemon": "^1.12.1",
+    "random-words": "^0.0.1",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
