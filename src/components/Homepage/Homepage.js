@@ -12,7 +12,7 @@ class Homepage extends React.Component {
         <div className='row'>
           <div className='columns'>
             <div className='column is-two-thirds'>
-              <div className="gameHeader">
+              <div className='game-header'>
                 <h1>TWEET-A-LANG</h1>
               </div>
             </div>

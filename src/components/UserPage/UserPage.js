@@ -40,11 +40,11 @@ class UserPage extends React.Component {
             <NoUser usernameInput={this.props.match.params.username} />
           </div> :
             <div>
-              <h1>Hi, {this.props.username}</h1>
-              <h3>Total Score: {this.props.score}</h3>
+              <h1 className='welcome' >Hi, {this.props.username}</h1>
+              <h3 className='user-score'> <p className='one'>Your current score is:</p> <p className='two'>{this.props.score}</p></h3>
 
               <div className="container">
-                <h2>Choose your tweety topic:</h2>
+                <h2>Choose your tweety topic then hit start to earn more points!:</h2>
                 <ul>
                   <li>
                     <input type="radio" id="R-option" name="selector" onChange={this.handleTopicSelection} value="random" checked={this.state.radioButton1} />
@@ -85,7 +85,7 @@ class UserPage extends React.Component {
 
 
               <Link onClick={this.handleStartGame} to={`/tweets/${this.props.username}?topic=${this.state.chosenTopic}`}>
-                <button>START GAME</button>
+                <button className='button is-info is-inverted'>START GAME</button>
               </Link>
               <LogOut />
               <UserVocab />

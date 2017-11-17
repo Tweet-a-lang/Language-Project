@@ -41,7 +41,7 @@ class NewUser extends React.Component {
   render() {
     return (
       <span>
-        <button onClick={this.openModal}>New User</button>
+        <button className='button is-info is-inverted' type='submit' onClick={this.openModal}>New User</button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -52,7 +52,7 @@ class NewUser extends React.Component {
           <form>
             <input type="text" placeholder="handle" value={this.state.input} onChange={this.handleChange}></input>
             <Link to={(this.state.input.length > 0) ? `/user/${this.state.input}` : '/'} onClick={this.closeModal}>
-              <button>Submit</button>
+              <button className='button is-info is-inverted'>Submit</button>
             </Link>
           </form>
         </ReactModal>

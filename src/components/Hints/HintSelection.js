@@ -42,9 +42,9 @@ class HintSelection extends React.Component {
     return (
       <div>
         {(this.props.gameScore <3) ? <div>
-          <p>Earn points to buy <button disabled="true">clues!</button></p></div> :
+          <p>Earn points to buy <button className='button is-info is-inverted' disabled="true">clues!</button></p></div> :
           <div>
-            <p>You can now use points to buy a <button disabled={this.props.disabled} onClick={this.openModal}>clue?</button></p>
+            <p>You can now use points to buy a <button className='button is-info is-inverted' disabled={this.props.disabled} onClick={this.openModal}>clue?</button></p>
             <ReactModal
               isOpen={this.state.modalIsOpen}
               onRequestClose={this.closeModal}
@@ -60,7 +60,7 @@ class HintSelection extends React.Component {
                   word={this.props.word}
                   dictionaryHint={this.props.dictionaryHint}
                   closeModal={this.closeModal} />} 
-              <button onClick={this.closeModal} >Back</button>
+              <button className='button is-info is-inverted' onClick={this.closeModal} >Back</button>
             </ReactModal>
           </div>
         }

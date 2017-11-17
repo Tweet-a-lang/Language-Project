@@ -32,9 +32,9 @@ class DefinitionHint extends React.Component {
       <div>
         {(this.props.score < 5) ? 
           <div>
-            <p>See a definition of the English word <button disbaled="true">not enough points!</button></p> </div> :
+            <p>See a definition of the English word <button className='button is-info is-inverted' disbaled="true">not enough points!</button></p> </div> :
           <div>
-            <p>See a definition of the English word <button onClick={this.openModal}>5 points!</button></p>
+            <p>See a definition of the English word <button className='button is-info is-inverted' onClick={this.openModal}>5 points!</button></p>
             <ReactModal
               isOpen={this.state.modalIsOpen}
               onRequestClose={this.props.closeModal}
@@ -45,7 +45,7 @@ class DefinitionHint extends React.Component {
                 hint = `"${hint}"`;
                 return <div key={i}>{Parser(hint)}</div>;
               })}
-              <button onClick={this.handleScoreDec} >OK back to Game</button>
+              <button className='button is-info is-inverted' onClick={this.handleScoreDec} >OK back to Game</button>
             </ReactModal>
           </div>
         }

@@ -33,7 +33,7 @@ class LogOut extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.openModal}>Log Out</button>
+        <button className='button is-info is-inverted' onClick={this.openModal}>Log Out</button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -41,9 +41,9 @@ class LogOut extends React.Component {
           style={customStyles}
           contentLabel="Hint Selection Modal">
           <h1>Are you sure you want to leave?</h1>
-          <button onClick={this.closeModal} >Stay</button>
+          <button className='button is-info is-inverted' onClick={this.closeModal} >Stay</button>
           <Link to={'/'}>
-            <button onClick={this.closeModal} >Log Out</button>
+            <button className='button is-info is-inverted' onClick={this.closeModal} >Log Out</button>
           </Link>
         </ReactModal>
       </div>

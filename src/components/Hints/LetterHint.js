@@ -33,7 +33,7 @@ class LetterHint extends React.Component {
   render() {
     return (
       <div>
-        <p>See two random letters from the english word <button onClick={this.openModal}>3 points!</button></p>
+        <p>See two random letters from the english word <button className='button is-info is-inverted' onClick={this.openModal}>3 points!</button></p>
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.props.closeModal}
@@ -41,7 +41,7 @@ class LetterHint extends React.Component {
           style={customStyles}
           contentLabel="Letter Hint Modal">
           <h1>{_.sample(this.props.word.text, 2)}</h1>
-          <button onClick={this.handleScoreDec} >OK back to Game</button>
+          <button className='button is-info is-inverted' onClick={this.handleScoreDec} >OK back to Game</button>
         </ReactModal>
       </div>
     );

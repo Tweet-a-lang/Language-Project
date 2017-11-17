@@ -8,10 +8,10 @@ const GameNavbarUI = ({onEndGame, onNextGame, username}) => (
     <nav className="navbar">
       <div className="navbar-brand">
         <Link className="navbar-item" onClick={onEndGame} to={`/user/${username}`}>
-          <button>End Game</button>
+          <button className='button is-info is-inverted'>End Game</button>
         </Link>
         <Link className="navbar-item" onClick={onNextGame} to={`/tweets/${username}`}>
-          <button>Next Game</button>
+          <button className='button is-info is-inverted'>Next Game</button>
         </Link>
       </div>
     </nav>
