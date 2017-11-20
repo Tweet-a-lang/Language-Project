@@ -8,7 +8,7 @@ import fetchLeaderboard, {
   fetchLeaderboardFailure
 } from '../../src/actions/fetchLeaderboard';
 
-const API_URL = 'http://192.168.100.33:3001/api';
+import API_URL from '../../src/api_url';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);

@@ -1,7 +1,7 @@
 import * as types from './types';
 import axios from 'axios';
 
-const API_URL = 'http://192.168.100.33:3001/api';
+import API_URL from '../api_url';
 
 
 export const fetchTweetsRequest = () => ({
