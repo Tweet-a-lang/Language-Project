@@ -47,6 +47,9 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   devServer: {
     contentBase: PATHS.public,
     publicPath: '/',
