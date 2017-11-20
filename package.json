@@ -14,7 +14,7 @@
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "prod": "NODE_ENV=production node ./src/index.js",
     "build": "webpack",
-    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress"
+    "postinstall": "npm run build"
   },
   "engines": {
     "node": "8.6.0",
