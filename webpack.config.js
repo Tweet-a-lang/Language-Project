@@ -50,7 +50,7 @@ module.exports = {
   devServer: {
     contentBase: PATHS.public,
     publicPath: '/',
-    port: 9000,
+    port:process.env.PORT,
     historyApiFallback: true
   }
 };
