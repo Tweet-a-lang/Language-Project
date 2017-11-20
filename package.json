@@ -13,8 +13,7 @@
     "precommit": "npm test",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "prod": "NODE_ENV=production node ./src/index.js",
-    "postinstall": "webpack -p"
+    "prod": "NODE_ENV=production node ./src/index.js"
   },
   "engines": {
     "node": "8.6.0",
