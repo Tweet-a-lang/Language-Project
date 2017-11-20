@@ -1,3 +1,7 @@
 node_modules
+<<<<<<< HEAD
+public/bundle.js
+=======
 .env
 .keyfile.json
+>>>>>>> 0b912253227f5f529bae71e97c9420eceb58c4c6
