@@ -14,7 +14,8 @@
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
   },
   "engines": {
-    "node": "8.6.0"
+    "node": "8.6.0",
+    "npm": "5.5.1"
   },
   "repository": {
     "type": "git",
