@@ -11,7 +11,7 @@
     "dev": "webpack-dev-server",
     "precommit": "npm test",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
-    "start": "./node_modules/webpack/bin/webpack.js -p --progress && node index.js",
+    "start": "./node_modules/webpack/bin/webpack.js -p --progress",
     "serve": "webpack-dev-server",
     "build": "node ./node_modules/webpack/bin/webpack.js --display-error-details",
     "postinstall": "npm run build"
