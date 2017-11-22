@@ -7,16 +7,13 @@ const PATHS = {
 };
 
 module.exports = {
+  devtool: 'source-map',
   entry: PATHS.entry,
   output: {
-    filename: 'bundle.js',
     path: PATHS.public,
-    publicPath: '/'
+    publicPath: '/',
+    filename: 'bundle.js'
   },
-
-  devtool: 'source-map',
-
-
   module: {
     rules: [
       {
@@ -55,9 +52,6 @@ module.exports = {
         ]
       }
     ]
-  },
-  resolve: {
-    extensions: ['.js', '.jsx']
   },
   devServer: {
     contentBase: PATHS.public,
