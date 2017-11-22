@@ -12,7 +12,7 @@
     "precommit": "npm test",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "prod": "NODE_ENV=production node ./src/index.js",
+    "serve": "webpack-dev-server",
     "build": "node ./node_modules/webpack/bin/webpack.js --display-error-details",
     "postinstall": "npm run build"
   },
