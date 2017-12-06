@@ -10,14 +10,12 @@ const PATHS = {
 module.exports = {
   devtool: 'source-map',
 
-  entry: [
-    './src/index'
-  ],
+  entry:   PATHS.entry,
 
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'bundle.js',
-    publicPath: '/public/'
+    path: PATHS.public,
+    publicPath: '/',
+    filename: 'bundle.js'
   },
 
   plugins: [
@@ -72,8 +70,7 @@ module.exports = {
       },
       {
         test: /\.css?$/,
-        loader: 'style-loader!css-loader!sass-loader',
-        include: path.join(__dirname, 'src')
+        loader: 'style-loader!css-loader!sass-loader'
       },
       {
         test: /\.png$/,

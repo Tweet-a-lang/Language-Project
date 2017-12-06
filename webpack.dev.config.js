@@ -12,18 +12,18 @@ module.exports = {
 
   entry: [
     'webpack-hot-middleware/client',
-    './src/index'
+    PATHS.entry,
   ],
 
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'bundle.js',
-    publicPath: '/public/'
+    path: PATHS.public,
+    publicPath: '/',
+    filename: 'bundle.js'
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   ],
 
   module: {
@@ -64,8 +64,7 @@ module.exports = {
       },
       {
         test: /\.css?$/,
-        loader: 'style-loader!css-loader!sass-loader',
-        include: path.join(__dirname, 'src')
+        loader: 'style-loader!css-loader!sass-loader'
       },
       {
         test: /\.png$/,
