@@ -1,5 +1,5 @@
 const Server = require('./server.js');
-const port = (process.env.PORT || 8080);
+const port = (process.env.PORT || 9000);
 const app = Server.app();
 
 if (process.env.NODE_ENV !== 'production') {
@@ -9,6 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
   const config = require('../webpack.dev.config.js');
   const compiler = webpack(config);
 
+  console.log(config.output.publicPath);
   app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
