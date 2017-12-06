@@ -49,6 +49,15 @@ module.exports = {
     ],
     loaders: [
       {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          plugins: ['transform-runtime'],
+          presets: ['es2015', 'react', 'stage-0']
+        }
+      },
+      {
         test: /\.js?$/,
         loader: 'babel',
         exclude: path.join(__dirname, 'node_modules')
