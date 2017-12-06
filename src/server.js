@@ -9,6 +9,7 @@ module.exports = {
 
     app.use('/public', publicPath);
     app.get('/', function (_, res) { res.sendFile(indexPath); });
+    app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
     return app;
   }
