@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const PATHS = {
-  entry: path.join(__dirname, 'src', 'index.js'),
+  entry: path.join(__dirname, 'src', 'app.js'),
   public: path.join(__dirname, 'public'),
   src: path.join(__dirname, 'src')
 };
@@ -82,6 +82,10 @@ module.exports = {
         ]
       }
     ]
+  },
+  node: {
+    fs: 'empty',
+    net: 'empty'
   }
 
 };
