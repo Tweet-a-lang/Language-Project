@@ -12,8 +12,8 @@
     "precommit": "npm test",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
     "prod": "NODE_ENV=production node server.js",
-    "build": "webpack -p --progress --colors",
-    "postinstall": "webpack -p --progress --colors",
+    "build": "webpack --config ./webpack.config.js --progress --colors",
+    "postinstall": "npm run build",
     "start": "node ./src/app.js"
 
   },
